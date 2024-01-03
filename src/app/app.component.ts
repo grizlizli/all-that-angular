@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { TooltipComponent } from './components/tooltip/tooltip.component';
+import { TooltipDirective } from './components/tooltip/tooltip.directive';
 
 @Component({
   selector: 'mk-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, TooltipComponent],
+  imports: [CommonModule, RouterOutlet, TooltipDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
