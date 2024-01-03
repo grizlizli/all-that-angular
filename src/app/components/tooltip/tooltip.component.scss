@@ -1,0 +1,15 @@
+:host {
+    display: block;
+
+    .mk-tooltip {
+        position: fixed;
+        background-color: black;
+        color: white;
+        padding: 8px;
+        font-size: 12px;
+        max-width: 300px;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+        transform: translate(-50%, -100%);
+    }
+}
+
