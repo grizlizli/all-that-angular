@@ -11,5 +11,5 @@ import { TooltipDirective } from './components/tooltip/tooltip.directive';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'all-that-angular';
+  title = 'All That Angular';
 }
