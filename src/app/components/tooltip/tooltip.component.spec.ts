@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TooltipComponent } from './tooltip.component';
+import { By } from '@angular/platform-browser';
 
 describe('TooltipComponent', () => {
   let component: TooltipComponent;
@@ -19,5 +20,13 @@ describe('TooltipComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should display the tooltip message', () => {
+    component.tooltip = 'Test';
+    fixture.detectChanges();
+
+    const tooltipElement = fixture.debugElement.query(By.css('.mk-tooltip')).nativeElement;;
+    expect(tooltipElement.innerHTML).toContain('Test');
   });
 });
