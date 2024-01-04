@@ -9,32 +9,32 @@ import { TooltipComponent } from './tooltip.component';
 export class TooltipDirective implements OnInit, OnDestroy {
   @Input({alias: 'mkTooltip', required: true}) tooltip: string = '';
 
-  display$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private readonly displaySubject = new BehaviorSubject<boolean>(false);
+  private readonly display$: Observable<boolean> = this.displaySubject;
 
   private destroy$: Subject<void> = new Subject<void>();
 
   private componentRef: ComponentRef<TooltipComponent> | null = null;
 
-  get isDisplayed$(): Observable<boolean> {
-    return this.display$.asObservable();
-  }
-
-  constructor(private elementRef: ElementRef, private appRef: ApplicationRef,
-    private viewContainerRef: ViewContainerRef, private injector: Injector) {
+  constructor(private readonly elementRef: ElementRef, private readonly appRef: ApplicationRef,
+    private readonly viewContainerRef: ViewContainerRef, private readonly injector: Injector) {
   }
 
   @HostListener('mouseenter')
   onMouseEnter(): void {
-    this.display$.next(true);
+    this.displaySubject.next(true);
   }
 
   @HostListener('mouseleave')
   onMouseLeave(): void {
-    this.display$.next(false);
+    this.displaySubject.next(false);
   }
 
   ngOnInit(): void {
-      this.isDisplayed$.pipe(debounceTime(700), takeUntil(this.destroy$)).subscribe((displayed: boolean) => {
+      this.display$.pipe(
+        debounceTime(700),
+        takeUntil(this.destroy$)
+      ).subscribe((displayed: boolean) => {
         if (displayed) {
           this.initializeTooltip();
         }
@@ -61,7 +61,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   private setTooltipComponentProperties(): void {
     if (this.componentRef !== null) {
       this.componentRef.instance.tooltip = this.tooltip;
-      this.componentRef.instance.display$ = this.display$;
+      this.componentRef.instance.displaySubject = this.displaySubject;
 
       const { left, right, top } = this.elementRef.nativeElement.getBoundingClientRect();
 
@@ -79,6 +79,5 @@ export class TooltipDirective implements OnInit, OnDestroy {
       this.componentRef = null;
     }
   }
-
 }
 

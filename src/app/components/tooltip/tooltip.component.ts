@@ -12,19 +12,19 @@ export class TooltipComponent {
   tooltip: string = '';
   left: number = 0;
   top: number = 0;
-  display$: BehaviorSubject<boolean> | null = null;
+  displaySubject: BehaviorSubject<boolean> | null = null;
 
   @HostListener('mouseenter')
   onMouseEnter(): void {
-    if (this.display$) {
-      this.display$.next(true);
+    if (this.displaySubject) {
+      this.displaySubject.next(true);
     }
   }
 
   @HostListener('mouseleave')
   onMouseLeave(): void {
-    if (this.display$) {
-      this.display$.next(false);
+    if (this.displaySubject) {
+      this.displaySubject.next(false);
     }
   }
 }
