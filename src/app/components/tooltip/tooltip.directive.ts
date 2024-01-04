@@ -12,7 +12,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   private readonly displaySubject = new BehaviorSubject<boolean>(false);
   private readonly display$: Observable<boolean> = this.displaySubject;
 
-  private destroy$: Subject<void> = new Subject<void>();
+  private readonly destroy$: Subject<void> = new Subject<void>();
 
   private componentRef: ComponentRef<TooltipComponent> | null = null;
 
