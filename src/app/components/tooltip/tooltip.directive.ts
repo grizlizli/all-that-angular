@@ -1,5 +1,5 @@
 import { ApplicationRef, ComponentRef, Directive, ElementRef, HostListener, Injector, Input, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, debounceTime, takeUntil } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
 import { TooltipComponent } from './tooltip.component';
 
 @Directive({
@@ -33,6 +33,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   ngOnInit(): void {
       this.display$.pipe(
         debounceTime(700),
+        distinctUntilChanged(),
         takeUntil(this.destroy$)
       ).subscribe((displayed: boolean) => {
         if (displayed) {
@@ -53,8 +54,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   private initializeTooltip(): void {
     if (this.componentRef === null && this.tooltip) {
       this.componentRef = this.viewContainerRef.createComponent(TooltipComponent, { injector: this.injector });
-      this.setTooltipComponentProperties();
-      this.appRef.attachView(this.componentRef.hostView);
+      this.setTooltipComponentProperties(); 
     }
   }
 
