@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -6,7 +6,8 @@ import { BehaviorSubject } from 'rxjs';
   standalone: true,
   imports: [],
   templateUrl: './tooltip.component.html',
-  styleUrl: './tooltip.component.scss'
+  styleUrl: './tooltip.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TooltipComponent {
   tooltip: string = '';

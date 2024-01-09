@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { TooltipDirective } from './components/tooltip/tooltip.directive';
@@ -8,7 +8,8 @@ import { TooltipDirective } from './components/tooltip/tooltip.directive';
   standalone: true,
   imports: [CommonModule, RouterOutlet, TooltipDirective],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
   title = 'All That Angular';
