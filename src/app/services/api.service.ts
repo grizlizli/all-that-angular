@@ -34,7 +34,7 @@ export class ApiService {
   }
 
   patch<T = unknown>(route: string, body: any = {}) {
-    return this.http.patch(`${this.ENDPOINT}/${route}`, body);
+    return this.http.patch<T>(`${this.ENDPOINT}/${route}`, body);
   }
 
   delete<T = unknown>(route: string, body: any = {}) {
