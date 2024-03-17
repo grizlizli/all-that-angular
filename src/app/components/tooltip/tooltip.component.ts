@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -10,8 +10,11 @@ import { BehaviorSubject } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TooltipComponent {
+  @Input()
   tooltip: string = '';
+  @Input()
   left: number = 0;
+  @Input()
   top: number = 0;
   displaySubject: BehaviorSubject<boolean> | null = null;
 
