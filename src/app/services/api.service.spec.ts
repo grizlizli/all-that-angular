@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
 import { API_ENDPOINT_CONFIG, ApiService, DEFAULT_API_ENDPOINT_CONFIG } from './api.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
 import { of, throwError } from 'rxjs';
 
