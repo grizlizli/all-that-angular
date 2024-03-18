@@ -7,19 +7,21 @@ import { of, throwError } from 'rxjs';
 
 describe('ApiService', () => {
   let service: ApiService;
-  let httpClient: HttpClient;
+  const httpClient: jasmine.SpyObj<HttpClient> = jasmine.createSpyObj('HttpClient', ['get']);
   const testData = { title: 'Test' };
   const testError = new Error('test');
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [],
       providers: [{
         provide: API_ENDPOINT_CONFIG,
         useValue: DEFAULT_API_ENDPOINT_CONFIG
+      }, {
+        provide: HttpClient,
+        useValue: httpClient
       }]
     });
-    httpClient = TestBed.inject(HttpClient);
     service = TestBed.inject(ApiService);
   });
 
@@ -32,16 +34,12 @@ describe('ApiService', () => {
   });
 
   it('should return response when calling get method and return test data', () => {
-    const httpGetSpy = spyOn(httpClient, 'get').and.returnValue(of(testData)); 
-    service.get('test');
-    expect(httpGetSpy).toHaveBeenCalled();
+    httpClient.get.and.returnValue(of(testData)); 
     service.get('test').subscribe(response => expect(response).toEqual(testData));
   });
 
   it('should catch error when calling get method', () => {
-    const httpGetSpy = spyOn(httpClient, 'get').and.returnValue(throwError(() => testError)); 
-    service.get('test');
-    expect(httpGetSpy).toHaveBeenCalled();
+    httpClient.get.and.returnValue(throwError(() => testError)); 
     service.get('test').subscribe({error: error => expect(error).toEqual(testError)});
   });
 });

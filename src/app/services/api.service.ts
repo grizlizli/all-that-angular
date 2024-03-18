@@ -1,7 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { Observable, retry } from 'rxjs';
-import { ApiEndpointConfig } from '../interfaces/api-endpoint-config.interface';
+
+export interface ApiEndpointConfig {
+  endpoint: string;
+  version: string;
+  prefix: string;
+}
 
 export const DEFAULT_API_ENDPOINT_CONFIG: ApiEndpointConfig = {
   endpoint: 'http://localhost:8000',
