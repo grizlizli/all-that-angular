@@ -18,15 +18,34 @@ export class ProductsFilterComponent {
     skip: []
   });
 
-  valueChange = outputFromObservable<Partial<ProductsQueryParams>>(this.form.valueChanges.pipe(map(value => {
-    const params = {...value};
-    const keys = Object.keys(params);
-    for (let key of keys) {
-      if (value[key] === null) {
-        delete params[key];
-      }
-    }
+  value = input<Partial<ProductsQueryParams>>();
 
-    return params;
-  })));
+  valueChanges$ = this.form.valueChanges.pipe(
+    map(value => {
+      const params = { ...value };
+      const keys = Object.keys(params);
+      for (let key of keys) {
+        if (value[key] === null) {
+          delete params[key];
+        }
+      }
+
+      return params;
+    })
+  );
+
+  constructor() {
+    this.setValueEffect();
+  }
+
+  valueChange = outputFromObservable<Partial<ProductsQueryParams>>(this.valueChanges$);
+
+  private setValueEffect(): void {
+    effect(() => {
+      const value = this.value();
+      if (value) {
+        this.form.patchValue(value, {onlySelf: true, emitEvent: false});
+      }
+    })
+  }
 }

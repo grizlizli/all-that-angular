@@ -1,4 +1,4 @@
-<mk-products-filter (valueChange)="handleFilterValueChange($event)"/>
+<mk-products-filter [value]="productsFilter()" (valueChange)="handleFilterValueChange($event)"/>
 
 @defer (when (products !== null)) {
     <mk-products-list [products]="products"></mk-products-list>
