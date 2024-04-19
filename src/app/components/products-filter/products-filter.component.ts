@@ -33,18 +33,11 @@ export class ProductsFilterComponent {
   );
 
   value = input<Partial<ProductsQueryParams>>();
-
   valueChange = outputFromObservable<Partial<ProductsQueryParams>>(this.valueChanges$);
-
-  
-
-
 
   constructor() {
     this.setValueEffect();
   }
-
-  
 
   private setValueEffect(): void {
     effect(() => {
@@ -52,6 +45,6 @@ export class ProductsFilterComponent {
       if (value) {
         this.form.patchValue(value, {onlySelf: true, emitEvent: false});
       }
-    })
+    });
   }
 }
