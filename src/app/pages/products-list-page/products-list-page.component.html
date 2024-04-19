@@ -1,7 +1,11 @@
 <mk-products-filter (valueChange)="handleValueChange($event)"/>
 
-<ul>
-    @for (product of products$ | async; track product.id) {
-    <li>{{ product.title }}</li>
-    }
-</ul>
+@defer (when (products !== null)) {
+    <mk-products-list [products]="products"></mk-products-list>
+}
+@placeholder {
+    <mk-loading-products-list></mk-loading-products-list>
+}
+@loading {
+    <mk-loading-products-list></mk-loading-products-list>
+}
