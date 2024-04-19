@@ -18,6 +18,7 @@ import { LoadingProductsListComponent } from '../../components/loading-products-
 export class ProductsListPageComponent implements OnInit {
   private readonly productsService: ProductsService = inject(ProductsService);
   private readonly destroyRef: DestroyRef = inject(DestroyRef);
+  
   readonly productsFilter = signal<Partial<ProductsQueryParams>>({skip: 0, limit: 20});
   readonly products$: Observable<Product[]> = toObservable(this.productsFilter)
     .pipe(
