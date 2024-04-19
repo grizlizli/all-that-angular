@@ -2,7 +2,6 @@ import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { ProductsFilterComponent } from '../../components/products-filter/products-filter.component';
 import { ProductsService } from '../../services/products.service';
 import { Product } from '../../interfaces/product.interface';
-import { AsyncPipe } from '@angular/common';
 import { debounceTime, map, Observable, switchMap } from 'rxjs';
 import { ProductsQueryParams } from '../../interfaces/products-query-params.interface';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
@@ -12,7 +11,7 @@ import { LoadingProductsListComponent } from '../../components/loading-products-
 @Component({
   selector: 'mk-products-list-page',
   standalone: true,
-  imports: [ProductsFilterComponent, ProductsListComponent, LoadingProductsListComponent, AsyncPipe],
+  imports: [ProductsFilterComponent, ProductsListComponent, LoadingProductsListComponent],
   templateUrl: './products-list-page.component.html',
   styleUrl: './products-list-page.component.scss'
 })
