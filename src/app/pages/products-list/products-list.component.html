@@ -1,0 +1,7 @@
+<mk-products-filter (valueChange)="handleValueChange($event)"/>
+
+<ul>
+    @for (product of products$ | async; track product.id) {
+    <li>{{ product.title }}</li>
+    }
+</ul>

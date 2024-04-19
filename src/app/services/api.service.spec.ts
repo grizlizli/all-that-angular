@@ -1,8 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import { API_ENDPOINT_CONFIG, ApiService, DEFAULT_API_ENDPOINT_CONFIG } from './api.service';
+import { ApiService } from './api.service';
 import { HttpClient } from '@angular/common/http';
 import { of, throwError } from 'rxjs';
+import { API_ENDPOINT_CONFIG, DEFAULT_API_ENDPOINT_CONFIG } from '../providers/api-endpoint-config.provider';
+import { API_ENDPOINT_URL, DEFAULT_API_ENDPOINT_URL } from '../providers/api-endpoint-url.provider';
 
 describe('ApiService', () => {
   let service: ApiService;
@@ -16,6 +18,9 @@ describe('ApiService', () => {
       providers: [{
         provide: API_ENDPOINT_CONFIG,
         useValue: DEFAULT_API_ENDPOINT_CONFIG
+      }, {
+        provide: API_ENDPOINT_URL,
+        useValue: DEFAULT_API_ENDPOINT_URL
       }, {
         provide: HttpClient,
         useValue: httpClient
@@ -33,12 +38,12 @@ describe('ApiService', () => {
   });
 
   it('should return response when calling get method and return test data', () => {
-    httpClient.get.and.returnValue(of(testData)); 
+    httpClient.get.and.returnValue(of(testData));
     service.get('test').subscribe(response => expect(response).toEqual(testData));
   });
 
   it('should catch error when calling get method', () => {
-    httpClient.get.and.returnValue(throwError(() => testError)); 
-    service.get('test').subscribe({error: error => expect(error).toEqual(testError)});
+    httpClient.get.and.returnValue(throwError(() => testError));
+    service.get('test').subscribe({ error: error => expect(error).toEqual(testError) });
   });
 });
