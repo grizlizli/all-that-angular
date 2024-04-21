@@ -18,11 +18,14 @@ import { LoadingProductsListComponent } from '../../components/loading-products-
 export class ProductsListPageComponent implements OnInit {
   private readonly productsService: ProductsService = inject(ProductsService);
   private readonly destroyRef: DestroyRef = inject(DestroyRef);
-  
-  readonly productsFilter = signal<Partial<ProductsQueryParams>>({skip: 0, limit: 20});
+
+  readonly productsFilter = signal<Partial<ProductsQueryParams>>({ skip: 0, limit: 20 });
   readonly products$: Observable<Product[]> = toObservable(this.productsFilter)
     .pipe(
       debounceTime(1200),
+      map(value => {
+        return Object.fromEntries(Object.entries(value).filter(([_, v]) => v != null));
+      }),
       switchMap(params => this.productsService.getAll(params)),
       map((response) => response.products)
     );
@@ -31,13 +34,9 @@ export class ProductsListPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.products$
-    .pipe(takeUntilDestroyed(this.destroyRef))
-    .subscribe({
-      next: (products) => this.products = products
-    })
-  }
-
-  handleFilterValueChange(value: ProductsQueryParams) {
-    this.productsFilter.set(value);
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (products) => this.products = products
+      });
   }
 }

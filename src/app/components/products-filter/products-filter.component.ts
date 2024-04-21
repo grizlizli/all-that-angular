@@ -18,22 +18,9 @@ export class ProductsFilterComponent {
     skip: []
   });
 
-  readonly valueChanges$ = this.form.valueChanges.pipe(
-    map(value => {
-      const params = { ...value };
-      const keys = Object.keys(params);
-      for (let key of keys) {
-        if (value[key] === null) {
-          delete params[key];
-        }
-      }
-
-      return params;
-    })
-  );
-
-  value = input<Partial<ProductsQueryParams>>();
-  valueChange = outputFromObservable<Partial<ProductsQueryParams>>(this.valueChanges$);
+  readonly valueChanges$ = this.form.valueChanges;
+  readonly value = input<Partial<ProductsQueryParams>>();
+  readonly valueChange = outputFromObservable<Partial<ProductsQueryParams>>(this.valueChanges$);
 
   constructor() {
     this.setValueEffect();
