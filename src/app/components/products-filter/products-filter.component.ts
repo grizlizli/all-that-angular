@@ -1,4 +1,4 @@
-import { Component, effect, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, input } from '@angular/core';
 import { outputFromObservable } from '@angular/core/rxjs-interop';
 import { FormGroup, ReactiveFormsModule, UntypedFormBuilder } from '@angular/forms';
 import { ProductsQueryParams } from '../../interfaces/products-query-params.interface';
@@ -8,7 +8,8 @@ import { ProductsQueryParams } from '../../interfaces/products-query-params.inte
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './products-filter.component.html',
-  styleUrl: './products-filter.component.scss'
+  styleUrl: './products-filter.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductsFilterComponent {
   private readonly formBuilder: UntypedFormBuilder = inject(UntypedFormBuilder);

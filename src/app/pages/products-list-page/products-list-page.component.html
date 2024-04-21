@@ -1,7 +1,7 @@
 <mk-products-filter [(value)]="productsFilter" />
 
-@defer (when (products !== null)) {
-    <mk-products-list [products]="products"></mk-products-list>
+@defer (when (products() !== null)) {
+    <mk-products-list [products]="products()"></mk-products-list>
 }
 @placeholder {
     <mk-loading-products-list></mk-loading-products-list>

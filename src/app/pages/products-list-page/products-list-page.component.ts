@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { ProductsFilterComponent } from '../../components/products-filter/products-filter.component';
 import { ProductsService } from '../../services/products.service';
 import { Product } from '../../interfaces/product.interface';
@@ -13,7 +13,8 @@ import { LoadingProductsListComponent } from '../../components/loading-products-
   standalone: true,
   imports: [ProductsFilterComponent, ProductsListComponent, LoadingProductsListComponent],
   templateUrl: './products-list-page.component.html',
-  styleUrl: './products-list-page.component.scss'
+  styleUrl: './products-list-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductsListPageComponent implements OnInit {
   private readonly productsService: ProductsService = inject(ProductsService);
@@ -30,13 +31,13 @@ export class ProductsListPageComponent implements OnInit {
       map((response) => response.products)
     );
 
-  products: Product[] | null = null;
+  products = signal<Product[] | null>(null);
 
   ngOnInit(): void {
     this.products$
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
-        next: (products) => this.products = products
+        next: (products) => this.products.set(products)
       });
   }
 }
