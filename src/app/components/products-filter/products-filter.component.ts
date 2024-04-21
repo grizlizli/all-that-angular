@@ -2,7 +2,6 @@ import { Component, effect, inject, input } from '@angular/core';
 import { outputFromObservable } from '@angular/core/rxjs-interop';
 import { FormGroup, ReactiveFormsModule, UntypedFormBuilder } from '@angular/forms';
 import { ProductsQueryParams } from '../../interfaces/products-query-params.interface';
-import { map } from 'rxjs';
 
 @Component({
   selector: 'mk-products-filter',
