@@ -11,7 +11,6 @@ export type Content<T> = string | TemplateRef<T> | Type<T>;
 })
 export class TooltipDirective implements OnInit, OnDestroy {
   @Input({alias: 'mkTooltip', required: true}) tooltip: string = '';
-
   @Input() template?: Content<any>;
 
   private readonly elementRef: ElementRef = inject(ElementRef);
