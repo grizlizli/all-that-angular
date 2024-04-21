@@ -10,26 +10,27 @@ import { API_ENDPOINT_CONFIG, ApiEndpointConfig } from '../providers/api-endpoin
 export class ApiService {
   private readonly http: HttpClient = inject(HttpClient);
   private readonly apiEndpointConfig: ApiEndpointConfig = inject(API_ENDPOINT_CONFIG);
-  private readonly ENDPOINT_URL: string = inject(API_ENDPOINT_URL);
-  private readonly ENDPOINT: string = `${this.apiEndpointConfig.endpoint}/${this.apiEndpointConfig.prefix}/v${this.apiEndpointConfig.version}`;
+  private readonly endpointUrl: string = inject(API_ENDPOINT_URL);
+  // deprecated
+  private readonly endpoint: string = `${this.apiEndpointConfig.endpoint}/${this.apiEndpointConfig.prefix}/v${this.apiEndpointConfig.version}`;
 
   get<T = unknown>(route: string, params: any = {}): Observable<T> {
-    return this.http.get<T>(`${this.ENDPOINT_URL}/${route}`, { params }).pipe(retry(3));
+    return this.http.get<T>(`${this.endpointUrl}/${route}`, { params }).pipe(retry(3));
   }
   
   post<T = unknown>(route: string, body: unknown): Observable<T> {
-    return this.http.post<T>(`${this.ENDPOINT_URL}/${route}`, body).pipe(retry(3));
+    return this.http.post<T>(`${this.endpointUrl}/${route}`, body).pipe(retry(3));
   }
 
   put<T = unknown>(route: string, body: unknown) {
-    return this.http.put<T>(`${this.ENDPOINT_URL}/${route}`, body);
+    return this.http.put<T>(`${this.endpointUrl}/${route}`, body);
   }
 
   patch<T = unknown>(route: string, body: any = {}) {
-    return this.http.patch<T>(`${this.ENDPOINT_URL}/${route}`, body);
+    return this.http.patch<T>(`${this.endpointUrl}/${route}`, body);
   }
 
   delete<T = unknown>(route: string, body: any = {}) {
-    return this.http.delete<T>(`${this.ENDPOINT_URL}/${route}`, body);
+    return this.http.delete<T>(`${this.endpointUrl}/${route}`, body);
   }
 }
