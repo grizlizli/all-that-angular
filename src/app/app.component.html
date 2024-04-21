@@ -2,6 +2,7 @@
   <div class="content">
     <div class="left-side">
       <h1 mkTooltip="Hello, World!" data-testid="mk-app-title">{{ title }}</h1>
+      <h2 mkTooltip="They Call me Grizli :)" [template]="tooltipRef" data-testid="mk-app-subtitle">Made by Miloš Krstić</h2>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">
@@ -10,3 +11,6 @@
     </div>
   </div>
 </main>
+<ng-template #tooltipRef>
+  <h1 class="h1-tooltip">GrizliZli</h1>
+</ng-template>

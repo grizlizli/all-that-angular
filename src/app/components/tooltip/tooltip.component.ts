@@ -10,25 +10,24 @@ import { BehaviorSubject } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TooltipComponent {
+  @Input({required: true})
+  tooltip!: string;
+  @Input({required: true})
+  left!: number;
+  @Input({required: true})
+  top!: number;
+  @Input({required: true})
+  displaySubject!: BehaviorSubject<boolean>;
   @Input()
-  tooltip: string = '';
-  @Input()
-  left: number = 0;
-  @Input()
-  top: number = 0;
-  displaySubject: BehaviorSubject<boolean> | null = null;
+  hasTemplate: boolean = false;
 
   @HostListener('mouseenter')
   onMouseEnter(): void {
-    if (this.displaySubject) {
-      this.displaySubject.next(true);
-    }
+    this.displaySubject.next(true);
   }
 
   @HostListener('mouseleave')
   onMouseLeave(): void {
-    if (this.displaySubject) {
-      this.displaySubject.next(false);
-    }
+    this.displaySubject.next(false);
   }
 }

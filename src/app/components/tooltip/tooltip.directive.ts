@@ -1,6 +1,9 @@
-import { ApplicationRef, ComponentRef, Directive, ElementRef, HostListener, Injector, Input, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
+import { ApplicationRef, ComponentRef, Directive, ElementRef, HostListener, inject, Inject, Injector, Input, OnDestroy, OnInit, TemplateRef, Type, ViewContainerRef } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
 import { TooltipComponent } from './tooltip.component';
+import { DOCUMENT } from '@angular/common';
+
+export type Content<T> = string | TemplateRef<T> | Type<T>;
 
 @Directive({
   selector: '[mkTooltip]',
@@ -9,16 +12,20 @@ import { TooltipComponent } from './tooltip.component';
 export class TooltipDirective implements OnInit, OnDestroy {
   @Input({alias: 'mkTooltip', required: true}) tooltip: string = '';
 
+  @Input() template?: Content<any>;
+
+  private readonly elementRef: ElementRef = inject(ElementRef);
+  private readonly appRef: ApplicationRef = inject(ApplicationRef);
+  private readonly viewContainerRef: ViewContainerRef = inject(ViewContainerRef);
+  private readonly injector: Injector = inject(Injector);
+  private readonly document: Document = inject(DOCUMENT);
+
   private readonly displaySubject = new BehaviorSubject<boolean>(false);
   private readonly display$: Observable<boolean> = this.displaySubject;
 
   private readonly destroy$: Subject<void> = new Subject<void>();
 
   private componentRef: ComponentRef<TooltipComponent> | null = null;
-
-  constructor(private readonly elementRef: ElementRef, private readonly appRef: ApplicationRef,
-    private readonly viewContainerRef: ViewContainerRef, private readonly injector: Injector) {
-  }
 
   @HostListener('mouseenter')
   onMouseEnter(): void {
@@ -52,23 +59,23 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   private initializeTooltip(): void {
-    if (this.componentRef === null && this.tooltip) {
-      this.componentRef = this.viewContainerRef.createComponent(TooltipComponent, { injector: this.injector });
-      this.setTooltipComponentProperties(); 
+    if (this.componentRef === null) {
+      const hasTemplate = this.template != null;
+      const projectableNodes = this.createProjectableNodes(this.template);
+      this.componentRef = this.viewContainerRef.createComponent(TooltipComponent, { injector: this.injector, projectableNodes });
+      this.setTooltipComponentProperties(hasTemplate); 
     }
   }
 
-  private setTooltipComponentProperties(): void {
+  private setTooltipComponentProperties(hasTemplate: boolean): void {
     if (this.componentRef !== null) {
-      this.componentRef.instance.tooltip = this.tooltip;
-      this.componentRef.instance.displaySubject = this.displaySubject;
-
       const { left, right, top } = this.elementRef.nativeElement.getBoundingClientRect();
 
-      this.componentRef.instance.left = Math.round((right - left) / 2 + left);
-      this.componentRef.instance.top = Math.round(top - 4);
-
-      this.componentRef.changeDetectorRef.detectChanges();
+      this.componentRef.setInput('left', Math.round((right - left) / 2 + left));
+      this.componentRef.setInput('top', Math.round(top - 4));
+      this.componentRef.setInput('tooltip', this.tooltip);
+      this.componentRef.setInput('displaySubject', this.displaySubject);
+      this.componentRef.setInput('hasTemplate', hasTemplate);
     }
   }
 
@@ -78,6 +85,20 @@ export class TooltipDirective implements OnInit, OnDestroy {
       this.componentRef.destroy();
       this.componentRef = null;
     }
+  }
+
+  private createProjectableNodes<T>(content?: Content<T>): Node[][] {
+    if (typeof content === 'string') {
+      const element = this.document.createElement('div');
+      element.innerHTML = content;
+      return [[element]];
+    }
+    if (content instanceof TemplateRef) {
+      const viewRef = content.createEmbeddedView(content.elementRef.nativeElement);
+      return [viewRef.rootNodes];
+    }
+    
+    return [[]]
   }
 }
 

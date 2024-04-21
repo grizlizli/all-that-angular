@@ -1,4 +1,8 @@
-<div class="mk-tooltip" [style.left.px]="left" [style.top.px]="top">
-    {{ tooltip }}
-</div>
-
+@if (hasTemplate || tooltip) {
+    <div class="mk-tooltip" [style.left.px]="left" [style.top.px]="top">
+        <ng-content></ng-content>
+        @if (tooltip) {
+        <p>{{ tooltip }}</p>
+        }
+    </div>
+}
