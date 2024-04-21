@@ -11,7 +11,7 @@ import { ProductsQueryParams } from '../interfaces/products-query-params.interfa
 export class ProductsService {
   private readonly api: ApiService = inject(ApiService);
 
-  getAll(params: ProductsQueryParams = {}): Observable<ListResponse & { products: Product[]}> {
+  getAll(params: Partial<ProductsQueryParams> = {}): Observable<ListResponse & { products: Product[]}> {
     return this.api.get('products', params);
   }
 }
