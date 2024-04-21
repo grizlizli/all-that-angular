@@ -19,7 +19,7 @@ export class ProductsFilterComponent {
   });
 
   readonly valueChanges$ = this.form.valueChanges;
-  readonly value = input<Partial<ProductsQueryParams>>();
+  readonly value = input.required<Partial<ProductsQueryParams>>();
   readonly valueChange = outputFromObservable<Partial<ProductsQueryParams>>(this.valueChanges$);
 
   constructor() {
