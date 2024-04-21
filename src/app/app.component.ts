@@ -15,4 +15,6 @@ export class AppComponent {
   readonly title = 'All That Angular';
   //@ViewChild('anotherTooltipRef', {static: true}) templateRef?: TemplateRef<any>;
   templateRef = viewChild<TemplateRef<any>>('anotherTooltipRef');
+
+  customUrlTooltip: string = '<a href="#">Hi</a>'
 }
