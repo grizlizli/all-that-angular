@@ -30,7 +30,7 @@ export class ProductsFilterComponent {
     effect(() => {
       const value = this.value();
       if (value) {
-        this.form.patchValue(value, {onlySelf: true, emitEvent: false});
+        this.form.patchValue(value, { onlySelf: true, emitEvent: false });
       }
     });
   }
