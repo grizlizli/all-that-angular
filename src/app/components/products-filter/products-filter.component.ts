@@ -23,10 +23,10 @@ export class ProductsFilterComponent {
   readonly valueChange = outputFromObservable<Partial<ProductsQueryParams>>(this.valueChanges$);
 
   constructor() {
-    this.setValueEffect();
+    this.setValueInputEffect();
   }
 
-  private setValueEffect(): void {
+  private setValueInputEffect(): void {
     effect(() => {
       const value = this.value();
       if (value) {
