@@ -13,5 +13,5 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   readonly title = 'All That Angular';
-  @ViewChild('tooltipRef', {static: true}) templateRef?: TemplateRef<any>;
+  @ViewChild('anotherTooltipRef', {static: true}) templateRef?: TemplateRef<any>;
 }
