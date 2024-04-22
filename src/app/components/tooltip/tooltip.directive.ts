@@ -86,7 +86,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
     }
   }
 
-  private createProjectableNodes<T>(content?: Content<T>): Node[][] {
+  private createProjectableNodes<T = any>(content?: Content<T>): Node[][] {
     if (typeof content === 'string') {
       const element = this.document.createElement('div');
       element.innerHTML = content;
