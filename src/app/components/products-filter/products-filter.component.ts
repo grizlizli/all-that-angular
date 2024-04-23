@@ -18,9 +18,8 @@ export class ProductsFilterComponent {
     skip: []
   });
 
-  readonly valueChanges$ = this.form.valueChanges;
   readonly value = input.required<Partial<ProductsQueryParams>>();
-  readonly valueChange = outputFromObservable<Partial<ProductsQueryParams>>(this.valueChanges$);
+  readonly valueChange = outputFromObservable<Partial<ProductsQueryParams>>(this.form.valueChanges);
 
   constructor() {
     this.setValueInputEffect();
