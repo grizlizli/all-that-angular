@@ -16,5 +16,5 @@ export class AppComponent {
   //@ViewChild('anotherTooltipRef', {static: true}) templateRef?: TemplateRef<any>;
   templateRef = viewChild<TemplateRef<any>>('anotherTooltipRef');
 
-  customUrlTooltip: string = '<p class="p-tooltip">This is a <a href="#">link</a>.</p>'
+  customUrlTooltip: string = '<p class="p-tooltip">This is a <a href="#">link</a>.</p>';
 }

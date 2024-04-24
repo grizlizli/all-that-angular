@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal 
 import { ProductsFilterComponent } from '../../components/products-filter/products-filter.component';
 import { ProductsService } from '../../services/products.service';
 import { Product } from '../../interfaces/product.interface';
-import { debounceTime, map, Observable, switchMap } from 'rxjs';
+import { debounceTime, map, Observable, switchMap, tap } from 'rxjs';
 import { ProductsQueryParams } from '../../interfaces/products-query-params.interface';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { ProductsListComponent } from '../../components/products-list/products-list.component';

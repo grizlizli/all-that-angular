@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, input } from '@angular/core';
 
 @Component({
   selector: 'mk-loading-products-list',
@@ -9,5 +9,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoadingProductsListComponent {
-  readonly items = new Array<void>(20)
+  count = input.required<number>();
+  items = computed(() => new Array<void>(this.count()));
 }

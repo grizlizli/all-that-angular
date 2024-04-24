@@ -4,8 +4,8 @@
     <mk-products-list [products]="products()"></mk-products-list>
 }
 @placeholder {
-    <mk-loading-products-list></mk-loading-products-list>
+    <mk-loading-products-list [count]="productsFilter().limit!"></mk-loading-products-list>
 }
 @loading {
-    <mk-loading-products-list></mk-loading-products-list>
+    <mk-loading-products-list [count]="productsFilter().limit!"></mk-loading-products-list>
 }
