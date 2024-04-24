@@ -8,7 +8,7 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
 @Component({
   selector: 'mk-root',
   standalone: true,
-  imports: [CommonModule, TooltipDirective, TodosListComponent, RouterOutlet, RouterLink, TodoItemComponent],
+  imports: [CommonModule, TooltipDirective, TodosListComponent, RouterOutlet, RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
