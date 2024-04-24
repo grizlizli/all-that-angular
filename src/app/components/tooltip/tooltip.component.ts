@@ -18,8 +18,8 @@ export class TooltipComponent {
   top!: number;
   @Input({required: true})
   displaySubject!: BehaviorSubject<boolean>;
-  @Input()
-  hasTemplate: boolean = false;
+  @Input({required: true})
+  hasTemplate!: boolean;
 
   @HostListener('mouseenter')
   onMouseEnter(): void {
