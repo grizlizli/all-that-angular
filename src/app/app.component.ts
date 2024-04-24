@@ -17,6 +17,5 @@ export class AppComponent {
   //@ViewChild('anotherTooltipRef', {static: true}) templateRef?: TemplateRef<any>;
   readonly templateRef = viewChild<TemplateRef<any>>('anotherTooltipRef');
   readonly TodoItemComponent: Type<TodoItemComponent> = TodoItemComponent;
-
-  customUrlTooltip: string = '<p class="p-tooltip">This is a <a href="#">link</a>.</p>';
+  readonly customUrlTooltip: string = '<p class="p-tooltip">This is a <a href="#">link</a>.</p>';
 }
