@@ -1,4 +1,4 @@
-import { Component, TemplateRef, viewChild } from '@angular/core';
+import { Component, TemplateRef, Type, viewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TooltipDirective } from './components/tooltip/tooltip.directive';
 import { TodosListComponent } from './components/todos-list/todos-list.component';
@@ -16,7 +16,7 @@ export class AppComponent {
   readonly title = 'All That Angular';
   //@ViewChild('anotherTooltipRef', {static: true}) templateRef?: TemplateRef<any>;
   readonly templateRef = viewChild<TemplateRef<any>>('anotherTooltipRef');
-  readonly TodoItemComponent = TodoItemComponent;
+  readonly TodoItemComponent: Type<TodoItemComponent> = TodoItemComponent;
 
   customUrlTooltip: string = '<p class="p-tooltip">This is a <a href="#">link</a>.</p>';
 }
