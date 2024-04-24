@@ -1,5 +1,5 @@
-import { ApplicationRef, ComponentRef, DestroyRef, Directive, ElementRef, HostListener, inject, Inject, Injector, Input, OnDestroy, OnInit, TemplateRef, Type, ViewContainerRef } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
+import { ApplicationRef, ComponentRef, DestroyRef, Directive, ElementRef, HostListener, inject, Injector, Input, OnDestroy, OnInit, TemplateRef, Type, ViewContainerRef } from '@angular/core';
+import { BehaviorSubject, Observable, debounceTime, distinctUntilChanged } from 'rxjs';
 import { TooltipComponent } from './tooltip.component';
 import { DOCUMENT } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -11,7 +11,7 @@ export type Content<T> = string | TemplateRef<T> | Type<T>;
   standalone: true
 })
 export class TooltipDirective implements OnInit, OnDestroy {
-  @Input({alias: 'mkTooltip', required: true}) tooltip: string = '';
+  @Input({ alias: 'mkTooltip', required: true }) tooltip: string = '';
   @Input() template?: Content<any>;
 
   private readonly elementRef: ElementRef = inject(ElementRef);
@@ -37,18 +37,18 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-      this.display$.pipe(
-        debounceTime(700),
-        distinctUntilChanged(),
-        takeUntilDestroyed(this.destroyRef)
-      ).subscribe((displayed: boolean) => {
-        if (displayed) {
-          this.initializeTooltip();
-        }
-        else {
-          this.destroyTooltip();
-        }
-      });
+    this.display$.pipe(
+      debounceTime(700),
+      distinctUntilChanged(),
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe((displayed: boolean) => {
+      if (displayed) {
+        this.initializeTooltip();
+      }
+      else {
+        this.destroyTooltip();
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -60,7 +60,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
       const hasTemplate = this.template != null;
       const projectableNodes = this.createProjectableNodes(this.template);
       this.componentRef = this.viewContainerRef.createComponent(TooltipComponent, { injector: this.injector, projectableNodes });
-      this.setTooltipComponentProperties(hasTemplate); 
+      this.setTooltipComponentProperties(hasTemplate);
     }
   }
 
@@ -94,7 +94,12 @@ export class TooltipDirective implements OnInit, OnDestroy {
       const viewRef = content.createEmbeddedView(content.elementRef.nativeElement);
       return [viewRef.rootNodes];
     }
-    
+    if (typeof (content) === 'function') {
+      const factory = this.viewContainerRef.createComponent(content);
+      return [[factory.location.nativeElement]];
+    }
+
+
     return [[]]
   }
 }
