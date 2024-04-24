@@ -9,6 +9,6 @@ import { ChangeDetectionStrategy, Component, computed, effect, input } from '@an
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoadingProductsListComponent {
-  count = input.required<number>();
-  items = computed(() => new Array<void>(this.count()));
+  readonly count = input<number>(20);
+  readonly items = computed(() => new Array<void>(this.count()));
 }
