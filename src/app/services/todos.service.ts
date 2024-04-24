@@ -24,13 +24,11 @@ export class TodosService {
 
   toggleTodoCompletion(id: number): void {
     const todos: Todo[] = this.todosSubject.value.map(todo => todo.id === id ? {...todo, completed: !todo.completed} : todo);
-
-    this.todosSubject.next([...todos]);
+    this.todosSubject.next(todos);
   }
 
   deleteTodo(id: number): void {
     const todos: Todo[] = this.todosSubject.value.filter(todo => todo.id !== id);
-
-    this.todosSubject.next([...todos]);
+    this.todosSubject.next(todos);
   }
 }
