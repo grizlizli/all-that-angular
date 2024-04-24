@@ -1,7 +1,8 @@
-import { ApplicationRef, ComponentRef, Directive, ElementRef, HostListener, inject, Inject, Injector, Input, OnDestroy, OnInit, TemplateRef, Type, ViewContainerRef } from '@angular/core';
+import { ApplicationRef, ComponentRef, DestroyRef, Directive, ElementRef, HostListener, inject, Inject, Injector, Input, OnDestroy, OnInit, TemplateRef, Type, ViewContainerRef } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
 import { TooltipComponent } from './tooltip.component';
 import { DOCUMENT } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 export type Content<T> = string | TemplateRef<T> | Type<T>;
 
@@ -18,11 +19,10 @@ export class TooltipDirective implements OnInit, OnDestroy {
   private readonly viewContainerRef: ViewContainerRef = inject(ViewContainerRef);
   private readonly injector: Injector = inject(Injector);
   private readonly document: Document = inject(DOCUMENT);
+  private readonly destroyRef: DestroyRef = inject(DestroyRef);
 
   private readonly displaySubject = new BehaviorSubject<boolean>(false);
   private readonly display$: Observable<boolean> = this.displaySubject;
-
-  private readonly destroy$: Subject<void> = new Subject<void>();
 
   private componentRef: ComponentRef<TooltipComponent> | null = null;
 
@@ -40,7 +40,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
       this.display$.pipe(
         debounceTime(700),
         distinctUntilChanged(),
-        takeUntil(this.destroy$)
+        takeUntilDestroyed(this.destroyRef)
       ).subscribe((displayed: boolean) => {
         if (displayed) {
           this.initializeTooltip();
@@ -53,8 +53,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.destroyTooltip();
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 
   private initializeTooltip(): void {
