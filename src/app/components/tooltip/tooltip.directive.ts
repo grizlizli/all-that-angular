@@ -99,8 +99,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
       return [[factory.location.nativeElement]];
     }
 
-
-    return [[]]
+    return [[]];
   }
 }
-
