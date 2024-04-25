@@ -1,4 +1,4 @@
-import { ApplicationRef, ComponentRef, DestroyRef, Directive, ElementRef, HostListener, inject, Injector, Input, OnDestroy, OnInit, TemplateRef, Type, ViewContainerRef } from '@angular/core';
+import { ApplicationRef, ComponentRef, DestroyRef, Directive, ElementRef, HostListener, inject, Input, OnDestroy, OnInit, TemplateRef, Type, ViewContainerRef } from '@angular/core';
 import { BehaviorSubject, Observable, debounceTime, distinctUntilChanged } from 'rxjs';
 import { TooltipComponent } from './tooltip.component';
 import { DOCUMENT } from '@angular/common';
@@ -17,7 +17,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
   private readonly elementRef: ElementRef = inject(ElementRef);
   private readonly appRef: ApplicationRef = inject(ApplicationRef);
   private readonly viewContainerRef: ViewContainerRef = inject(ViewContainerRef);
-  private readonly injector: Injector = inject(Injector);
   private readonly document: Document = inject(DOCUMENT);
   private readonly destroyRef: DestroyRef = inject(DestroyRef);
 
@@ -59,7 +58,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
     if (this.componentRef === null) {
       const hasTemplate = this.template != null;
       const projectableNodes = this.createProjectableNodes(this.template);
-      this.componentRef = this.viewContainerRef.createComponent(TooltipComponent, { injector: this.injector, projectableNodes });
+      this.componentRef = this.viewContainerRef.createComponent(TooltipComponent, { projectableNodes });
       this.setTooltipComponentProperties(hasTemplate);
     }
   }
