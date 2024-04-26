@@ -93,7 +93,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
       const viewRef = content.createEmbeddedView(content.elementRef.nativeElement);
       return [viewRef.rootNodes];
     }
-    if (typeof (content) === 'function') {
+    if (typeof content === 'function') {
       const factory = this.viewContainerRef.createComponent(content);
       return [[factory.location.nativeElement]];
     }
