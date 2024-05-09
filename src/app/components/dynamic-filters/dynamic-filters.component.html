@@ -1,5 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <input type="text" formControlName="query">
+    <input type="search" formControlName="query">
     <ng-container formArrayName="filters">
         <ul>
             @for (group of filters.controls; track $index) {

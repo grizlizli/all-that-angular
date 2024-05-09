@@ -32,23 +32,17 @@ export class DynamicFiltersComponent {
     effect(() => {
       this.filters.clear();
       const options = this.options();
-      options.forEach(option => {
-        this.filters.push(new FormGroup({
-          checked: new FormControl(false),
-          value: new FormControl(option)
-        }), { emitEvent: false });
-      });
+      this.populateFiltersFormControl(options);
     });
   }
 
-  filterByQueryInput(controlValue: string, queryValue: string | null): boolean {
-    console.log('filterByQueryInput');
-    if (!queryValue) {
-      return true;
-    }
-    else {
-      return controlValue.toLocaleLowerCase().includes(queryValue.toLocaleLowerCase());
-    }
+  populateFiltersFormControl(options: string[]) {
+    options.forEach(option => {
+      this.filters.push(new FormGroup({
+        checked: new FormControl(false),
+        value: new FormControl(option)
+      }), { emitEvent: false });
+    });
   }
 
   onSubmit() {
@@ -60,6 +54,7 @@ export class DynamicFiltersComponent {
   }
 
   reset() {
-    this.form.reset();
+    this.form.get('query')!.reset();
+    this.filters.controls.forEach((group) => group.get('checked')!.reset());
   }
 }
