@@ -1,0 +1,17 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="query">
+    <ng-container formArrayName="filters">
+        <ul>
+            @for (group of filters.controls; track $index) {
+                @if (group.value.value | stringIsSubstring:form.get('query')!.value) {
+                    <li [formGroupName]="$index">
+                        <input type="checkbox" formControlName="checked">
+                        {{ group.value.value }}
+                    </li>
+                }
+            }
+        </ul>
+    </ng-container>
+    <button type="submit">Submit</button>
+    <button type="button" (click)="reset()">Reset</button>
+</form>

@@ -2,10 +2,18 @@
   <div class="content">
     <div class="left-side">
       <h1 mkTooltip="Hello, World!" data-testid="mk-app-title">{{ title }}</h1>
-      <h2 mkTooltip="They call me Grizli :)" [template]="tooltipRef" data-testid="mk-app-subtitle">Made by Miloš Krstić</h2>
+      <h2 mkTooltip="They call me Grizli :)" [template]="tooltipRef" data-testid="mk-app-subtitle">Made by Miloš Krstić
+      </h2>
       <h3 mkTooltip="" [template]="templateRef()" data-testid="mk-app-subtitle2">Hover me to see tooltip</h3>
       <p mkTooltip="This link does not work :)" [template]="customUrlTooltip">Hover for more details</p>
       <p mkTooltip="Test" [template]="TodoItemComponent">Hover to see TodoItemComponent</p>
+
+      <div>
+        <p>Dynamic Filters Result:</p>
+        <code>{{dynamicFiltersValue}}</code>
+        <mk-dynamic-filters [options]="['one', 'two', 'three']"
+          (valueChange)="handleDynamicFiltersValueChange($event)" />
+      </div>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">
