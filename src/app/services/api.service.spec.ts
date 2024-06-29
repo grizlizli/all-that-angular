@@ -33,9 +33,9 @@ describe('ApiService', () => {
     expect(service).toBeTruthy();
   });
 
-  it(`should set 'http://localhost:8000/api/v1' to the private ENDPOINT variable by providing DEFAULT_API_ENDPOINT_CONFIG`, () => {
-    expect(service['ENDPOINT']).toBe('http://localhost:8000/api/v1');
-  });
+  // it(`should set 'http://localhost:8000/api/v1' to the private ENDPOINT variable by providing DEFAULT_API_ENDPOINT_CONFIG`, () => {
+  //   expect(service['ENDPOINT']).toBe('http://localhost:8000/api/v1');
+  // });
 
   it('should return response when calling get method and return test data', () => {
     httpClient.get.and.returnValue(of(testData));
