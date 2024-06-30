@@ -1,0 +1,19 @@
+:host {
+    form {
+        border: 1px solid black;
+        padding: 1rem;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    input[type="checkbox"] {
+        width: 1rem;
+        margin: 0.5rem;
+    }
+
+    ul {
+        list-style: none;
+    }
+}

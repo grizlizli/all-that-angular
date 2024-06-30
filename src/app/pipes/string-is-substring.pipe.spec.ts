@@ -1,8 +1,8 @@
-import { StringIsSubstringPipe } from './string-is-substring.pipe';
+import { IsSubstringPipe } from './string-is-substring.pipe';
 
-describe('StringIsSubstringPipe', () => {
+describe('IsSubstringPipe', () => {
   it('create an instance', () => {
-    const pipe = new StringIsSubstringPipe();
+    const pipe = new IsSubstringPipe();
     expect(pipe).toBeTruthy();
   });
 });

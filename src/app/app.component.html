@@ -10,9 +10,13 @@
 
       <div>
         <p>Dynamic Filters Result:</p>
-        <code>{{dynamicFiltersValue}}</code>
-        <mk-dynamic-filters [options]="['one', 'two', 'three']"
-          (valueChange)="handleDynamicFiltersValueChange($event)" />
+        <mk-multiple-select-form
+          label="Choose your destiny"
+          optionLabelKey="skill"
+          optionValueKey="id"
+          [options]="multipleSelectOptions"
+          (valueChange)="handleMultipleSelectValueChange($event)" />
+          <code>{{dynamicFiltersValue}}</code>
       </div>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>

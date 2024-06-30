@@ -1,10 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'stringIsSubstring',
+  name: 'isSubstring',
   standalone: true
 })
-export class StringIsSubstringPipe implements PipeTransform {
+export class IsSubstringPipe implements PipeTransform {
 
   transform(value: string, query: string | null): unknown {
     if (!query || !value) {
