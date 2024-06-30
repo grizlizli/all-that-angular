@@ -29,7 +29,7 @@ export class AppComponent {
   dynamicFiltersValue: string[] = [];
 
   handleMultipleSelectValueChange(options: any[]) {
-    console.log('handleDynamicFiltersValueChange', options);
+    console.log('handleMultipleSelectValueChange', options);
     this.dynamicFiltersValue = options;
   }
 }
