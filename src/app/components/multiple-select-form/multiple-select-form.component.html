@@ -8,7 +8,7 @@
     </div>
     <ng-container formArrayName="filters">
         <ul>
-            @for (group of filters.controls; track group.value.value) {
+            @for (group of filtersFormArray().controls; track group.value.value) {
                 @if (group.value.label | isSubstring:search()) {
                     <li [formGroupName]="$index">
                         <input type="checkbox" formControlName="checked">

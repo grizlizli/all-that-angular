@@ -1,4 +1,4 @@
-import { Component, effect, HostAttributeToken, inject, input } from '@angular/core';
+import { Component, computed, effect, HostAttributeToken, inject, input } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, map } from 'rxjs';
 import { IsSubstringPipe } from '../../pipes/string-is-substring.pipe';
@@ -28,26 +28,29 @@ export class MultipleSelectFormComponent {
     selectAll: new FormControl<boolean>(false),
     filters: new FormArray<any>([])
   });
-  readonly filters = this.form.get('filters') as FormArray;
+  readonly filtersControl = this.form.get('filters') as FormArray;
+
   readonly selectAll = toSignal(this.form.get('selectAll')!.valueChanges, { 
     initialValue: null
   });
   readonly search = toSignal(this.form.get('search')!.valueChanges, {
     initialValue: this.form.get('search')!.value
   });
+  readonly filtersFormArray = computed(() => {
+    this.filtersControl.clear();
+    this.populateFiltersFormArray(this.options(), this.optionLabelKey, this.optionValueKey);
+
+    return this.filtersControl;
+  });
 
   readonly valueChange = outputFromObservable<any[]>(
-    this.filters.valueChanges.pipe(
+    this.filtersControl.valueChanges.pipe(
       debounceTime(0),
       map(this.filterSelectedOptions),
     )
   );
 
   constructor() {
-    effect(() => {
-      this.filters.clear();
-      this.populateFiltersFormArray(this.options(), this.optionLabelKey, this.optionValueKey);
-    });
     effect(() => {
       const selectAll = this.selectAll();
       if (selectAll !== null) {
@@ -58,7 +61,7 @@ export class MultipleSelectFormComponent {
 
   private populateFiltersFormArray(options: any[], labelKey: string | null, valueKey: string | null) {
     options.forEach(option => {
-      this.filters.push(new FormGroup({
+      this.filtersControl.push(new FormGroup({
         checked: new FormControl(false),
         value: new FormControl(valueKey ? option[valueKey] : option),
         label: new FormControl(labelKey ? `${option[labelKey]}` : `${option}`)
@@ -69,7 +72,7 @@ export class MultipleSelectFormComponent {
   }
 
   private handleSelectAll(selectAll: boolean | null): void {
-    this.filters.controls.forEach((group) => group.get('checked')!.setValue(selectAll));
+    this.filtersControl.controls.forEach((group) => group.get('checked')!.setValue(selectAll));
   }
 
   private filterSelectedOptions(formGroups: FilterFormGroup[]): any[] {
