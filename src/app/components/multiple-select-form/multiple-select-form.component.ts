@@ -1,4 +1,4 @@
-import { Component, computed, effect, HostAttributeToken, inject, input } from '@angular/core';
+import { Component, effect, HostAttributeToken, inject, input } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, map } from 'rxjs';
 import { IsSubstringPipe } from '../../pipes/string-is-substring.pipe';
@@ -32,7 +32,6 @@ export class MultipleSelectFormComponent {
   readonly selectAll = toSignal(this.form.get('selectAll')!.valueChanges, { 
     initialValue: null
   });
-
   readonly search = toSignal(this.form.get('search')!.valueChanges, {
     initialValue: this.form.get('search')!.value
   });
@@ -55,15 +54,14 @@ export class MultipleSelectFormComponent {
         this.handleSelectAll(selectAll);
       }
     });
-
   }
 
   private populateFiltersFormArray(options: any[], labelKey: string | null, valueKey: string | null) {
     options.forEach(option => {
       this.filters.push(new FormGroup({
         checked: new FormControl(false),
-        value: new FormControl(valueKey ? `${option[valueKey]}` : `${option}`),
-        label: new FormControl(labelKey ? option[labelKey] : option)
+        value: new FormControl(valueKey ? option[valueKey] : option),
+        label: new FormControl(labelKey ? `${option[labelKey]}` : `${option}`)
       }), { 
         emitEvent: false
       });

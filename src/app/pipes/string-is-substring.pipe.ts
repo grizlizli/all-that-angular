@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class IsSubstringPipe implements PipeTransform {
 
-  transform(value: string, query: string | null): unknown {
+  transform(value: string, query: string | null): boolean {
     if (!query || !value) {
       return true;
     }
