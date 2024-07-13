@@ -1,20 +1,18 @@
 <form [formGroup]="form">
     <p><strong>{{ label }}</strong></p>
     <div>
-        <input type="search" formControlName="search">
+        <input type="search" formControlName="search" placeholder="Filter options">
     </div>
     <div>
         <input type="checkbox" formControlName="selectAll"> Select All
     </div>
-    <ng-container formArrayName="filters">
+    <ng-container formArrayName="options">
         <ul>
-            @for (group of filtersFormArray().controls; track group.value.value) {
-                @if (group.value.label | isSubstring:search()) {
-                    <li [formGroupName]="$index">
-                        <input type="checkbox" formControlName="checked">
-                        <label>{{ group.value.label }}</label>
-                    </li>
-                }
+            @for (group of filteredOptionsFormGroups(); track group.value) {
+            <li [formGroupName]="$index">
+                <input type="checkbox" formControlName="checked">
+                <label>{{ group.value.label }}</label>
+            </li>
             }
         </ul>
     </ng-container>

@@ -4,7 +4,7 @@ import { debounceTime, map } from 'rxjs';
 import { IsSubstringPipe } from '../../pipes/string-is-substring.pipe';
 import { outputFromObservable, toSignal } from '@angular/core/rxjs-interop';
 
-export interface FilterFormGroup {
+export interface OptionFormGroup {
   checked: boolean;
   value: any;
   label: string;
@@ -26,25 +26,31 @@ export class MultipleSelectFormComponent {
   readonly form = new FormGroup({
     search: new FormControl<string>(''),
     selectAll: new FormControl<boolean>(false),
-    filters: new FormArray<any>([])
+    options: new FormArray<any>([])
   });
-  readonly filtersControl = this.form.get('filters') as FormArray;
+  private readonly optionsControl = this.form.get('options') as FormArray;
 
-  readonly selectAll = toSignal(this.form.get('selectAll')!.valueChanges, { 
+  private readonly selectAll = toSignal(this.form.get('selectAll')!.valueChanges, { 
     initialValue: null
   });
-  readonly search = toSignal(this.form.get('search')!.valueChanges, {
+  private readonly search = toSignal(this.form.get('search')!.valueChanges, {
     initialValue: this.form.get('search')!.value
   });
-  readonly filtersFormArray = computed(() => {
-    this.filtersControl.clear();
-    this.populateFiltersFormArray(this.options(), this.optionLabelKey, this.optionValueKey);
 
-    return this.filtersControl;
+  private readonly optionsFormArray = computed<FormArray>(() => {
+    this.optionsControl.clear();
+    this.populateOptionsFormArray(this.options(), this.optionLabelKey, this.optionValueKey);
+
+    return this.optionsControl;
+  });
+
+  readonly filteredOptionsFormGroups = computed<FormGroup[]>(() => {
+    const search = this.search() || '';
+    return this.optionsFormArray().controls.filter(group => group.value.label.toLocaleLowerCase().includes(search.toLocaleLowerCase())) as FormGroup[]; 
   });
 
   readonly valueChange = outputFromObservable<any[]>(
-    this.filtersControl.valueChanges.pipe(
+    this.optionsControl.valueChanges.pipe(
       debounceTime(0),
       map(this.filterSelectedOptions),
     )
@@ -59,9 +65,9 @@ export class MultipleSelectFormComponent {
     });
   }
 
-  private populateFiltersFormArray(options: any[], labelKey: string | null, valueKey: string | null) {
+  private populateOptionsFormArray(options: any[], labelKey: string | null, valueKey: string | null) {
     options.forEach(option => {
-      this.filtersControl.push(new FormGroup({
+      this.optionsControl.push(new FormGroup({
         checked: new FormControl(false),
         value: new FormControl(valueKey ? option[valueKey] : option),
         label: new FormControl(labelKey ? `${option[labelKey]}` : `${option}`)
@@ -72,12 +78,12 @@ export class MultipleSelectFormComponent {
   }
 
   private handleSelectAll(selectAll: boolean | null): void {
-    this.filtersControl.controls.forEach((group) => group.get('checked')!.setValue(selectAll));
+    this.optionsControl.controls.forEach((group) => group.get('checked')!.setValue(selectAll));
   }
 
-  private filterSelectedOptions(formGroups: FilterFormGroup[]): any[] {
+  private filterSelectedOptions(formGroups: OptionFormGroup[]): any[] {
     return formGroups
-      .filter((group: FilterFormGroup) => group.checked)
+      .filter((group: OptionFormGroup) => group.checked)
       .map(group => group.value);
   }
 }
