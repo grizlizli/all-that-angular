@@ -1,4 +1,4 @@
-import { Component, computed, effect, HostAttributeToken, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, HostAttributeToken, inject, input } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, map } from 'rxjs';
 import { IsSubstringPipe } from '../../pipes/string-is-substring.pipe';
@@ -15,7 +15,8 @@ export interface OptionFormGroup {
   standalone: true,
   imports: [ReactiveFormsModule, IsSubstringPipe],
   templateUrl: './multiple-select-form.component.html',
-  styleUrl: './multiple-select-form.component.scss'
+  styleUrl: './multiple-select-form.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MultipleSelectFormComponent {
   readonly label = inject(new HostAttributeToken('label'));
