@@ -8,12 +8,13 @@
     </div>
     <ng-container formArrayName="options">
         <ul>
-            @for (group of filteredOptionsFormGroups(); track group.value) {
+            @for (group of optionsFormArray().controls; track group.value) {
+            @if(group.value.label | isSubstring:search()) {
             <li [formGroupName]="$index">
-                <input type="checkbox" formControlName="checked">
-                <label>{{ group.value.label }}</label>
+              <input type="checkbox" formControlName="checked" />
+              <label>{{ group.value.label }}</label>
             </li>
-            }
-        </ul>
+            } }
+          </ul>
     </ng-container>
 </form>

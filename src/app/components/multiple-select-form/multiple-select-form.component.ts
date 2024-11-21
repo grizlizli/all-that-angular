@@ -34,20 +34,15 @@ export class MultipleSelectFormComponent {
   private readonly selectAll = toSignal(this.form.get('selectAll')!.valueChanges, { 
     initialValue: null
   });
-  private readonly search = toSignal(this.form.get('search')!.valueChanges, {
+  readonly search = toSignal(this.form.get('search')!.valueChanges, {
     initialValue: this.form.get('search')!.value
   });
 
-  private readonly optionsFormArray = computed<FormArray>(() => {
+  readonly optionsFormArray = computed<FormArray>(() => {
     this.optionsControl.clear();
     this.populateOptionsFormArray(this.options(), this.optionLabelKey, this.optionValueKey);
 
     return this.optionsControl;
-  });
-
-  readonly filteredOptionsFormGroups = computed<FormGroup[]>(() => {
-    const search = this.search() || '';
-    return this.optionsFormArray().controls.filter(group => group.value.label.toLocaleLowerCase().includes(search.toLocaleLowerCase())) as FormGroup[]; 
   });
 
   readonly valueChange = outputFromObservable<any[]>(
