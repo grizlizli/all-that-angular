@@ -1,0 +1,10 @@
+@if (error()) {
+  <h5>{{ error() }}</h5>
+}
+@if (countries$) {
+  <ul>
+    @for (country of (countries$! | async); track $index) {
+      <li>{{country.code}}</li>
+    }
+  </ul>
+}
