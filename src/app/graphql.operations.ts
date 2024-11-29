@@ -4,9 +4,7 @@ const GET_COUNTRIES = gql`
 {
   countries {
     code
-    name
     emoji
-    zli
   }
 }
 `;

@@ -4,7 +4,7 @@
 @if (countries$) {
   <ul>
     @for (country of (countries$! | async); track $index) {
-      <li>{{country.code}}</li>
+      <li>{{country.emoji}}</li>
     }
   </ul>
 }
