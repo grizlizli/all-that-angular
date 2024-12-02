@@ -1,8 +1,14 @@
-<main class="main">
-  <div class="content">
-    <a routerLink="/playground">Playground</a>
-    <a routerLink="/products">Products</a>
-    <a routerLink="/countries">Countries</a>
-    <router-outlet></router-outlet>
-  </div>
-</main>
+
+
+<mat-drawer-container class="example-container">
+  <mat-drawer [mode]="themeSelectorMode()" opened>
+    <ul>
+      <li><a routerLink="/playground">Playground</a></li>
+      <li><a routerLink="/products">Products</a></li>
+      <li><a routerLink="/countries">Countries</a></li>
+    </ul>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet/>
+  </mat-drawer-content>
+</mat-drawer-container>

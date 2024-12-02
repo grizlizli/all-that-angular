@@ -3,6 +3,7 @@ import { Todo } from '../../interfaces/todo.interface';
 
 @Component({
     selector: 'mk-todo-item',
+    standalone: true,
     imports: [],
     templateUrl: './todo-item.component.html',
     styleUrl: './todo-item.component.scss'

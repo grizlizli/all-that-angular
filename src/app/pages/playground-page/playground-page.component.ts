@@ -5,6 +5,7 @@ import { TodoItemComponent } from '../../components/todo-item/todo-item.componen
 
 @Component({
     selector: 'mk-playground-page',
+    standalone: true,
     imports: [TooltipDirective, MultipleSelectFormComponent, TodoItemComponent],
     templateUrl: './playground-page.component.html',
     styleUrl: './playground-page.component.scss'
