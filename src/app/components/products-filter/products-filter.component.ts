@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, effect, inject, input } from '@angu
 import { outputFromObservable } from '@angular/core/rxjs-interop';
 import { FormGroup, ReactiveFormsModule, UntypedFormBuilder } from '@angular/forms';
 import { ProductsQueryParams } from '../../interfaces/products-query-params.interface';
+import {MatInputModule} from '@angular/material/input';
 
 @Component({
     selector: 'mk-products-filter',
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, MatInputModule],
     templateUrl: './products-filter.component.html',
     styleUrl: './products-filter.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
