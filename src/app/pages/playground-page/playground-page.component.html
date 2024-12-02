@@ -1,0 +1,24 @@
+<h1 mkTooltip="Hello, World!" data-testid="mk-app-title">{{ title }}</h1>
+      <h2 mkTooltip="They call me Grizli :)" [template]="tooltipRef" data-testid="mk-app-subtitle">Made by Miloš Krstić
+      </h2>
+      <h3 mkTooltip="" [template]="templateRef()" data-testid="mk-app-subtitle2">Hover me to see tooltip</h3>
+      <p mkTooltip="This link does not work :)" [template]="customUrlTooltip">Hover for more details</p>
+      <p mkTooltip="Test" [template]="TodoItemComponent">Hover to see TodoItemComponent</p>
+
+      <div style="padding: 2rem; border: 1px solid black;">
+        <mk-multiple-select-form
+          label="Choose your destiny"
+          optionLabelKey="skill"
+          optionValueKey="id"
+          [options]="multipleSelectOptions"
+          (valueChange)="optionsSelectionChange($event)" />
+          <code>{{dynamicFiltersValue}}</code>
+      </div>
+
+
+      <ng-template #tooltipRef>
+        <h1 class="h1-tooltip">GrizliZli</h1>
+      </ng-template>
+      <ng-template #anotherTooltipRef>
+        <p class="p-tooltip">Holla!</p>
+      </ng-template>
