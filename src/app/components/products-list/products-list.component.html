@@ -2,7 +2,8 @@
   @for (product of products(); track product.id) {
   <mat-grid-tile>
     <mk-product-card [id]="product.id" [title]="product.title" [cetagory]="product.category"
-      [description]="product.description" [thumbnail]="product.thumbnail" />
+      [description]="product.description" [thumbnail]="product.thumbnail" (share)="shareProduct($event)" />
   </mat-grid-tile>
   }
 </mat-grid-list>
+

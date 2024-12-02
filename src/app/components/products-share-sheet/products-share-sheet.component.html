@@ -1,0 +1,8 @@
+<mat-nav-list>
+  @for (option of options(); track option.label) {
+    <a  mat-list-item (click)="openLink(option)">
+      <span matListItemTitle>{{option.label}}</span>
+      <span matLine>{{option.sublabel}}</span>
+    </a>
+  }
+</mat-nav-list>
