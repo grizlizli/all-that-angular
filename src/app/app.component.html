@@ -1,7 +1,7 @@
 
 
 <mat-drawer-container class="example-container">
-  <mat-drawer [mode]="themeSelectorMode()" opened>
+  <mat-drawer [mode]="menuSidenavMode()" opened>
     <ul>
       <li><a routerLink="/playground">Playground</a></li>
       <li><a routerLink="/products">Products</a></li>
@@ -11,4 +11,7 @@
   <mat-drawer-content>
     <router-outlet/>
   </mat-drawer-content>
+  <mat-drawer [mode]="menuSidenavMode()" opened position="end">
+    <mk-shopping-cart [products]="[]" />
+  </mat-drawer>
 </mat-drawer-container>

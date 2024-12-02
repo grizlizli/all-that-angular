@@ -1,0 +1,11 @@
+<mat-nav-list>
+  @for (product of products(); track product.id) {
+    <a  mat-list-item>
+      <span matListItemTitle>{{product.title}}</span>
+      <span matLine>{{product.price}}</span>
+    </a>
+  }
+  @empty {
+    <h5>The shopping cart is empty</h5>
+  }
+</mat-nav-list>
