@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, effect, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input } from '@angular/core';
 import { outputFromObservable } from '@angular/core/rxjs-interop';
 import { FormGroup, ReactiveFormsModule, UntypedFormBuilder } from '@angular/forms';
 import { ProductsQueryParams } from '../../interfaces/products-query-params.interface';
@@ -21,15 +21,30 @@ export class ProductsFilterComponent {
   readonly value = input.required<Partial<ProductsQueryParams>>();
   readonly valueChange = outputFromObservable<Partial<ProductsQueryParams>>(this.form.valueChanges);
 
-  constructor() {
-    this.setValueInputEffect();
-  }
+
+  readonly formSignal = computed(() => {
+    const value = this.value();
+    if (value) {
+      const formValue = this.form.getRawValue();
+      const emitEvent = JSON.stringify(formValue) !== JSON.stringify(value);
+      this.form.patchValue(value, { onlySelf: true, emitEvent });
+    }
+
+    return this.form;
+  });
+
+
+  // constructor() {
+  //   this.setValueInputEffect();
+  // }
 
   private setValueInputEffect(): void {
     effect(() => {
       const value = this.value();
       if (value) {
-        this.form.patchValue(value, { onlySelf: true, emitEvent: false });
+        const formValue = this.form.getRawValue();
+        const emitEvent = JSON.stringify(formValue) !== JSON.stringify(value);
+        this.form.patchValue(value, { onlySelf: true, emitEvent });
       }
     });
   }

@@ -30,7 +30,7 @@ export class ProductsListPageComponent implements OnInit {
       map((response) => response.products)
     );
 
-  products = signal<Product[] | null>(null);
+  readonly products = signal<Product[] | null>(null);
 
   ngOnInit(): void {
     this.products$
@@ -38,5 +38,16 @@ export class ProductsListPageComponent implements OnInit {
       .subscribe({
         next: (products) => this.products.set(products)
       });
+  }
+
+  nextPage() {
+    const skip = this.productsFilter().skip!;
+    const limit = this.productsFilter().limit!;
+
+    console.log('next page', skip);
+    console.log('next page', limit);
+
+
+    this.productsFilter.update((value) => ({...value, skip: skip + 1}));
   }
 }
