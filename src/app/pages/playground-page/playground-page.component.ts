@@ -1,6 +1,5 @@
 import { Component, TemplateRef, Type, viewChild } from '@angular/core';
 import { TooltipDirective } from '../../components/tooltip/tooltip.directive';
-import { RouterLink } from '@angular/router';
 import { MultipleSelectFormComponent } from '../../components/multiple-select-form/multiple-select-form.component';
 import { TodoItemComponent } from '../../components/todo-item/todo-item.component';
 
