@@ -1,11 +1,8 @@
 <mat-grid-list cols="3" rowHeight="1:1">
   @for (product of products(); track product.id) {
-    <mat-grid-tile>
-      <mk-product-card
-      [title]="product.title"
-      [cetagory]="product.category"
-      [description]="product.description"
-      [thumbnail]="product.thumbnail" />
-    </mat-grid-tile>
-    }
+  <mat-grid-tile>
+    <mk-product-card [id]="product.id" [title]="product.title" [cetagory]="product.category"
+      [description]="product.description" [thumbnail]="product.thumbnail" />
+  </mat-grid-tile>
+  }
 </mat-grid-list>

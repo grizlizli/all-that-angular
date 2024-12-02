@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -11,8 +11,12 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class ProductCardComponent {
 
+  readonly id = input.required<number>();
   readonly title = input.required();
   readonly cetagory = input.required();
   readonly thumbnail = input.required();
   readonly description = input.required();
+
+  readonly like = output<number>();
+  readonly share = output<number>();
 }
