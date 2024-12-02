@@ -23,7 +23,6 @@ export class ProductsListComponent {
   private readonly destroyRef = inject(DestroyRef);
   readonly products = input<Product[] | null>();
 
-
   shareProduct(id: number) {
     const product = this.products()!.find(product => product.id === id) || null;
     const bottomSheetRef = this.bottomSheet.open(ProductsShareSheetComponent, {
@@ -41,7 +40,7 @@ export class ProductsListComponent {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((reason) => {
         if (reason) {
-          alert('Share ' + reason.product.title + ' on ' + reason.option.label)
+          alert(`Share ${reason.product.title} on ${reason.option.label}`);
         }
       });
   }
