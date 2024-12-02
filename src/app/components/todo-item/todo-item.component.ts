@@ -2,11 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Todo } from '../../interfaces/todo.interface';
 
 @Component({
-  selector: 'mk-todo-item',
-  standalone: true,
-  imports: [],
-  templateUrl: './todo-item.component.html',
-  styleUrl: './todo-item.component.scss'
+    selector: 'mk-todo-item',
+    imports: [],
+    templateUrl: './todo-item.component.html',
+    styleUrl: './todo-item.component.scss'
 })
 export class TodoItemComponent implements Todo {
   @Input({required: true}) id!: number;

@@ -2,12 +2,11 @@ import { ChangeDetectionStrategy, Component, HostListener, Input } from '@angula
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
-  selector: 'mk-tooltip',
-  standalone: true,
-  imports: [],
-  templateUrl: './tooltip.component.html',
-  styleUrl: './tooltip.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'mk-tooltip',
+    imports: [],
+    templateUrl: './tooltip.component.html',
+    styleUrl: './tooltip.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TooltipComponent {
   @Input({required: true})

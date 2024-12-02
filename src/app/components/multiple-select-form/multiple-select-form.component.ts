@@ -11,12 +11,11 @@ export interface OptionFormGroup {
 }
 
 @Component({
-  selector: 'mk-multiple-select-form',
-  standalone: true,
-  imports: [ReactiveFormsModule, IsSubstringPipe],
-  templateUrl: './multiple-select-form.component.html',
-  styleUrl: './multiple-select-form.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'mk-multiple-select-form',
+    imports: [ReactiveFormsModule, IsSubstringPipe],
+    templateUrl: './multiple-select-form.component.html',
+    styleUrl: './multiple-select-form.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MultipleSelectFormComponent {
   readonly label = inject(new HostAttributeToken('label'));

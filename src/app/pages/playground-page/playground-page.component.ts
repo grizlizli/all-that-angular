@@ -5,11 +5,10 @@ import { MultipleSelectFormComponent } from '../../components/multiple-select-fo
 import { TodoItemComponent } from '../../components/todo-item/todo-item.component';
 
 @Component({
-  selector: 'mk-playground-page',
-  standalone: true,
-  imports: [TooltipDirective, MultipleSelectFormComponent, TodoItemComponent],
-  templateUrl: './playground-page.component.html',
-  styleUrl: './playground-page.component.scss'
+    selector: 'mk-playground-page',
+    imports: [TooltipDirective, MultipleSelectFormComponent, TodoItemComponent],
+    templateUrl: './playground-page.component.html',
+    styleUrl: './playground-page.component.scss'
 })
 export class PlaygroundPageComponent {
   readonly title = 'Playground'

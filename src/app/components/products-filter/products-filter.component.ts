@@ -4,12 +4,11 @@ import { FormGroup, ReactiveFormsModule, UntypedFormBuilder } from '@angular/for
 import { ProductsQueryParams } from '../../interfaces/products-query-params.interface';
 
 @Component({
-  selector: 'mk-products-filter',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './products-filter.component.html',
-  styleUrl: './products-filter.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'mk-products-filter',
+    imports: [ReactiveFormsModule],
+    templateUrl: './products-filter.component.html',
+    styleUrl: './products-filter.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductsFilterComponent {
   private readonly formBuilder: UntypedFormBuilder = inject(UntypedFormBuilder);

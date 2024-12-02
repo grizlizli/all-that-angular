@@ -4,12 +4,11 @@ import { AsyncPipe } from '@angular/common';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
 
 @Component({
-  selector: 'mk-todos-list',
-  standalone: true,
-  imports: [AsyncPipe, TodoItemComponent],
-  templateUrl: './todos-list.component.html',
-  styleUrl: './todos-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'mk-todos-list',
+    imports: [AsyncPipe, TodoItemComponent],
+    templateUrl: './todos-list.component.html',
+    styleUrl: './todos-list.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodosListComponent {
   private readonly todosService: TodosService = inject(TodosService);

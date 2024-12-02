@@ -9,12 +9,11 @@ import { ProductsListComponent } from '../../components/products-list/products-l
 import { LoadingProductsListComponent } from '../../components/loading-products-list/loading-products-list.component';
 
 @Component({
-  selector: 'mk-products-list-page',
-  standalone: true,
-  imports: [ProductsFilterComponent, ProductsListComponent, LoadingProductsListComponent],
-  templateUrl: './products-list-page.component.html',
-  styleUrl: './products-list-page.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'mk-products-list-page',
+    imports: [ProductsFilterComponent, ProductsListComponent, LoadingProductsListComponent],
+    templateUrl: './products-list-page.component.html',
+    styleUrl: './products-list-page.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductsListPageComponent implements OnInit {
   private readonly productsService: ProductsService = inject(ProductsService);
