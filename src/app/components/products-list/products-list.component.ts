@@ -41,7 +41,7 @@ export class ProductsListComponent {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((reason) => {
         if (reason) {
-          alert('Shar e' + reason.product.title + ' on ' + reason.option.label)
+          alert('Share ' + reason.product.title + ' on ' + reason.option.label)
         }
       });
   }
