@@ -1,11 +1,22 @@
 <mat-nav-list>
+
   @for (product of products(); track product.id) {
-    <a  mat-list-item>
-      <span matListItemTitle>{{product.title}}</span>
-      <span matLine>{{product.price}}</span>
-    </a>
+  <a mat-list-item>
+    <span matListItemTitle><img [src]="product.thumbnail" width="40px">{{product.title}} <mat-icon aria-hidden="false"
+        aria-label="Remove from cart" fontIcon="delete" (click)="removeProduct()"></mat-icon></span>
+    <span matLine>{{product.price}}</span>
+  </a>
+
   }
   @empty {
+  <mat-list-item>
     <h5>The shopping cart is empty</h5>
+  </mat-list-item>
   }
+  @if (products().length > 0) {
+  <mat-list-item>
+    <p>Total: {{total() | currency }}</p>
+  </mat-list-item>
+  }
+
 </mat-nav-list>

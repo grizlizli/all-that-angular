@@ -11,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 @Component({
     selector: 'mk-products-list-page',
-    imports: [MatButtonModule, ProductsFilterComponent, ProductsListComponent, LoadingProductsListComponent],
+    imports: [MatButtonModule, ProductsFilterComponent, ProductsListComponent],
     templateUrl: './products-list-page.component.html',
     styleUrl: './products-list-page.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
@@ -48,6 +48,12 @@ export class ProductsListPageComponent implements OnInit {
     }
   });
 
+  readonly disablePreviousButton = computed(() => {
+    const skip = this.productsFilter().skip!;
+
+    return skip <= 0;
+  });
+
   ngOnInit(): void {
     this.products$
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -61,5 +67,12 @@ export class ProductsListPageComponent implements OnInit {
     const limit = this.productsFilter().limit!;
 
     this.productsFilter.set({limit, skip: (skip / limit + 1) * limit});
+  }
+
+  previousPage() {
+    const skip = this.productsFilter().skip!;
+    const limit = this.productsFilter().limit!;
+
+    this.productsFilter.set({limit, skip: (skip / limit - 1) * limit});
   }
 }

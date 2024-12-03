@@ -4,6 +4,7 @@ import { ResponsiveService } from './services/responsive.service';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { AppStore } from './store/app.store';
 
 @Component({
     selector: 'mk-root',
@@ -15,6 +16,10 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 export class AppComponent {
   readonly title = 'All That Angular';
   private readonly responsiveService = inject(ResponsiveService);
+  private readonly appStore = inject(AppStore);
+
+  readonly shoopingCartProducts = this.appStore.products;
+  readonly total = this.appStore.total;
 
   readonly menuSidenavMode  = computed(() => {
     if (this.responsiveService.largeWidth()) {
@@ -31,4 +36,6 @@ export class AppComponent {
 
     return 'over';
   });
+
+
 }

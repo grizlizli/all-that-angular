@@ -1,8 +1,8 @@
 <mat-toolbar>
-  <span>{{title}}</span>
+  <span><img src="/assets/icon_angular_gradient_alt01.png" width="40">{{title}}</span>
 </mat-toolbar>
 
-<mat-drawer-container class="example-container">
+<mat-drawer-container [hasBackdrop]="false" class="example-container">
   <mat-drawer [mode]="menuSidenavMode()" opened>
     <ul>
       <li><a routerLink="/playground">Playground</a></li>
@@ -14,6 +14,6 @@
     <router-outlet/>
   </mat-drawer-content>
   <mat-drawer [mode]="menuSidenavMode()" opened position="end">
-    <mk-shopping-cart [products]="[]" />
+    <mk-shopping-cart [products]="shoopingCartProducts()" [total]="total()"/>
   </mat-drawer>
 </mat-drawer-container>

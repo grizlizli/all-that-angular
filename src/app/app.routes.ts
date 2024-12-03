@@ -3,6 +3,7 @@ import { ProductsListPageComponent } from './pages/products-list-page/products-l
 import { CountriesListPageComponent } from './pages/countries-list-page/countries-list-page.component';
 import { PlaygroundPageComponent } from './pages/playground-page/playground-page.component';
 import { ProductDetailsPageComponent } from './pages/product-details-page/product-details-page.component';
+import { productByIdResolver } from './resolvers/product-by-id.resolver';
 
 export const routes: Routes = [
     {
@@ -11,7 +12,10 @@ export const routes: Routes = [
     },
     {
       path: 'products/:id',
-      loadComponent: () => ProductDetailsPageComponent
+      loadComponent: () => ProductDetailsPageComponent,
+      resolve: {
+        product: productByIdResolver
+      }
     },
     {
         path: 'countries',

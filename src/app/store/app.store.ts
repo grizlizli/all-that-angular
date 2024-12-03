@@ -13,14 +13,20 @@ export class AppStore {
     }
   });
 
-  readonly user = signal<any>(null);
-  readonly cart: any = {
-    products: signal<any[]>([]),
-    total: computed<number>(() => {
-      return this.cart.products()
-        .reduce((previousValue: number, currentValue: any) => previousValue + currentValue.price, 0)
-    })
-  };
+  readonly products = computed(() => this.store().cart.products);
+  readonly total = computed(() => this.products()
+    .reduce((prevValue: number, currentValue: any) => prevValue + currentValue.price, 0)
+  );
 
-  constructor() { }
+  addToCart(product: any) {
+    this.store.update((value) => {
+      return {
+        ...value,
+        cart: {
+          ...value.cart,
+          products: [...value.cart.products, product]
+        }
+      };
+    });
+  }
 }
