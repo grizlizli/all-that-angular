@@ -17,8 +17,6 @@ export class ProductCardComponent {
   readonly thumbnail = input.required();
   readonly description = input.required();
 
-  readonly loading = input<boolean>(false);
-
-  readonly like = output<number>();
+  readonly more = output<number>();
   readonly share = output<number>();
 }

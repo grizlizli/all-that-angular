@@ -1,9 +1,18 @@
-<mat-grid-list cols="2" rowHeight="1.5:1">
+<!-- <mat-grid-list cols="2" rowHeight="1:1">
   @for (product of products(); track product.id) {
   <mat-grid-tile>
     <mk-product-card [id]="product.id" [title]="product.title" [category]="product.category"
-      [description]="product.description" [thumbnail]="product.thumbnail" (share)="shareProduct($event)" />
+      [description]="product.description" [thumbnail]="product.thumbnail" (share)="shareProduct($event)"
+      (more)="openProductPage($event)" />
   </mat-grid-tile>
   }
-</mat-grid-list>
+</mat-grid-list> -->
 
+
+<div class="container responsive-grid">
+  @for (product of products(); track product.id) {
+    <mk-product-card [id]="product.id" [title]="product.title" [category]="product.category"
+      [description]="product.description" [thumbnail]="product.thumbnail" (share)="shareProduct($event)"
+      (more)="openProductPage($event)" />
+  }
+</div>

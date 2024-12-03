@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, input, TemplateRef, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, input } from '@angular/core';
 import { Product } from '../../interfaces/product.interface';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -9,6 +9,7 @@ import {
 } from '@angular/material/bottom-sheet';
 import { ProductsShareSheetComponent, ProductsShareSheetListItem } from '../products-share-sheet/products-share-sheet.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'mk-products-list',
@@ -21,6 +22,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class ProductsListComponent {
   private readonly bottomSheet = inject(MatBottomSheet);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly router = inject(Router);
   readonly products = input<Product[] | null>();
 
   shareProduct(id: number) {
@@ -45,5 +47,8 @@ export class ProductsListComponent {
       });
   }
 
+  openProductPage(id: number) {
+    this.router.navigate(['products/', id]);
+  }
 
 }

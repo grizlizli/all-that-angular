@@ -2,12 +2,13 @@ import { Component, computed, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { ResponsiveService } from './services/responsive.service';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 @Component({
     selector: 'mk-root',
     standalone: true,
-    imports: [RouterLink, RouterOutlet, MatSidenavModule, ShoppingCartComponent],
+    imports: [MatSidenavModule, MatToolbarModule,RouterLink, RouterOutlet, ShoppingCartComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })
