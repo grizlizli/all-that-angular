@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'mk-products-list',
   standalone: true,
-  imports: [ProductCardComponent, MatGridListModule, MatButtonModule, MatBottomSheetModule],
+  imports: [ProductCardComponent, MatButtonModule, MatBottomSheetModule],
   templateUrl: './products-list.component.html',
   styleUrl: './products-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

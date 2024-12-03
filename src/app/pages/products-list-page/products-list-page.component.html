@@ -11,5 +11,5 @@
 }
 
 <div>
-  <button mat-button (click)="nextPage()">next page</button>
+  <button mat-button [disabled]="disableNextButton()" (click)="nextPage()">next page</button>
 </div>

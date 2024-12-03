@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { ProductsFilterComponent } from '../../components/products-filter/products-filter.component';
 import { ProductsService } from '../../services/products.service';
 import { Product } from '../../interfaces/product.interface';
@@ -29,11 +29,24 @@ export class ProductsListPageComponent implements OnInit {
         return Object.fromEntries(Object.entries(value).filter(([_, v]) => v != null));
       }),
       switchMap(params => this.productsService.getAll(params)),
-      tap(response => this.total.set(response.total)),
+      tap((response) => this.total.set(response.total)),
       map((response) => response.products)
     );
 
   readonly products = signal<Product[] | null>(null);
+
+  readonly disableNextButton = computed(() => {
+    const skip = this.productsFilter().skip!;
+    const limit = this.productsFilter().limit!;
+    const total = this.total();
+
+    if (total) {
+      return skip + limit >= total;
+    }
+    else {
+      return false;
+    }
+  });
 
   ngOnInit(): void {
     this.products$
