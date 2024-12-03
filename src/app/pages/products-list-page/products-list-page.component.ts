@@ -7,10 +7,11 @@ import { ProductsQueryParams } from '../../interfaces/products-query-params.inte
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { ProductsListComponent } from '../../components/products-list/products-list.component';
 import { LoadingProductsListComponent } from '../../components/loading-products-list/loading-products-list.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
     selector: 'mk-products-list-page',
-    imports: [ProductsFilterComponent, ProductsListComponent, LoadingProductsListComponent],
+    imports: [MatButtonModule, ProductsFilterComponent, ProductsListComponent, LoadingProductsListComponent],
     templateUrl: './products-list-page.component.html',
     styleUrl: './products-list-page.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
@@ -19,6 +20,7 @@ export class ProductsListPageComponent implements OnInit {
   private readonly productsService: ProductsService = inject(ProductsService);
   private readonly destroyRef: DestroyRef = inject(DestroyRef);
 
+  private readonly total = signal<number | null>(null);
   readonly productsFilter = signal<Partial<ProductsQueryParams>>({ skip: 0, limit: 20 });
   readonly products$: Observable<Product[]> = toObservable(this.productsFilter)
     .pipe(
@@ -27,6 +29,7 @@ export class ProductsListPageComponent implements OnInit {
         return Object.fromEntries(Object.entries(value).filter(([_, v]) => v != null));
       }),
       switchMap(params => this.productsService.getAll(params)),
+      tap(response => this.total.set(response.total)),
       map((response) => response.products)
     );
 
@@ -44,10 +47,6 @@ export class ProductsListPageComponent implements OnInit {
     const skip = this.productsFilter().skip!;
     const limit = this.productsFilter().limit!;
 
-    console.log('next page', skip);
-    console.log('next page', limit);
-
-
-    this.productsFilter.update((value) => ({...value, skip: skip + 1}));
+    this.productsFilter.set({limit, skip: (skip / limit + 1) * limit});
   }
 }

@@ -21,5 +21,13 @@ export class AppComponent {
     }
 
     return 'over';
-  })
+  });
+
+  readonly shoppingCartSidenavMode = computed(() => {
+    if (this.responsiveService.mediumWidth()) {
+      return 'side';
+    }
+
+    return 'over';
+  });
 }
