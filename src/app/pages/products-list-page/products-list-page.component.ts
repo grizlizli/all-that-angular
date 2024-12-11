@@ -6,7 +6,6 @@ import { debounceTime, map, Observable, switchMap, tap } from 'rxjs';
 import { ProductsQueryParams } from '../../interfaces/products-query-params.interface';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { ProductsListComponent } from '../../components/products-list/products-list.component';
-import { LoadingProductsListComponent } from '../../components/loading-products-list/loading-products-list.component';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
