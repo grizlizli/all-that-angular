@@ -1,5 +1,5 @@
-import { Component, computed, inject, input, output } from '@angular/core';
-import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { Component, computed, inject, input } from '@angular/core';
+import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl } from '@angular/forms';
 import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-field.component';
 import { Field } from '../../models/dynamic-reactive-form.model';
 import { outputFromObservable } from '@angular/core/rxjs-interop';
@@ -18,11 +18,11 @@ export class DynamicFormComponent {
   readonly readonly = input<boolean>(false);
 
   readonly formFieldset = computed(() => {
-    this.form.reset({});
+    this.form.reset({}, {emitEvent: false});
 
     const fieldset = this.fieldset();
     fieldset.forEach((field) => {
-      this.form.addControl(field.name, this.initializeFormControl(field))
+      this.form.addControl(field.name, this.initializeFormControl(field), { emitEvent: false})
     });
 
     return this.form;

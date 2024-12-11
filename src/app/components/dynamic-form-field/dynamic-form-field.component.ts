@@ -3,8 +3,12 @@ import { FormGroupDirective, ReactiveFormsModule, UntypedFormControl } from '@an
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatListModule } from '@angular/material/list';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { Field, FieldType } from '../../models/dynamic-reactive-form.model';
-import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'mk-dynamic-form-field',
@@ -13,12 +17,11 @@ import { JsonPipe } from '@angular/common';
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
-    // MatDatepickerModule,
-    // MatListModule,
-    // MatRadioModule,
-    // MatSelectModule,
-    // MatSlideToggleModule,
-    JsonPipe
+    MatDatepickerModule,
+    MatListModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSlideToggleModule
   ],
   templateUrl: './dynamic-form-field.component.html',
   styleUrl: './dynamic-form-field.component.scss'

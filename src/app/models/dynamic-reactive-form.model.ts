@@ -1,8 +1,8 @@
-import { ValidatorFn, Validators } from '@angular/forms';
+import { ValidatorFn } from '@angular/forms';
 
 export enum FieldType {
     CHECKBOX = 'CHECKBOX',
-    DATEPICKER = 'DATEPICKER',
+    DATE_PICKER = 'DATE_PICKER',
     RADIO = 'RADIO',
     SELECT_DROPDOWN = 'SELECT_DROPDOWN',
     SELECT_LIST = 'SELECT_LIST',
@@ -16,29 +16,15 @@ export enum FieldType {
 export interface Field<T = any> {
     name: string;
     type: FieldType;
+    subtype?: 'text' | 'tel' | 'phone' | 'number' | 'email';
     children?: Field[];
     value?: T;
     placeholder?: string;
     disabled?: boolean;
-    options?: KeyValuePair[];
+    options?: any[] | string[];
+    optionKey?: string;
+    optionValueKey?: string;
     parent?: string;
     validators?: ValidatorFn[];
     visible?: boolean;
-}
-
-export interface KeyValuePair {
-  key: string;
-  value: any;
-}
-
-export interface Error {
-  name: string;
-  text: string;
-  rules: Validators[];
-}
-
-export class Fieldset {
-  constructor() {
-    console.log('generators');
-  }
 }

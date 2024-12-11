@@ -1,25 +1,103 @@
 
-<mat-form-field>
+<span style="padding: 4px;">
+
+
   @switch (field().type) {
+
+    @case(FieldType.TEXT_FIELD) {
+      <mat-form-field>
+          <input matInput [type]="field().subtype || 'text'" [formControl]="control()" [placeholder]="field().placeholder || ''">
+        </mat-form-field>
+    }
+
+    @case(FieldType.TEXTAREA) {
+      <mat-form-field>
+          <textarea matInput type="text" [formControl]="control()" [placeholder]="field().placeholder || ''"></textarea>
+          </mat-form-field>
+    }
 
     @case (FieldType.CHECKBOX) {
 
-        <mat-checkbox [formControl]="control()" color="primary">
+      <mat-checkbox [formControl]="control()" color="primary">
+        {{ field().placeholder }}
+      </mat-checkbox>
+
+    }
+
+    @case(FieldType.RADIO) {
+      <mat-radio-group [formControl]="control()">
+          @for(option of field().options; track option) {
+              <mat-radio-button [value]="option" color='primary'>
+                  {{ option }}
+              </mat-radio-button>
+          }
+      </mat-radio-group>
+    }
+
+    @case(FieldType.SELECT_DROPDOWN) {
+      <mat-form-field>
+          <mat-select [placeholder]="field().placeholder || ''" [formControl]="control()">
+              @for(option of field().options; track option) {
+                  <mat-option [value]="field().optionValueKey ? option[field().optionValueKey!] : option">
+                    {{ field().optionKey ? option[field().optionKey!] : option }}
+                  </mat-option>
+              }
+          </mat-select>
+      </mat-form-field>
+  }
+
+  @case(FieldType.SELECT_LIST) {
+      <mat-selection-list [formControl]="control()" color='primary'>
+          @for(option of field().options; track option) {
+              <mat-list-option mySelectionList [value]="option" color='primary' checkboxPosition="before">
+                  {{ option }}
+              </mat-list-option>
+          }
+      </mat-selection-list>
+  }
+
+    <!-- @case(FieldType.SLIDE_TOGGLE) {
+      <mat-slide-toggle [formControl]="control()" color='primary'>
           {{ field().placeholder }}
-        </mat-checkbox>
+      </mat-slide-toggle>
+      <mat-list role="list">
+          @if(field().children) {
+              @for(child of field().children; track child) {
+                  <mat-list-item role="listitem" style="padding: 4px; margin-top: 5px;">
+                      <mk-dynamic-form-field [field]="child" class="toggleChild" />
+                  </mat-list-item>
+              }
+          }
+        </mat-list>
+  } -->
 
+    @case (FieldType.DATE_PICKER) {
+     <mat-form-field>
+      <input matInput [matDatepicker]="picker" [placeholder]="field()?.placeholder || ''" [formControl]="control()">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+     </mat-form-field>
     }
 
-    @case(FieldType.TEXT_FIELD) {
-          <input matInput type="text" [formControl]="control()" [placeholder]="field().placeholder || ''">
+    @case(FieldType.SUB_HEADER) {
+      <p class="subheader">
+          {{ field().placeholder }}
+      </p>
     }
+
+    @case(FieldType.DIVIDER) {
+      <hr/>
+    }
+
 
   }
-</mat-form-field>
-@if(control().errors) {
-  <span >
+
+
+@if(control()?.errors && control().dirty) {
+  <div style="padding: 2px; font-size: 0.7em; color: var(--mat-sys-error);">
   @if (control()?.errors!['required']) {
     This field is required.
   }
-  </span>
+  </div>
 }
+</span>
