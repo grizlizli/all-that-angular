@@ -43,11 +43,14 @@ export class DynamicFormComponent {
     }
 
     //const validation = field.validation ? field.validation : [];
-    const isDisabled = field.disabled || this.readonly() ? true : false;
+    const disabled = field.disabled || this.readonly();
     /**
      * That's it, we're done! Return our new Form Control up to the form.
      */
-    return this.formBuilder.control({ value, disabled: isDisabled });
+    console.log(value);
+    const control = this.formBuilder.control({ value, disabled });
+    console.log('control',control);
+    return control;
   }
 
   //form!: UntypedFormGroup;

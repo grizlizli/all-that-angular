@@ -30,11 +30,13 @@ export class PlaygroundPageComponent {
   formFields = [
     {
       name: 'firstName',
+      value: 1,
       type: FieldType.TEXT_FIELD,
       validation: [ Validators.required, Validators.maxLength(25) ]
     },
     {
       name: 'lastName',
+      value: null,
       type: FieldType.TEXT_FIELD
     },
     // {

@@ -5,14 +5,14 @@
     @case (FieldType.CHECKBOX) {
       <mat-form-field>
         <mat-checkbox [formControl]="control()" color="primary">
-          {{ field().name }}
+          {{ field().placeholder }}
         </mat-checkbox>
       </mat-form-field>
     }
 
     @case(FieldType.TEXT_FIELD) {
       <mat-form-field>
-          <input matInput type="text" [formControl]="control()" [placeholder]="field.name">
+          <input matInput type="text" [formControl]="control()" [placeholder]="field().placeholder || ''">
       </mat-form-field>
     }
 

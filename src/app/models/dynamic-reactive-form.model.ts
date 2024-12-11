@@ -18,6 +18,7 @@ export interface Field<T = any> {
     type: FieldType;
     children?: Field[];
     value?: T;
+    placeholder?: string;
     disabled?: boolean;
     options?: KeyValuePair[];
     parent?: string;
