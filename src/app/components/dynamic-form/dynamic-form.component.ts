@@ -2,6 +2,7 @@ import { Component, computed, inject, input, output } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-field.component';
 import { Field } from '../../models/dynamic-reactive-form.model';
+import { outputFromObservable } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'mk-dynamic-form',
@@ -15,43 +16,27 @@ export class DynamicFormComponent {
   readonly fieldset = input.required<Field[]>();
   readonly readonly = input<boolean>(false);
 
-  readonly valueChange = output<any>();
-
   readonly form = computed(() => {
     const form = this.formBuilder.group({});
     const fieldset = this.fieldset();
-    console.log('form computed', fieldset);
     fieldset.forEach((field) => {
       form.addControl(field.name, this.initializeFormControl(field))
     });
 
-    console.log()
-
     return form;
   });
-
-
 
   private initializeFormControl(field: Field): UntypedFormControl {
     let value;
 
-    /**
-     * Populate defaultValues from constants if assigned
-     */
     if (typeof field.value !== 'undefined') {
       value = field.value;
     }
 
-    //const validation = field.validation ? field.validation : [];
+    const validators = field.validators ? field.validators : [];
     const disabled = field.disabled || this.readonly();
-    /**
-     * That's it, we're done! Return our new Form Control up to the form.
-     */
-    console.log(value);
-    const control = this.formBuilder.control({ value, disabled });
-    console.log('control',control);
+    const control = this.formBuilder.control({ value, disabled }, validators);
+
     return control;
   }
-
-  //form!: UntypedFormGroup;
 }

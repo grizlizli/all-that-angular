@@ -1,4 +1,4 @@
-import { Validators } from '@angular/forms';
+import { ValidatorFn, Validators } from '@angular/forms';
 
 export enum FieldType {
     CHECKBOX = 'CHECKBOX',
@@ -22,7 +22,7 @@ export interface Field<T = any> {
     disabled?: boolean;
     options?: KeyValuePair[];
     parent?: string;
-    validation?: Validators[];
+    validators?: ValidatorFn[];
     visible?: boolean;
 }
 

@@ -18,4 +18,8 @@
 
   }
 
-
+  @if(control().errors) {
+    <span >
+      {{control().errors | json}}
+    </span>
+  }

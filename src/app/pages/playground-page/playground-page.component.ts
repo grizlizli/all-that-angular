@@ -3,7 +3,7 @@ import { TooltipDirective } from '../../components/tooltip/tooltip.directive';
 import { MultipleSelectFormComponent } from '../../components/multiple-select-form/multiple-select-form.component';
 import { TodoItemComponent } from '../../components/todo-item/todo-item.component';
 import { DynamicFormComponent } from '../../components/dynamic-form/dynamic-form.component';
-import { FieldType } from '../../models/dynamic-reactive-form.model';
+import { Field, FieldType } from '../../models/dynamic-reactive-form.model';
 import { Validators } from '@angular/forms';
 
 @Component({
@@ -27,17 +27,18 @@ export class PlaygroundPageComponent {
 
   dynamicFiltersValue: string[] = [];
 
-  formFields = [
+  formFields: Field[] = [
     {
       name: 'firstName',
       value: 1,
       type: FieldType.TEXT_FIELD,
-      validation: [ Validators.required, Validators.maxLength(25) ]
+      validators: [ Validators.required, Validators.maxLength(25) ]
     },
     {
       name: 'lastName',
       value: null,
-      type: FieldType.TEXT_FIELD
+      type: FieldType.TEXT_FIELD,
+      validators: [ Validators.required, Validators.minLength(3) ]
     },
     // {
     //   name: 'favoriteFood',

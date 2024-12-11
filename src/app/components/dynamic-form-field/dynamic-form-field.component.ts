@@ -4,6 +4,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Field, FieldType } from '../../models/dynamic-reactive-form.model';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'mk-dynamic-form-field',
@@ -16,7 +17,8 @@ import { Field, FieldType } from '../../models/dynamic-reactive-form.model';
     // MatListModule,
     // MatRadioModule,
     // MatSelectModule,
-    // MatSlideToggleModule
+    // MatSlideToggleModule,
+    JsonPipe
   ],
   templateUrl: './dynamic-form-field.component.html',
   styleUrl: './dynamic-form-field.component.scss'
