@@ -1,0 +1,21 @@
+
+
+  @switch (field().type) {
+
+    @case (FieldType.CHECKBOX) {
+      <mat-form-field>
+        <mat-checkbox [formControl]="control()" color="primary">
+          {{ field().name }}
+        </mat-checkbox>
+      </mat-form-field>
+    }
+
+    @case(FieldType.TEXT_FIELD) {
+      <mat-form-field>
+          <input matInput type="text" [formControl]="control()" [placeholder]="field.name">
+      </mat-form-field>
+    }
+
+  }
+
+

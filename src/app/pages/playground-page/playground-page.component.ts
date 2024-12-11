@@ -2,11 +2,14 @@ import { Component, TemplateRef, Type, viewChild } from '@angular/core';
 import { TooltipDirective } from '../../components/tooltip/tooltip.directive';
 import { MultipleSelectFormComponent } from '../../components/multiple-select-form/multiple-select-form.component';
 import { TodoItemComponent } from '../../components/todo-item/todo-item.component';
+import { DynamicFormComponent } from '../../components/dynamic-form/dynamic-form.component';
+import { FieldType } from '../../models/dynamic-reactive-form.model';
+import { Validators } from '@angular/forms';
 
 @Component({
     selector: 'mk-playground-page',
     standalone: true,
-    imports: [TooltipDirective, MultipleSelectFormComponent, TodoItemComponent],
+    imports: [TooltipDirective, MultipleSelectFormComponent, TodoItemComponent, DynamicFormComponent],
     templateUrl: './playground-page.component.html',
     styleUrl: './playground-page.component.scss'
 })
@@ -23,6 +26,28 @@ export class PlaygroundPageComponent {
   ];
 
   dynamicFiltersValue: string[] = [];
+
+  formFields = [
+    {
+      name: 'firstName',
+      type: FieldType.TEXT_FIELD,
+      validation: [ Validators.required, Validators.maxLength(25) ]
+    },
+    {
+      name: 'lastName',
+      type: FieldType.TEXT_FIELD
+    },
+    // {
+    //   name: 'favoriteFood',
+    //   type: FieldType.SELECTDROPDOWN,
+    //   options: ['Ice Cream', 'Pizza', 'Tacos']
+    // },
+    // {
+    //   name: 'favoriteColor',
+    //   type: FieldType.SELECTDROPDOWN,
+    //   options: ['Red', 'Blue', 'Yellow']
+    // }
+  ];
 
   optionsSelectionChange(options: any[]) {
     console.log('optionsSelectionChange', options);

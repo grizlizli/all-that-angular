@@ -1,0 +1,12 @@
+<form [formGroup]="form()">
+  @for(field of fieldset(); track field) {
+      <mk-dynamic-form-field [field]="field" />
+      <!-- <div [ngxErrors]="field.name">
+          @for (error of errors; track error) {
+              <div [ngxError]="error.name" class="error">
+                  {{ error.message }}
+              </div>
+          }
+      </div> -->
+  }
+</form>
