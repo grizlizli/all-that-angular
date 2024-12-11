@@ -12,19 +12,23 @@ import { outputFromObservable } from '@angular/core/rxjs-interop';
 })
 export class DynamicFormComponent {
   private readonly formBuilder = inject(UntypedFormBuilder);
+  private readonly form = this.formBuilder.group({});
 
   readonly fieldset = input.required<Field[]>();
   readonly readonly = input<boolean>(false);
 
-  readonly form = computed(() => {
-    const form = this.formBuilder.group({});
+  readonly formFieldset = computed(() => {
+    this.form.reset({});
+
     const fieldset = this.fieldset();
     fieldset.forEach((field) => {
-      form.addControl(field.name, this.initializeFormControl(field))
+      this.form.addControl(field.name, this.initializeFormControl(field))
     });
 
-    return form;
+    return this.form;
   });
+
+  readonly valueChange = outputFromObservable(this.form.valueChanges);
 
   private initializeFormControl(field: Field): UntypedFormControl {
     let value;

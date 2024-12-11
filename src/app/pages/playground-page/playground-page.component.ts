@@ -5,11 +5,18 @@ import { TodoItemComponent } from '../../components/todo-item/todo-item.componen
 import { DynamicFormComponent } from '../../components/dynamic-form/dynamic-form.component';
 import { Field, FieldType } from '../../models/dynamic-reactive-form.model';
 import { Validators } from '@angular/forms';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
     selector: 'mk-playground-page',
     standalone: true,
-    imports: [TooltipDirective, MultipleSelectFormComponent, TodoItemComponent, DynamicFormComponent],
+    imports: [
+      MatExpansionModule,
+      TooltipDirective,
+      MultipleSelectFormComponent,
+      TodoItemComponent,
+      DynamicFormComponent
+    ],
     templateUrl: './playground-page.component.html',
     styleUrl: './playground-page.component.scss'
 })
@@ -27,7 +34,7 @@ export class PlaygroundPageComponent {
 
   dynamicFiltersValue: string[] = [];
 
-  formFields: Field[] = [
+  readonly formFields: Field[] = [
     {
       name: 'firstName',
       value: 1,
@@ -51,6 +58,10 @@ export class PlaygroundPageComponent {
     //   options: ['Red', 'Blue', 'Yellow']
     // }
   ];
+
+  dynamicFormValueChange(value: any) {
+    console.log(value);
+  }
 
   optionsSelectionChange(options: any[]) {
     console.log('optionsSelectionChange', options);

@@ -1,25 +1,25 @@
 
-
+<mat-form-field>
   @switch (field().type) {
 
     @case (FieldType.CHECKBOX) {
-      <mat-form-field>
+
         <mat-checkbox [formControl]="control()" color="primary">
           {{ field().placeholder }}
         </mat-checkbox>
-      </mat-form-field>
+
     }
 
     @case(FieldType.TEXT_FIELD) {
-      <mat-form-field>
           <input matInput type="text" [formControl]="control()" [placeholder]="field().placeholder || ''">
-      </mat-form-field>
     }
 
   }
-
-  @if(control().errors) {
-    <span >
-      {{control().errors | json}}
-    </span>
+</mat-form-field>
+@if(control().errors) {
+  <span >
+  @if (control()?.errors!['required']) {
+    This field is required.
   }
+  </span>
+}
