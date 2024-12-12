@@ -4,19 +4,19 @@
 
   @switch (field().type) {
 
-    @case(FieldType.TEXT_FIELD) {
+    @case(DynamicReactiveFormFieldType.TEXT_FIELD) {
       <mat-form-field>
           <input matInput [type]="field().subtype || 'text'" [formControl]="control()" [placeholder]="field().placeholder || ''">
         </mat-form-field>
     }
 
-    @case(FieldType.TEXTAREA) {
+    @case(DynamicReactiveFormFieldType.TEXT_AREA) {
       <mat-form-field>
           <textarea matInput type="text" [formControl]="control()" [placeholder]="field().placeholder || ''"></textarea>
           </mat-form-field>
     }
 
-    @case (FieldType.CHECKBOX) {
+    @case (DynamicReactiveFormFieldType.CHECK_BOX) {
 
       <mat-checkbox [formControl]="control()" color="primary">
         {{ field().placeholder }}
@@ -24,7 +24,7 @@
 
     }
 
-    @case(FieldType.RADIO) {
+    @case(DynamicReactiveFormFieldType.RADIO) {
       <mat-radio-group [formControl]="control()">
           @for(option of field().options; track option) {
               <mat-radio-button [value]="option" color='primary'>
@@ -34,7 +34,7 @@
       </mat-radio-group>
     }
 
-    @case(FieldType.SELECT_DROPDOWN) {
+    @case(DynamicReactiveFormFieldType.SELECT_DROPDOWN) {
       <mat-form-field>
           <mat-select [placeholder]="field().placeholder || ''" [formControl]="control()">
               @for(option of field().options; track option) {
@@ -46,7 +46,7 @@
       </mat-form-field>
   }
 
-  @case(FieldType.SELECT_LIST) {
+  @case(DynamicReactiveFormFieldType.SELECT_LIST) {
       <mat-selection-list [formControl]="control()" color='primary'>
           @for(option of field().options; track option) {
               <mat-list-option mySelectionList [value]="option" color='primary' checkboxPosition="before">
@@ -71,7 +71,7 @@
         </mat-list>
   } -->
 
-    @case (FieldType.DATE_PICKER) {
+    @case (DynamicReactiveFormFieldType.DATE_PICKER) {
      <mat-form-field>
       <input matInput [matDatepicker]="picker" [placeholder]="field()?.placeholder || ''" [formControl]="control()">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -79,13 +79,13 @@
      </mat-form-field>
     }
 
-    @case(FieldType.SUB_HEADER) {
+    @case(DynamicReactiveFormFieldType.SUBHEADER) {
       <p class="subheader">
           {{ field().placeholder }}
       </p>
     }
 
-    @case(FieldType.DIVIDER) {
+    @case(DynamicReactiveFormFieldType.DIVIDER) {
       <hr/>
     }
 

@@ -1,8 +1,8 @@
 import { Component, computed, input } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-field.component';
-import { Field } from '../../models/dynamic-reactive-form.model';
 import { outputFromObservable } from '@angular/core/rxjs-interop';
+import { DynamicReactiveFormField } from '../../interfaces/dynamic-reactive-form-field.interface';
 
 @Component({
   selector: 'mk-dynamic-form',
@@ -13,7 +13,7 @@ import { outputFromObservable } from '@angular/core/rxjs-interop';
 export class DynamicFormComponent {
   private readonly form = new UntypedFormGroup({});
 
-  readonly fieldset = input.required<Field[]>();
+  readonly fieldset = input.required<DynamicReactiveFormField[]>();
   readonly readonly = input<boolean>(false);
 
   readonly formFieldset = computed(() => {
@@ -29,7 +29,7 @@ export class DynamicFormComponent {
 
   readonly valueChange = outputFromObservable(this.form.valueChanges);
 
-  private initializeFormControl(field: Field): UntypedFormControl {
+  private initializeFormControl(field: DynamicReactiveFormField): UntypedFormControl {
     let value;
 
     if (typeof field.value !== 'undefined') {

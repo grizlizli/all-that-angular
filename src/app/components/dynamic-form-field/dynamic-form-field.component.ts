@@ -8,7 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { Field, FieldType } from '../../models/dynamic-reactive-form.model';
+import { DynamicReactiveFormField, DynamicReactiveFormFieldType } from '../../interfaces/dynamic-reactive-form-field.interface';
 
 @Component({
   selector: 'mk-dynamic-form-field',
@@ -28,8 +28,8 @@ import { Field, FieldType } from '../../models/dynamic-reactive-form.model';
 })
 export class DynamicFormFieldComponent {
   private readonly formGroupDirective = inject(FormGroupDirective);
-  readonly FieldType = FieldType;
-  readonly field = input.required<Field>();
+  readonly DynamicReactiveFormFieldType = DynamicReactiveFormFieldType;
+  readonly field = input.required<DynamicReactiveFormField>();
 
   readonly control = computed<UntypedFormControl>(() => {
     return this.formGroupDirective.control.get(this.field().name) as UntypedFormControl;

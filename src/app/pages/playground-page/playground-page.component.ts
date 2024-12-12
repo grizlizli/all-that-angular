@@ -3,9 +3,9 @@ import { TooltipDirective } from '../../components/tooltip/tooltip.directive';
 import { MultipleSelectFormComponent } from '../../components/multiple-select-form/multiple-select-form.component';
 import { TodoItemComponent } from '../../components/todo-item/todo-item.component';
 import { DynamicFormComponent } from '../../components/dynamic-form/dynamic-form.component';
-import { Field } from '../../models/dynamic-reactive-form.model';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FORM_FIELDS_DATA } from './form-fields.mock';
+import { DynamicReactiveFormField } from '../../interfaces/dynamic-reactive-form-field.interface';
 
 @Component({
     selector: 'mk-playground-page',
@@ -34,7 +34,7 @@ export class PlaygroundPageComponent {
 
   dynamicFiltersValue: string[] = [];
 
-  readonly formFields: Field[] = FORM_FIELDS_DATA;
+  readonly formFields: DynamicReactiveFormField[] = FORM_FIELDS_DATA;
 
   dynamicFormValueChange(value: any) {
     console.log(value);
