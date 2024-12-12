@@ -37,7 +37,7 @@ export const FORM_FIELDS_DATA: Field[] = [
   {
     name: 'email',
     type: FieldType.TEXT_FIELD,
-    placeholder: 'mustackioengineering@gmail.com',
+    placeholder: 'letstalk@capaciteam.com',
     subtype: 'email'
   },
   {
@@ -58,7 +58,7 @@ export const FORM_FIELDS_DATA: Field[] = [
     ],
     optionKey: 'name',
     optionValueKey: 'id',
-    placeholder: 'Hip-Hop'
+    placeholder: 'Rap'
   },
   {
     name: 'birthday',
