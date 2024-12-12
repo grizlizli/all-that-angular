@@ -5,29 +5,24 @@ import { DynamicReactiveFormField, DynamicReactiveFormFieldType } from "../../in
 export const FORM_FIELDS_DATA: DynamicReactiveFormField[] = [
   {
     name: 'firstName',
-    value: 'Milos',
+    value: 'Bonnie',
     type: DynamicReactiveFormFieldType.TEXT_FIELD,
     validators: [ Validators.required, Validators.maxLength(25) ],
     placeholder: 'First name'
   },
   {
     name: 'lastName',
-    value: null,
+    value: 'Brennan',
     type: DynamicReactiveFormFieldType.TEXT_FIELD,
     validators: [ Validators.required, Validators.minLength(3) ],
     placeholder: 'Last name'
   },
   {
-    name: 'euCitizen',
+    name: 'usCitizen',
     value: true,
     type: DynamicReactiveFormFieldType.CHECK_BOX,
-    placeholder: 'Are you a EU citizen?'
-  },
-  {
-    name: 'favoriteFood',
-    type: DynamicReactiveFormFieldType.SELECT_DROPDOWN,
-    options: ['Ice Cream', 'Pizza', 'Tacos'],
-    placeholder: 'Favorite Pizza'
+    placeholder: 'Are you a US citizen?',
+    disabled: false
   },
   {
     name: 'favoriteColor',
@@ -38,7 +33,7 @@ export const FORM_FIELDS_DATA: DynamicReactiveFormField[] = [
   {
     name: 'phone',
     type: DynamicReactiveFormFieldType.TEXT_FIELD,
-    placeholder: '+381606044114',
+    placeholder: '+1xxxxxxxxxxx',
     subtype: 'phone'
   },
   {
@@ -72,31 +67,4 @@ export const FORM_FIELDS_DATA: DynamicReactiveFormField[] = [
     type: DynamicReactiveFormFieldType.DATE_PICKER,
     placeholder: '01.01.1970'
   },
-  // {
-  //   name: 'joinMailingList',
-  //   type: DynamicReactiveFormFieldType.SLIDE_TOGGLE,
-  //   value: true,
-  //   children: [
-  //     {
-  //       name: 'streetAddress',
-  //       type: FieldType.TEXT_FIELD
-  //     },
-  //     {
-  //       name: 'city',
-  //       type: FieldType.TEXT_FIELD
-  //     },
-  //     {
-  //       name: 'state',
-  //       type: FieldType.TEXT_FIELD
-  //     },
-  //     {
-  //       name: 'zip',
-  //       type: FieldType.TEXT_FIELD
-  //     },
-  //     {
-  //       name: 'date',
-  //       type: FieldType.DATE_PICKER
-  //     }
-  //   ]
-  // }
 ];

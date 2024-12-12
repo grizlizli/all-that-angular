@@ -30,15 +30,9 @@ export class DynamicFormComponent {
   readonly valueChange = outputFromObservable(this.form.valueChanges);
 
   private initializeFormControl(field: DynamicReactiveFormField): UntypedFormControl {
-    let value;
-
-    if (typeof field.value !== 'undefined') {
-      value = field.value;
-    }
-
     const validators = field.validators ? field.validators : [];
     const disabled = field.disabled || this.readonly();
-    const control = new UntypedFormControl({ value, disabled }, validators);
+    const control = new UntypedFormControl({ value: field.value, disabled }, validators);
 
     return control;
   }

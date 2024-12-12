@@ -41,7 +41,7 @@
         <mat-panel-description> ...with Signals </mat-panel-description>
       </mat-expansion-panel-header>
       <div>
-        <mk-dynamic-form [fieldset]="formFields" (valueChange)="dynamicFormValueChange($event)"></mk-dynamic-form>
+        <mk-dynamic-reactive-form [fieldset]="formFields" (valueChange)="dynamicFormValueChange($event)"/>
       </div>
     </mat-expansion-panel>
   </mat-accordion>

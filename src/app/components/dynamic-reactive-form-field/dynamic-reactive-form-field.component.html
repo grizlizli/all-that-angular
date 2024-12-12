@@ -18,11 +18,20 @@
 
     @case (DynamicReactiveFormFieldType.CHECK_BOX) {
       <div>
-        <mat-checkbox [formControl]="control()">
+        <mat-checkbox [formControl]="control()" color="primary">
           {{ field().placeholder }}
         </mat-checkbox>
       </div>
     }
+
+    @case (DynamicReactiveFormFieldType.DATE_PICKER) {
+      <mat-form-field>
+       <input matInput [matDatepicker]="picker" [placeholder]="field()?.placeholder || ''" [formControl]="control()">
+       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+       <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+     }
+
 
     @case(DynamicReactiveFormFieldType.RADIO) {
       <mat-radio-group [formControl]="control()">
@@ -71,13 +80,7 @@
         </mat-list>
   } -->
 
-    @case (DynamicReactiveFormFieldType.DATE_PICKER) {
-     <mat-form-field>
-      <input matInput [matDatepicker]="picker" [placeholder]="field()?.placeholder || ''" [formControl]="control()">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-     </mat-form-field>
-    }
+
 
     @case(DynamicReactiveFormFieldType.SUBHEADER) {
       <p class="subheader">

@@ -6,6 +6,7 @@ import { DynamicFormComponent } from '../../components/dynamic-form/dynamic-form
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FORM_FIELDS_DATA } from './form-fields.mock';
 import { DynamicReactiveFormField } from '../../interfaces/dynamic-reactive-form-field.interface';
+import { DynamicReactiveFormComponent } from '../../components/dynamic-reactive-form/dynamic-reactive-form.component';
 
 @Component({
     selector: 'mk-playground-page',
@@ -15,7 +16,7 @@ import { DynamicReactiveFormField } from '../../interfaces/dynamic-reactive-form
       TooltipDirective,
       MultipleSelectFormComponent,
       TodoItemComponent,
-      DynamicFormComponent
+      DynamicReactiveFormComponent
     ],
     templateUrl: './playground-page.component.html',
     styleUrl: './playground-page.component.scss'
