@@ -17,14 +17,14 @@ export interface DynamicReactiveFormField<T = any> {
   type: DynamicReactiveFormFieldType;
   // if type is TEXT_FIELD
   subtype?: 'text' | 'tel' | 'phone' | 'number' | 'email';
-  // children?: Field[];
   value?: T;
+  validators?: ValidatorFn[];
   placeholder?: string;
   disabled?: boolean;
   options?: any[] | string[];
   optionKey?: string;
   optionValueKey?: string;
-  parent?: string;
-  validators?: ValidatorFn[];
+  // parent?: string;
+  // children?: DynamicReactiveFormField[];
   // visible?: boolean;
 }
