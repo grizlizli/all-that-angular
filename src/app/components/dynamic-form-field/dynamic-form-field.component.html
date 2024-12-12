@@ -13,15 +13,15 @@
     @case(DynamicReactiveFormFieldType.TEXT_AREA) {
       <mat-form-field>
           <textarea matInput type="text" [formControl]="control()" [placeholder]="field().placeholder || ''"></textarea>
-          </mat-form-field>
+      </mat-form-field>
     }
 
     @case (DynamicReactiveFormFieldType.CHECK_BOX) {
-
-      <mat-checkbox [formControl]="control()" color="primary">
-        {{ field().placeholder }}
-      </mat-checkbox>
-
+      <div>
+        <mat-checkbox [formControl]="control()" color="primary">
+          {{ field().placeholder }}
+        </mat-checkbox>
+      </div>
     }
 
     @case(DynamicReactiveFormFieldType.RADIO) {

@@ -18,6 +18,12 @@ export const FORM_FIELDS_DATA: DynamicReactiveFormField[] = [
     placeholder: 'Last name'
   },
   {
+    name: 'euCitizen',
+    value: true,
+    type: DynamicReactiveFormFieldType.CHECK_BOX,
+    placeholder: 'Are you a EU citizen?'
+  },
+  {
     name: 'favoriteFood',
     type: DynamicReactiveFormFieldType.SELECT_DROPDOWN,
     options: ['Ice Cream', 'Pizza', 'Tacos'],
