@@ -1,5 +1,5 @@
-import { Component, computed, inject, input } from '@angular/core';
-import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl } from '@angular/forms';
+import { Component, computed, input } from '@angular/core';
+import { ReactiveFormsModule, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-field.component';
 import { Field } from '../../models/dynamic-reactive-form.model';
 import { outputFromObservable } from '@angular/core/rxjs-interop';
@@ -11,8 +11,7 @@ import { outputFromObservable } from '@angular/core/rxjs-interop';
   styleUrl: './dynamic-form.component.scss'
 })
 export class DynamicFormComponent {
-  private readonly formBuilder = inject(UntypedFormBuilder);
-  private readonly form = this.formBuilder.group({});
+  private readonly form = new UntypedFormGroup({});
 
   readonly fieldset = input.required<Field[]>();
   readonly readonly = input<boolean>(false);
@@ -39,7 +38,7 @@ export class DynamicFormComponent {
 
     const validators = field.validators ? field.validators : [];
     const disabled = field.disabled || this.readonly();
-    const control = this.formBuilder.control({ value, disabled }, validators);
+    const control = new UntypedFormControl({ value, disabled }, validators);
 
     return control;
   }
