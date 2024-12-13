@@ -5,12 +5,6 @@ import { outputFromObservable } from '@angular/core/rxjs-interop';
 import { DynamicReactiveFormField } from '../../interfaces/dynamic-reactive-form-field.interface';
 import { DynamicReactiveFormsFieldsSet } from '../../pages/playground-page/form-fields.mock';
 
-function* formFieldsGenerator(fieldsSet: DynamicReactiveFormsFieldsSet) {
-  for (const key of Object.keys(fieldsSet)) {
-    yield { key, controlConfig: fieldsSet[key] };
-  }
-}
-
 @Component({
   selector: 'mk-dynamic-form',
   imports: [ReactiveFormsModule, DynamicFormFieldComponent],
@@ -26,11 +20,6 @@ export class DynamicFormComponent {
   readonly formFieldset = computed(() => {
     this.form.reset({}, {emitEvent: false});
 
-    // const fieldIterator = formFieldsGenerator(this.fieldsSet());
-    // for (const { key, controlConfig } of fieldIterator) {
-    //   this.form.addControl(key, this.initializeFormControl(controlConfig), { emitEvent: false});
-    // }
-
     Object.keys(this.fieldsSet()).forEach((controlName: string) =>
       this.form.addControl(controlName, this.initializeFormControl(this.fieldsSet()[controlName]), { emitEvent: false})
     );
@@ -38,7 +27,7 @@ export class DynamicFormComponent {
     return this.form;
   });
 
-  readonly controls = computed<any[]>(() => {
+  readonly fields = computed<any[]>(() => {
     const fieldsSet = this.fieldsSet();
     return Object.keys(fieldsSet).map(key => {
       return {
