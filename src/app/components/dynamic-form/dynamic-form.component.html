@@ -1,5 +1,5 @@
 <form [formGroup]="formFieldset()">
-  @for(field of fieldset(); track field) {
+  @for(field of controls(); track field) {
       <mk-dynamic-form-field [field]="field" />
   }
 </form>

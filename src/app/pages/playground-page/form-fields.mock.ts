@@ -1,6 +1,39 @@
 import { Validators } from "@angular/forms";
 import { DynamicReactiveFormField, DynamicReactiveFormFieldType } from "../../interfaces/dynamic-reactive-form-field.interface";
 
+export type DynamicReactiveFormsFieldsSet = { [key: string]: DynamicReactiveFormField };
+
+export const FORM_FIELDS_SET: DynamicReactiveFormsFieldsSet = {
+  firstName: {
+    // I DONT WANT TO USE name PROP
+    name: '--firstName',
+    value: 'Bonnie',
+    type: DynamicReactiveFormFieldType.TEXT_FIELD,
+    validators: [ Validators.required, Validators.maxLength(25) ],
+    placeholder: 'First name'
+  },
+  lastName: {
+    // I DONT WANT TO USE name PROP
+    name: '--lastName',
+    value: 'Brennan',
+    disabled: true,
+    type: DynamicReactiveFormFieldType.TEXT_FIELD
+  },
+  z: {
+    // I DONT WANT TO USE name PROP
+    name: '--z',
+    value: 'z',
+    placeholder: 'z',
+    type: DynamicReactiveFormFieldType.TEXT_FIELD
+  },
+  a: {
+    // I DONT WANT TO USE name PROP
+    name: '--a',
+    value: 'a',
+    placeholder: 'a',
+    type: DynamicReactiveFormFieldType.TEXT_FIELD
+  }
+};
 
 export const FORM_FIELDS_DATA: DynamicReactiveFormField[] = [
   {
@@ -29,18 +62,6 @@ export const FORM_FIELDS_DATA: DynamicReactiveFormField[] = [
     type: DynamicReactiveFormFieldType.SELECT_DROPDOWN,
     options: ['Red', 'Blue', 'Yellow'],
     placeholder: 'Favorite Color'
-  },
-  {
-    name: 'phone',
-    type: DynamicReactiveFormFieldType.TEXT_FIELD,
-    placeholder: '+1xxxxxxxxxxx',
-    subtype: 'phone'
-  },
-  {
-    name: 'email',
-    type: DynamicReactiveFormFieldType.TEXT_FIELD,
-    placeholder: 'letstalk@capaciteam.com',
-    subtype: 'email'
   },
   {
     name: 'favoriteSeason',

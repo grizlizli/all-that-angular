@@ -1,21 +1,16 @@
 
 <span style="padding: 4px;">
-
-
   @switch (field().type) {
-
     @case(DynamicReactiveFormFieldType.TEXT_FIELD) {
       <mat-form-field>
-          <input matInput [type]="field().subtype || 'text'" [formControl]="control()" [placeholder]="field().placeholder || ''">
-        </mat-form-field>
+        <input matInput [type]="field().subtype || 'text'" [formControl]="control()" [placeholder]="field().placeholder || ''">
+      </mat-form-field>
     }
-
     @case(DynamicReactiveFormFieldType.TEXT_AREA) {
       <mat-form-field>
           <textarea matInput type="text" [formControl]="control()" [placeholder]="field().placeholder || ''"></textarea>
       </mat-form-field>
     }
-
     @case (DynamicReactiveFormFieldType.CHECK_BOX) {
       <div>
         <mat-checkbox [formControl]="control()" color="primary">
@@ -23,7 +18,6 @@
         </mat-checkbox>
       </div>
     }
-
     @case (DynamicReactiveFormFieldType.DATE_PICKER) {
       <mat-form-field>
        <input matInput [matDatepicker]="picker" [placeholder]="field()?.placeholder || ''" [formControl]="control()">
@@ -31,8 +25,6 @@
        <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
      }
-
-
     @case(DynamicReactiveFormFieldType.RADIO) {
       <mat-radio-group [formControl]="control()">
           @for(option of field().options; track option) {
@@ -42,7 +34,6 @@
           }
       </mat-radio-group>
     }
-
     @case(DynamicReactiveFormFieldType.SELECT_DROPDOWN) {
       <mat-form-field>
           <mat-select [placeholder]="field().placeholder || ''" [formControl]="control()">
@@ -53,9 +44,8 @@
               }
           </mat-select>
       </mat-form-field>
-  }
-
-  @case(DynamicReactiveFormFieldType.SELECT_LIST) {
+    }
+    @case(DynamicReactiveFormFieldType.SELECT_LIST) {
       <mat-selection-list [formControl]="control()" color='primary'>
           @for(option of field().options; track option) {
               <mat-list-option mySelectionList [value]="option" color='primary' checkboxPosition="before">
@@ -63,44 +53,23 @@
               </mat-list-option>
           }
       </mat-selection-list>
-  }
-
-    <!-- @case(FieldType.SLIDE_TOGGLE) {
-      <mat-slide-toggle [formControl]="control()" color='primary'>
-          {{ field().placeholder }}
-      </mat-slide-toggle>
-      <mat-list role="list">
-          @if(field().children) {
-              @for(child of field().children; track child) {
-                  <mat-list-item role="listitem" style="padding: 4px; margin-top: 5px;">
-                      <mk-dynamic-form-field [field]="child" class="toggleChild" />
-                  </mat-list-item>
-              }
-          }
-        </mat-list>
-  } -->
-
-
-
+    }
     @case(DynamicReactiveFormFieldType.SUBHEADER) {
       <p class="subheader">
           {{ field().placeholder }}
       </p>
     }
-
     @case(DynamicReactiveFormFieldType.DIVIDER) {
       <hr/>
     }
-
-
   }
 
 
-@if(control()?.errors && control().dirty) {
-  <div style="padding: 2px; font-size: 0.7em; color: var(--mat-sys-error);">
-  @if (control()?.errors!['required']) {
-    This field is required.
+@if(control() && control().errors && control().dirty) {
+  <span style="padding: 2px; font-size: 0.7em; color: var(--mat-sys-error);">
+  @if (control().errors!['required']) {
+    zliiiii This field is required.
   }
-  </div>
+  </span>
 }
 </span>

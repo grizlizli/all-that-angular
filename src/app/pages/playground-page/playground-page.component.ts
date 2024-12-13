@@ -2,11 +2,11 @@ import { Component, TemplateRef, Type, viewChild } from '@angular/core';
 import { TooltipDirective } from '../../components/tooltip/tooltip.directive';
 import { MultipleSelectFormComponent } from '../../components/multiple-select-form/multiple-select-form.component';
 import { TodoItemComponent } from '../../components/todo-item/todo-item.component';
-import { DynamicFormComponent } from '../../components/dynamic-form/dynamic-form.component';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { FORM_FIELDS_DATA } from './form-fields.mock';
+import { DynamicReactiveFormsFieldsSet, FORM_FIELDS_DATA, FORM_FIELDS_SET } from './form-fields.mock';
 import { DynamicReactiveFormField } from '../../interfaces/dynamic-reactive-form-field.interface';
 import { DynamicReactiveFormComponent } from '../../components/dynamic-reactive-form/dynamic-reactive-form.component';
+import { DynamicFormComponent } from '../../components/dynamic-form/dynamic-form.component';
 
 @Component({
     selector: 'mk-playground-page',
@@ -16,7 +16,8 @@ import { DynamicReactiveFormComponent } from '../../components/dynamic-reactive-
       TooltipDirective,
       MultipleSelectFormComponent,
       TodoItemComponent,
-      DynamicReactiveFormComponent
+      DynamicReactiveFormComponent,
+      DynamicFormComponent
     ],
     templateUrl: './playground-page.component.html',
     styleUrl: './playground-page.component.scss'
@@ -37,7 +38,13 @@ export class PlaygroundPageComponent {
 
   readonly formFields: DynamicReactiveFormField[] = FORM_FIELDS_DATA;
 
+  readonly fieldsSet : DynamicReactiveFormsFieldsSet = FORM_FIELDS_SET;
+
   dynamicFormValueChange(value: any) {
+    console.log(value);
+  }
+
+  dynamicFormValueChange2(value: any) {
     console.log(value);
   }
 

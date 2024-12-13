@@ -44,6 +44,16 @@
         <mk-dynamic-reactive-form [fieldset]="formFields" (valueChange)="dynamicFormValueChange($event)"/>
       </div>
     </mat-expansion-panel>
+
+    <mat-expansion-panel >
+      <mat-expansion-panel-header>
+        <mat-panel-title> Dynamic RForms 2 </mat-panel-title>
+        <mat-panel-description> ...with Signals </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div>
+        <mk-dynamic-form [fieldsSet]="fieldsSet" (valueChange)="dynamicFormValueChange2($event)"/>
+      </div>
+    </mat-expansion-panel>
   </mat-accordion>
 
 </section>

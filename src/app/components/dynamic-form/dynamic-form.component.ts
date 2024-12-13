@@ -1,8 +1,15 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, signal } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-field.component';
 import { outputFromObservable } from '@angular/core/rxjs-interop';
 import { DynamicReactiveFormField } from '../../interfaces/dynamic-reactive-form-field.interface';
+import { DynamicReactiveFormsFieldsSet } from '../../pages/playground-page/form-fields.mock';
+
+function* formFieldsGenerator(fieldsSet: DynamicReactiveFormsFieldsSet) {
+  for (const key of Object.keys(fieldsSet)) {
+    yield { key, controlConfig: fieldsSet[key] };
+  }
+}
 
 @Component({
   selector: 'mk-dynamic-form',
@@ -13,19 +20,33 @@ import { DynamicReactiveFormField } from '../../interfaces/dynamic-reactive-form
 export class DynamicFormComponent {
   private readonly form = new UntypedFormGroup({});
 
-  readonly fieldset = input.required<DynamicReactiveFormField[]>();
+  readonly fieldsSet = input.required<DynamicReactiveFormsFieldsSet>();
   readonly readonly = input<boolean>(false);
 
   readonly formFieldset = computed(() => {
     this.form.reset({}, {emitEvent: false});
 
-    const fieldset = this.fieldset();
-    fieldset.forEach((field) => {
-      this.form.addControl(field.name, this.initializeFormControl(field), { emitEvent: false})
-    });
+    // const fieldIterator = formFieldsGenerator(this.fieldsSet());
+    // for (const { key, controlConfig } of fieldIterator) {
+    //   this.form.addControl(key, this.initializeFormControl(controlConfig), { emitEvent: false});
+    // }
+
+    Object.keys(this.fieldsSet()).forEach((controlName: string) =>
+      this.form.addControl(controlName, this.initializeFormControl(this.fieldsSet()[controlName]), { emitEvent: false})
+    );
 
     return this.form;
   });
+
+  readonly controls = computed<any[]>(() => {
+    const fieldsSet = this.fieldsSet();
+    return Object.keys(fieldsSet).map(key => {
+      return {
+        ...fieldsSet[key],
+        name: key
+      };
+    });
+  })
 
   readonly valueChange = outputFromObservable(this.form.valueChanges);
 
