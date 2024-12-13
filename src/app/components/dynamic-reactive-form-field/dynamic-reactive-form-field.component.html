@@ -4,11 +4,13 @@
     @case(DynamicReactiveFormFieldType.TEXT_FIELD) {
       <mat-form-field>
         <input matInput [type]="field().subtype || 'text'" [formControl]="control()" [placeholder]="field().placeholder || ''">
+        <ng-content></ng-content>
       </mat-form-field>
     }
     @case(DynamicReactiveFormFieldType.TEXT_AREA) {
       <mat-form-field>
           <textarea matInput type="text" [formControl]="control()" [placeholder]="field().placeholder || ''"></textarea>
+          <ng-content></ng-content>
       </mat-form-field>
     }
     @case (DynamicReactiveFormFieldType.CHECK_BOX) {
@@ -63,13 +65,4 @@
       <hr/>
     }
   }
-
-
-@if(control() && control().errors && control().dirty) {
-  <span style="padding: 2px; font-size: 0.7em; color: var(--mat-sys-error);">
-  @if (control().errors!['required']) {
-    zliiiii This field is required.
-  }
-  </span>
-}
 </span>

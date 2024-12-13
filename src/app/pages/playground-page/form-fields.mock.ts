@@ -32,6 +32,12 @@ export const FORM_FIELDS_SET: DynamicReactiveFormsFieldsSet = {
     value: 'a',
     placeholder: 'a',
     type: DynamicReactiveFormFieldType.TEXT_FIELD
+  },
+  textarea: {
+    name: 'textarea',
+    type: DynamicReactiveFormFieldType.TEXT_AREA,
+    value: null,
+    placeholder: 'Tell us more about yourself'
   }
 };
 
@@ -58,10 +64,11 @@ export const FORM_FIELDS_DATA: DynamicReactiveFormField[] = [
     disabled: false
   },
   {
-    name: 'favoriteColor',
-    type: DynamicReactiveFormFieldType.SELECT_DROPDOWN,
-    options: ['Red', 'Blue', 'Yellow'],
-    placeholder: 'Favorite Color'
+    name: 'textarea',
+    type: DynamicReactiveFormFieldType.TEXT_AREA,
+    validators: [ Validators.required, Validators.minLength(3) ],
+    value: null,
+    placeholder: 'Tell us more about yourself'
   },
   {
     name: 'favoriteSeason',

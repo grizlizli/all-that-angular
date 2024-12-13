@@ -1,5 +1,12 @@
 <form [formGroup]="formFieldset()">
   @for(field of fieldset(); track field) {
-      <mk-dynamic-reactive-form-field [field]="field" />
+      @let errors = formFieldset().controls[field.name].errors;
+      @let touched = formFieldset().controls[field.name].touched;
+      <mk-dynamic-reactive-form-field [field]="field">
+        <mk-dynamic-reactive-form-field-errors [touched]="touched" [errors]="errors"/>
+      </mk-dynamic-reactive-form-field>
+
+
+
   }
 </form>
