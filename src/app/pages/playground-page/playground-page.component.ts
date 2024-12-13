@@ -3,8 +3,8 @@ import { TooltipDirective } from '../../components/tooltip/tooltip.directive';
 import { MultipleSelectFormComponent } from '../../components/multiple-select-form/multiple-select-form.component';
 import { TodoItemComponent } from '../../components/todo-item/todo-item.component';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { DynamicReactiveFormsFieldsSet, FORM_FIELDS_DATA, FORM_FIELDS_SET } from './form-fields.mock';
-import { DynamicReactiveFormField } from '../../interfaces/dynamic-reactive-form-field.interface';
+import { FORM_FIELDS_DATA, FORM_FIELDS_SET } from './form-fields.mock';
+import { DynamicReactiveFormField, DynamicReactiveFormsFieldsSet } from '../../interfaces/dynamic-reactive-form-field.interface';
 import { DynamicReactiveFormComponent } from '../../components/dynamic-reactive-form/dynamic-reactive-form.component';
 import { DynamicFormComponent } from '../../components/dynamic-form/dynamic-form.component';
 

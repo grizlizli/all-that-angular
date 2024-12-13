@@ -28,3 +28,18 @@ export interface DynamicReactiveFormField<T = any> {
   // children?: DynamicReactiveFormField[];
   // visible?: boolean;
 }
+
+export interface DynamicReactiveFormControlConfig<T = any> {
+  type: DynamicReactiveFormFieldType;
+  // if type is TEXT_FIELD
+  subtype?: 'text' | 'tel' | 'phone' | 'number' | 'email';
+  value?: T;
+  validators?: ValidatorFn[];
+  placeholder?: string;
+  disabled?: boolean;
+  options?: any[] | string[];
+  optionKey?: string;
+  optionValueKey?: string;
+}
+
+export type DynamicReactiveFormsFieldsSet = { [controlName: string]: DynamicReactiveFormControlConfig };

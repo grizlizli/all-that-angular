@@ -53,7 +53,7 @@
     @case(DynamicReactiveFormFieldType.SELECT_LIST) {
       <mat-selection-list [formControl]="control()" color='primary'>
           @for(option of field().options; track option) {
-              <mat-list-option mySelectionList [value]="option" color='primary' checkboxPosition="before">
+              <mat-list-option mySelectionList [value]="option" checkboxPosition="before">
                   {{ option }}
               </mat-list-option>
           }

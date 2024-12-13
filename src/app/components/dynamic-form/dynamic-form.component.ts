@@ -2,8 +2,7 @@ import { Component, computed, input, signal } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-field.component';
 import { outputFromObservable } from '@angular/core/rxjs-interop';
-import { DynamicReactiveFormField } from '../../interfaces/dynamic-reactive-form-field.interface';
-import { DynamicReactiveFormsFieldsSet } from '../../pages/playground-page/form-fields.mock';
+import { DynamicReactiveFormControlConfig, DynamicReactiveFormsFieldsSet } from '../../interfaces/dynamic-reactive-form-field.interface';
 
 @Component({
   selector: 'mk-dynamic-form',
@@ -39,7 +38,7 @@ export class DynamicFormComponent {
 
   readonly valueChange = outputFromObservable(this.form.valueChanges);
 
-  private initializeFormControl(field: DynamicReactiveFormField): UntypedFormControl {
+  private initializeFormControl(field: DynamicReactiveFormControlConfig): UntypedFormControl {
     const validators = field.validators ? field.validators : [];
     const disabled = field.disabled || this.readonly();
     const control = new UntypedFormControl({ value: field.value, disabled }, validators);
