@@ -8,12 +8,12 @@
         <mat-panel-description> Many ways to trigger tooltip/popover </mat-panel-description>
       </mat-expansion-panel-header>
       <div>
-        <h1 mkTooltip="Hello, World!" data-testid="mk-app-title">{{ title }}</h1>
-        <h2 mkTooltip="They call me Grizli :)" [template]="tooltipRef" data-testid="mk-app-subtitle">Made by Miloš Krstić
+        <h1 data-testid="mk-app-title"><span mkTooltip="Hello, World!">{{ title }}</span></h1>
+        <h2 data-testid="mk-app-subtitle"><span mkTooltip="They call me Grizli :)" [template]="tooltipRef">Made by Miloš Krstić</span>
         </h2>
-        <h3 mkTooltip="" [template]="templateRef()" data-testid="mk-app-subtitle2">Hover me to see tooltip</h3>
-        <p mkTooltip="This link does not work :)" [template]="customUrlTooltip">Hover for more details</p>
-        <p mkTooltip="Test" [template]="TodoItemComponent">Hover to see TodoItemComponent</p>
+        <h3 data-testid="mk-app-subtitle2"><span mkTooltip="" [template]="templateRef()">Hover me to see tooltip</span></h3>
+        <p ><span mkTooltip="This link does not work :)" [template]="customUrlTooltip">Hover for more details</span></p>
+        <p><span  mkTooltip="Test" [template]="TodoItemComponent">Hover to see TodoItemComponent</span></p>
       </div>
     </mat-expansion-panel>
 
@@ -47,7 +47,7 @@
 
     <mat-expansion-panel >
       <mat-expansion-panel-header>
-        <mat-panel-title> Dynamic RForms 2 </mat-panel-title>
+        <mat-panel-title> Dynamic (R) Form (w/ obj) </mat-panel-title>
         <mat-panel-description> ...with Signals </mat-panel-description>
       </mat-expansion-panel-header>
       <div>
