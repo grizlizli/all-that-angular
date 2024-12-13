@@ -21,7 +21,7 @@ import { DynamicReactiveFormField, DynamicReactiveFormFieldType } from '../../in
     MatListModule,
     MatRadioModule,
     MatSelectModule,
-    MatSlideToggleModule,
+    MatSlideToggleModule
   ],
   templateUrl: './dynamic-reactive-form-field.component.html',
   styleUrl: './dynamic-reactive-form-field.component.scss'

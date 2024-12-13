@@ -4,13 +4,16 @@
     @case(DynamicReactiveFormFieldType.TEXT_FIELD) {
       <mat-form-field>
         <input matInput [type]="field().subtype || 'text'" [formControl]="control()" [placeholder]="field().placeholder || ''">
-        <ng-content></ng-content>
+
+        @if (control().errors) {
+          <ng-container *ngTemplateOutlet="errors"></ng-container>
+        }
+
       </mat-form-field>
     }
     @case(DynamicReactiveFormFieldType.TEXT_AREA) {
       <mat-form-field>
           <textarea matInput type="text" [formControl]="control()" [placeholder]="field().placeholder || ''"></textarea>
-          <ng-content></ng-content>
       </mat-form-field>
     }
     @case (DynamicReactiveFormFieldType.CHECK_BOX) {
