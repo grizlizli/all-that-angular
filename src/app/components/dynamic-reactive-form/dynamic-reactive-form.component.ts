@@ -20,6 +20,7 @@ export class DynamicReactiveFormComponent {
     this.form.reset({}, {emitEvent: false});
 
     const fieldset = this.fieldset();
+    console.log('fieldset', fieldset);
     fieldset.forEach((field) => {
       this.form.addControl(field.name, this.initializeFormControl(field), { emitEvent: false})
     });

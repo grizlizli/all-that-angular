@@ -1,4 +1,3 @@
-
 <span style="padding: 4px;">
   @switch (field().type) {
     @case(DynamicReactiveFormFieldType.TEXT_FIELD) {
@@ -6,21 +5,28 @@
         <input matInput [type]="field().subtype || 'text'" [formControl]="control()" [placeholder]="field().placeholder || ''">
 
         @if (control().errors) {
-          <ng-container *ngTemplateOutlet="errors"></ng-container>
+          <ng-container [ngTemplateOutlet]="errorsTmpl"></ng-container>
         }
-
       </mat-form-field>
     }
     @case(DynamicReactiveFormFieldType.TEXT_AREA) {
       <mat-form-field>
           <textarea matInput type="text" [formControl]="control()" [placeholder]="field().placeholder || ''"></textarea>
+
+          @if (control().errors) {
+            <ng-container [ngTemplateOutlet]="errorsTmpl"></ng-container>
+          }
       </mat-form-field>
     }
     @case (DynamicReactiveFormFieldType.CHECK_BOX) {
       <div>
         <mat-checkbox [formControl]="control()" color="primary">
-          {{ field().placeholder }}
+          {{ field().label }}
         </mat-checkbox>
+
+        @if (control().errors) {
+          <ng-container [ngTemplateOutlet]="errorsTmpl"></ng-container>
+        }
       </div>
     }
     @case (DynamicReactiveFormFieldType.DATE_PICKER) {
@@ -28,6 +34,10 @@
        <input matInput [matDatepicker]="picker" [placeholder]="field()?.placeholder || ''" [formControl]="control()">
        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
        <mat-datepicker #picker></mat-datepicker>
+
+       @if (control().errors) {
+        <ng-container [ngTemplateOutlet]="errorsTmpl"></ng-container>
+        }
       </mat-form-field>
      }
     @case(DynamicReactiveFormFieldType.RADIO) {
@@ -48,6 +58,10 @@
                   </mat-option>
               }
           </mat-select>
+
+          @if (control().errors) {
+            <ng-container [ngTemplateOutlet]="errorsTmpl"></ng-container>
+          }
       </mat-form-field>
     }
     @case(DynamicReactiveFormFieldType.SELECT_LIST) {
@@ -69,3 +83,16 @@
     }
   }
 </span>
+
+
+<ng-template #errorsTmpl>
+  @if (control().touched) {
+    @if (control().hasError('email') && control().hasError('required')) {
+      <mat-error>Please enter a valid email address</mat-error>
+    }
+    @if (control().hasError('required')) {
+      <mat-error>{{field().label || 'This field '}} is <strong>required</strong></mat-error>
+    }
+  }
+
+</ng-template>

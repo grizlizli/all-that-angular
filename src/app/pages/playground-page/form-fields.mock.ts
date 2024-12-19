@@ -50,7 +50,8 @@ export const FORM_FIELDS_DATA: DynamicReactiveFormField[] = [
     name: 'usCitizen',
     value: true,
     type: DynamicReactiveFormFieldType.CHECK_BOX,
-    placeholder: 'Are you a US citizen?',
+    validators: [ Validators.requiredTrue ],
+    label: 'Are you a US citizen?',
     disabled: false
   },
   {
@@ -64,6 +65,8 @@ export const FORM_FIELDS_DATA: DynamicReactiveFormField[] = [
     name: 'favoriteSeason',
     type: DynamicReactiveFormFieldType.SELECT_DROPDOWN,
     options: ['Spring', 'Summer', 'Fall', 'Winter'],
+    validators: [ Validators.required ],
+    value: null,
     placeholder: 'Summer'
   },
   {
@@ -83,6 +86,8 @@ export const FORM_FIELDS_DATA: DynamicReactiveFormField[] = [
   {
     name: 'birthday',
     type: DynamicReactiveFormFieldType.DATE_PICKER,
-    placeholder: '01.01.1970'
+    placeholder: '01.01.1970',
+    validators: [ Validators.required ],
+    value: null
   },
 ];

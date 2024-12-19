@@ -15,6 +15,7 @@ export enum DynamicReactiveFormFieldType {
 export interface DynamicReactiveFormField<T = any> {
   name: string;
   type: DynamicReactiveFormFieldType;
+  label?: string;
   // if type is TEXT_FIELD
   subtype?: 'text' | 'tel' | 'phone' | 'number' | 'email';
   value?: T;
@@ -31,6 +32,7 @@ export interface DynamicReactiveFormField<T = any> {
 
 export interface DynamicReactiveFormControlConfig<T = any> {
   type: DynamicReactiveFormFieldType;
+  label?: string;
   // if type is TEXT_FIELD
   subtype?: 'text' | 'tel' | 'phone' | 'number' | 'email';
   value?: T;
