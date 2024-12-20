@@ -3,10 +3,12 @@ import { outputFromObservable } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { DynamicReactiveFormField } from '../../interfaces/dynamic-reactive-form-field.interface';
 import { DynamicReactiveFormFieldComponent } from '../dynamic-reactive-form-field/dynamic-reactive-form-field.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+
 
 @Component({
   selector: 'mk-dynamic-reactive-form',
-  imports: [ReactiveFormsModule, DynamicReactiveFormFieldComponent],
+  imports: [ReactiveFormsModule, MatGridListModule, DynamicReactiveFormFieldComponent],
   templateUrl: './dynamic-reactive-form.component.html',
   styleUrl: './dynamic-reactive-form.component.scss'
 })

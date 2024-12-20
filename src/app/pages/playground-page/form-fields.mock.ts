@@ -61,27 +61,32 @@ export const FORM_FIELDS_DATA: DynamicReactiveFormField[] = [
     value: null,
     placeholder: 'Tell us more about yourself'
   },
+  // {
+  //   name: 'favoriteSeason',
+  //   type: DynamicReactiveFormFieldType.SELECT_DROPDOWN,
+  //   options: ['Spring', 'Summer', 'Fall', 'Winter'],
+  //   validators: [ Validators.required ],
+  //   value: null,
+  //   placeholder: 'Summer'
+  // },
+  // {
+  //   name: 'favoriteMusic',
+  //   type: DynamicReactiveFormFieldType.SELECT_DROPDOWN,
+  //   options: [
+  //     {id: 1, name: 'Classic'},
+  //     {id: 2, name: 'Country' },
+  //     {id: 3, name: 'Folk'},
+  //     {id: 4, name: 'Rap'},
+  //     {id: 5, name: 'Rock'}
+  //   ],
+  //   optionKey: 'name',
+  //   optionValueKey: 'id',
+  //   placeholder: 'Rap'
+  // },
   {
-    name: 'favoriteSeason',
-    type: DynamicReactiveFormFieldType.SELECT_DROPDOWN,
-    options: ['Spring', 'Summer', 'Fall', 'Winter'],
-    validators: [ Validators.required ],
-    value: null,
-    placeholder: 'Summer'
-  },
-  {
-    name: 'favoriteMusic',
-    type: DynamicReactiveFormFieldType.SELECT_DROPDOWN,
-    options: [
-      {id: 1, name: 'Classic'},
-      {id: 2, name: 'Country' },
-      {id: 3, name: 'Folk'},
-      {id: 4, name: 'Rap'},
-      {id: 5, name: 'Rock'}
-    ],
-    optionKey: 'name',
-    optionValueKey: 'id',
-    placeholder: 'Rap'
+    name: 'subheader1',
+    label: 'HELLO WORLD',
+    type: DynamicReactiveFormFieldType.SUBHEADER
   },
   {
     name: 'birthday',

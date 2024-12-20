@@ -1,32 +1,52 @@
-<span style="padding: 4px;">
+<ng-template #errorsTmpl>
+  @if (control().touched) {
+
+    @if (control().hasError('email') && control().hasError('required')) {
+      <div>Please enter a valid email address</div>
+    }
+    @if (control().hasError('required')) {
+      <div>{{field().label || 'This field '}} is <strong>required</strong></div>
+    }
+  }
+</ng-template>
+
+<span>
   @switch (field().type) {
     @case(DynamicReactiveFormFieldType.TEXT_FIELD) {
       <mat-form-field>
+        @if (field().label) {
+          <mat-label>{{field().label}}</mat-label>
+        }
+
         <input matInput [type]="field().subtype || 'text'" [formControl]="control()" [placeholder]="field().placeholder || ''">
 
+        <mat-error>
         @if (control().errors) {
           <ng-container [ngTemplateOutlet]="errorsTmpl"></ng-container>
         }
+        </mat-error>
       </mat-form-field>
     }
     @case(DynamicReactiveFormFieldType.TEXT_AREA) {
       <mat-form-field>
+        @if (field().label) {
+          <mat-label>{{field().label}}</mat-label>
+        }
+
           <textarea matInput type="text" [formControl]="control()" [placeholder]="field().placeholder || ''"></textarea>
 
-          @if (control().errors) {
-            <ng-container [ngTemplateOutlet]="errorsTmpl"></ng-container>
-          }
+          <mat-error>
+            @if (control().errors) {
+              <ng-container [ngTemplateOutlet]="errorsTmpl"></ng-container>
+            }
+          </mat-error>
       </mat-form-field>
     }
     @case (DynamicReactiveFormFieldType.CHECK_BOX) {
       <div>
-        <mat-checkbox [formControl]="control()" color="primary">
-          {{ field().label }}
-        </mat-checkbox>
-
-        @if (control().errors) {
-          <ng-container [ngTemplateOutlet]="errorsTmpl"></ng-container>
-        }
+          <mat-checkbox [formControl]="control()" color="primary">
+            {{ field().label }}
+          </mat-checkbox>
       </div>
     }
     @case (DynamicReactiveFormFieldType.DATE_PICKER) {
@@ -35,9 +55,11 @@
        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
        <mat-datepicker #picker></mat-datepicker>
 
-       @if (control().errors) {
-        <ng-container [ngTemplateOutlet]="errorsTmpl"></ng-container>
+       <mat-error>
+        @if (control().errors) {
+          <ng-container [ngTemplateOutlet]="errorsTmpl"></ng-container>
         }
+        </mat-error>
       </mat-form-field>
      }
     @case(DynamicReactiveFormFieldType.RADIO) {
@@ -75,7 +97,7 @@
     }
     @case(DynamicReactiveFormFieldType.SUBHEADER) {
       <p class="subheader">
-          {{ field().placeholder }}
+          {{ field().label }}
       </p>
     }
     @case(DynamicReactiveFormFieldType.DIVIDER) {
@@ -85,14 +107,4 @@
 </span>
 
 
-<ng-template #errorsTmpl>
-  @if (control().touched) {
-    @if (control().hasError('email') && control().hasError('required')) {
-      <mat-error>Please enter a valid email address</mat-error>
-    }
-    @if (control().hasError('required')) {
-      <mat-error>{{field().label || 'This field '}} is <strong>required</strong></mat-error>
-    }
-  }
 
-</ng-template>
