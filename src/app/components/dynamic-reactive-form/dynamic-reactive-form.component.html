@@ -1,6 +1,6 @@
 <form [formGroup]="formFieldset()">
-  <mat-grid-list cols="4" rowHeight="1.5:1">
-    @for(field of fieldset(); track field) {
+  <mat-grid-list cols="3" rowHeight="2.5:1">
+    @for(field of fields(); track field) {
       <mat-grid-tile><mk-dynamic-reactive-form-field [field]="field"/></mat-grid-tile>
   }
 

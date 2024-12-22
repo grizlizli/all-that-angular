@@ -36,7 +36,7 @@ export class PlaygroundPageComponent {
 
   dynamicFiltersValue: string[] = [];
 
-  readonly formFields: DynamicReactiveFormField[] = FORM_FIELDS_DATA;
+  readonly fields: DynamicReactiveFormField[] = FORM_FIELDS_DATA;
 
   readonly fieldsSet : DynamicReactiveFormsFieldsSet = FORM_FIELDS_SET;
 

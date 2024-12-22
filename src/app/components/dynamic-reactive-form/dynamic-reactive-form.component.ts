@@ -15,14 +15,13 @@ import {MatGridListModule} from '@angular/material/grid-list';
 export class DynamicReactiveFormComponent {
   private readonly form = new UntypedFormGroup({});
 
-  readonly fieldset = input.required<DynamicReactiveFormField[]>();
+  readonly fields = input.required<DynamicReactiveFormField[]>();
   readonly readonly = input<boolean>(false);
 
   readonly formFieldset = computed(() => {
     this.form.reset({}, {emitEvent: false});
 
-    const fieldset = this.fieldset();
-    console.log('fieldset', fieldset);
+    const fieldset = this.fields();
     fieldset.forEach((field) => {
       this.form.addControl(field.name, this.initializeFormControl(field), { emitEvent: false})
     });
