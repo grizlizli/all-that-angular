@@ -5,11 +5,10 @@ import { GET_COUNTRIES } from '../../graphql.operations';
 import { catchError, map } from 'rxjs';
 
 @Component({
-  selector: 'mk-countries-list-page',
-  standalone: true,
-  imports: [AsyncPipe],
-  templateUrl: './countries-list-page.component.html',
-  styleUrl: './countries-list-page.component.scss'
+    selector: 'mk-countries-list-page',
+    imports: [AsyncPipe],
+    templateUrl: './countries-list-page.component.html',
+    styleUrl: './countries-list-page.component.scss'
 })
 export class CountriesListPageComponent {
   private readonly apollo = inject(Apollo);

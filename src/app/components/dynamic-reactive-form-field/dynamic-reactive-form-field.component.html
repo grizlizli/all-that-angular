@@ -1,0 +1,113 @@
+<ng-template #errorsTmpl>
+  @if (control().touched) {
+
+    @if (control().hasError('email') && control().hasError('required')) {
+      <div>Please enter a valid email address</div>
+    }
+    @if (control().hasError('required')) {
+      <div>{{field().label || 'This field '}} is <strong>required</strong></div>
+    }
+  }
+</ng-template>
+
+<div>
+  @switch (field().type) {
+    @case(DynamicReactiveFormFieldType.TEXT_FIELD) {
+      <mat-form-field>
+        @if (field().label) {
+          <mat-label>{{field().label}}</mat-label>
+        }
+
+        <input matInput [type]="field().subtype || 'text'" [formControl]="control()" [placeholder]="field().placeholder || ''">
+
+        <mat-error>
+        @if (control().errors) {
+          <ng-container [ngTemplateOutlet]="errorsTmpl"></ng-container>
+        }
+        </mat-error>
+      </mat-form-field>
+    }
+    @case(DynamicReactiveFormFieldType.TEXT_AREA) {
+      <mat-form-field>
+        @if (field().label) {
+          <mat-label>{{field().label}}</mat-label>
+        }
+
+          <textarea matInput type="text" [formControl]="control()" [placeholder]="field().placeholder || ''" [rows]="3"></textarea>
+
+          <mat-error>
+            @if (control().errors) {
+              <ng-container [ngTemplateOutlet]="errorsTmpl"></ng-container>
+            }
+          </mat-error>
+      </mat-form-field>
+    }
+    @case (DynamicReactiveFormFieldType.CHECK_BOX) {
+      <div>
+          <mat-checkbox [formControl]="control()" color="primary">
+            {{ field().label }}
+          </mat-checkbox>
+      </div>
+    }
+    @case (DynamicReactiveFormFieldType.DATE_PICKER) {
+      <mat-form-field>
+        @if (field().label) {
+          <mat-label>{{field().label}}</mat-label>
+        }
+       <input matInput [matDatepicker]="picker" [placeholder]="field()?.placeholder || ''" [formControl]="control()">
+       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+       <mat-datepicker #picker></mat-datepicker>
+
+       <mat-error>
+        @if (control().errors) {
+          <ng-container [ngTemplateOutlet]="errorsTmpl"></ng-container>
+        }
+        </mat-error>
+      </mat-form-field>
+     }
+    @case(DynamicReactiveFormFieldType.RADIO) {
+      <mat-radio-group [formControl]="control()">
+          @for(option of field().options; track option) {
+              <mat-radio-button [value]="option" color='primary'>
+                  {{ option }}
+              </mat-radio-button>
+          }
+      </mat-radio-group>
+    }
+    @case(DynamicReactiveFormFieldType.SELECT_DROPDOWN) {
+      <mat-form-field>
+          <mat-select [placeholder]="field().placeholder || ''" [formControl]="control()">
+              @for(option of field().options; track option) {
+                  <mat-option [value]="field().optionValueKey ? option[field().optionValueKey!] : option">
+                    {{ field().optionLabelKey ? option[field().optionLabelKey!] : option }}
+                  </mat-option>
+              }
+          </mat-select>
+
+          @if (control().errors) {
+            <ng-container [ngTemplateOutlet]="errorsTmpl"></ng-container>
+          }
+      </mat-form-field>
+    }
+    @case(DynamicReactiveFormFieldType.SELECT_LIST) {
+      <mat-selection-list [formControl]="control()" color='primary'>
+          @for(option of field().options; track option) {
+              <mat-list-option mySelectionList [value]="option" checkboxPosition="before">
+                  {{ option }}
+              </mat-list-option>
+          }
+      </mat-selection-list>
+    }
+    @case(DynamicReactiveFormFieldType.SUBHEADER) {
+      <p class="subheader">
+          {{ field().label }}
+      </p>
+    }
+    @case(DynamicReactiveFormFieldType.DIVIDER) {
+      <hr/>
+    }
+  }
+</div>
+
+
+

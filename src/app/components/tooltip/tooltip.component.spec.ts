@@ -5,10 +5,9 @@ import { By } from '@angular/platform-browser';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'mk-test-tooltip-wrapper',
-  template: '<mk-tooltip [tooltip]="tooltip" [left]="left" [top]="top"></mk-tooltip>',
-  standalone: true,
-  imports: [TooltipComponent],
+    selector: 'mk-test-tooltip-wrapper',
+    template: '<mk-tooltip [tooltip]="tooltip" [left]="left" [top]="top"></mk-tooltip>',
+    imports: [TooltipComponent]
 })
 class TestTooltipWrapperComponent {
   tooltip: string = '';

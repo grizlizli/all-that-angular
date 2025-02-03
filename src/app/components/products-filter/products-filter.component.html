@@ -1,10 +1,13 @@
-<form [formGroup]="form">
-    <div>
-        <label>limit</label>
-        <input formControlName="limit" type="number">
-    </div>
-    <div>
-        <label>skip</label>
-        <input formControlName="skip" type="number">
-    </div>
+<form [formGroup]="formSignal()">
+
+    <mat-form-field>
+      <mat-label>Limit</mat-label>
+      <input matInput formControlName="limit" type="number">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Skip</mat-label>
+      <input matInput formControlName="skip" type="number">
+    </mat-form-field>
 </form>
+

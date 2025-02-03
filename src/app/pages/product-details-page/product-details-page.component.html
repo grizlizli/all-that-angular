@@ -1,0 +1,16 @@
+<!-- <p>{{product() | json }}</p> -->
+
+<mat-grid-list cols="2" rowHeight="2:1">
+  @for (image of product()!.images!; track image) {
+    <mat-grid-tile>
+      <img [src]="image">
+    </mat-grid-tile>
+  }
+</mat-grid-list>
+
+<div>
+  <h1>{{ product()?.title }}</h1>
+  <p>{{ product()?.description }}</p>
+  <p>{{ product()?.price | currency }}</p>
+  <button mat-button (click)="addToCart()">Add to cart</button>
+</div>

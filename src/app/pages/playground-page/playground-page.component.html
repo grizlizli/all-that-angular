@@ -1,24 +1,66 @@
-<h1 mkTooltip="Hello, World!" data-testid="mk-app-title">{{ title }}</h1>
-      <h2 mkTooltip="They call me Grizli :)" [template]="tooltipRef" data-testid="mk-app-subtitle">Made by Miloš Krstić
-      </h2>
-      <h3 mkTooltip="" [template]="templateRef()" data-testid="mk-app-subtitle2">Hover me to see tooltip</h3>
-      <p mkTooltip="This link does not work :)" [template]="customUrlTooltip">Hover for more details</p>
-      <p mkTooltip="Test" [template]="TodoItemComponent">Hover to see TodoItemComponent</p>
+<section style="padding: 5px;">
 
-      <div style="padding: 2rem; border: 1px solid black;">
-        <mk-multiple-select-form
-          label="Choose your destiny"
-          optionLabelKey="skill"
-          optionValueKey="id"
-          [options]="multipleSelectOptions"
-          (valueChange)="optionsSelectionChange($event)" />
-          <code>{{dynamicFiltersValue}}</code>
+  <mat-accordion>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Custom tooltip </mat-panel-title>
+        <mat-panel-description> Many ways to trigger tooltip/popover </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div>
+        <h1 data-testid="mk-app-title"><span mkTooltip="Hello, World!">{{ title }}</span></h1>
+        <h2 data-testid="mk-app-subtitle"><span mkTooltip="They call me Grizli :)" [template]="tooltipRef">Made by Miloš Krstić</span>
+        </h2>
+        <h3 data-testid="mk-app-subtitle2"><span mkTooltip="" [template]="templateRef()">Hover me to see tooltip</span></h3>
+        <p ><span mkTooltip="This link does not work :)" [template]="customUrlTooltip">Hover for more details</span></p>
+        <p><span  mkTooltip="Test" [template]="TodoItemComponent">Hover to see TodoItemComponent</span></p>
       </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel >
+      <mat-expansion-panel-header>
+        <mat-panel-title> Reactive Forms & Signals </mat-panel-title>
+        <mat-panel-description> Mixing reactive ways with RxJS-interop </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div>
+        <div style="padding: 2rem; border: 1px solid black;">
+          <mk-multiple-select-form
+            label="Choose your destiny"
+            optionLabelKey="skill"
+            optionValueKey="id"
+            [options]="multipleSelectOptions"
+            (valueChange)="optionsSelectionChange($event)" />
+            <code>{{dynamicFiltersValue}}</code>
+        </div>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel >
+      <mat-expansion-panel-header>
+        <mat-panel-title> Dynamic Reactive Forms </mat-panel-title>
+        <mat-panel-description> ...with Signals </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div>
+        <h3>Tech Stack Nation</h3>
+        <mk-dynamic-reactive-form [fields]="fields" (valueChange)="dynamicFormValueChange($event)"/>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel >
+      <mat-expansion-panel-header>
+        <mat-panel-title> Dynamic (R) Form (w/ obj) </mat-panel-title>
+        <mat-panel-description> ...with Signals </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div>
+        <mk-dynamic-form [fieldsSet]="fieldsSet" (valueChange)="dynamicFormValueChange2($event)"/>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</section>
+
+<!-- Tooltip ng template references -->
+<ng-template #tooltipRef><h1 class="h1-tooltip">GrizliZli</h1></ng-template>
+<ng-template #anotherTooltipRef><p class="p-tooltip">Holla!</p></ng-template>
 
 
-      <ng-template #tooltipRef>
-        <h1 class="h1-tooltip">GrizliZli</h1>
-      </ng-template>
-      <ng-template #anotherTooltipRef>
-        <p class="p-tooltip">Holla!</p>
-      </ng-template>

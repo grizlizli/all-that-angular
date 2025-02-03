@@ -1,11 +1,8 @@
-<mk-products-filter [(value)]="productsFilter" />
+<!-- <mk-products-filter [(value)]="productsFilter" /> -->
 
-@defer (when (products() !== null)) {
-    <mk-products-list [products]="products()"></mk-products-list>
-}
-@placeholder {
-    <mk-loading-products-list [count]="productsFilter().limit!"></mk-loading-products-list>
-}
-@loading {
-    <mk-loading-products-list [count]="productsFilter().limit!"></mk-loading-products-list>
-}
+<mk-products-list [products]="products()"></mk-products-list>
+
+<div>
+  <button mat-button [disabled]="disablePreviousButton()" (click)="previousPage()">prev page</button>
+  <button mat-button [disabled]="disableNextButton()" (click)="nextPage()">next page</button>
+</div>

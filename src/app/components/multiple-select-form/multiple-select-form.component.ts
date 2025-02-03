@@ -11,12 +11,12 @@ export interface OptionFormGroup {
 }
 
 @Component({
-  selector: 'mk-multiple-select-form',
-  standalone: true,
-  imports: [ReactiveFormsModule, IsSubstringPipe],
-  templateUrl: './multiple-select-form.component.html',
-  styleUrl: './multiple-select-form.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'mk-multiple-select-form',
+    standalone: true,
+    imports: [ReactiveFormsModule, IsSubstringPipe],
+    templateUrl: './multiple-select-form.component.html',
+    styleUrl: './multiple-select-form.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MultipleSelectFormComponent {
   readonly label = inject(new HostAttributeToken('label'));
@@ -31,7 +31,7 @@ export class MultipleSelectFormComponent {
   });
   private readonly optionsControl = this.form.get('options') as FormArray;
 
-  private readonly selectAll = toSignal(this.form.get('selectAll')!.valueChanges, { 
+  private readonly selectAll = toSignal(this.form.get('selectAll')!.valueChanges, {
     initialValue: null
   });
   readonly search = toSignal(this.form.get('search')!.valueChanges, {
@@ -67,7 +67,7 @@ export class MultipleSelectFormComponent {
         checked: new FormControl(false),
         value: new FormControl(valueKey ? option[valueKey] : option),
         label: new FormControl(labelKey ? `${option[labelKey]}` : `${option}`)
-      }), { 
+      }), {
         emitEvent: false
       });
     });

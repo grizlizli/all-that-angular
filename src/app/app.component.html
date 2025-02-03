@@ -1,8 +1,19 @@
-<main class="main">
-  <div class="content">
-    <a routerLink="/playground">Playground</a>
-    <a routerLink="/products">Products</a>
-    <a routerLink="/countries">Countries</a>
-    <router-outlet></router-outlet>
-  </div>
-</main>
+<mat-toolbar>
+  <span><img src="/assets/icon_angular_gradient_alt01.png" width="40">{{title}}</span>
+</mat-toolbar>
+
+<mat-drawer-container [hasBackdrop]="false" class="example-container">
+  <mat-drawer [mode]="menuSidenavMode()" opened>
+    <ul>
+      <li><a routerLink="/playground">Playground</a></li>
+      <li><a routerLink="/products">Products</a></li>
+      <li><a routerLink="/countries">Countries</a></li>
+    </ul>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet/>
+  </mat-drawer-content>
+  <mat-drawer [mode]="menuSidenavMode()" opened position="end">
+    <mk-shopping-cart [products]="shoopingCartProducts()" [total]="total()"/>
+  </mat-drawer>
+</mat-drawer-container>

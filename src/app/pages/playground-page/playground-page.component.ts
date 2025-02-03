@@ -1,15 +1,26 @@
 import { Component, TemplateRef, Type, viewChild } from '@angular/core';
 import { TooltipDirective } from '../../components/tooltip/tooltip.directive';
-import { RouterLink } from '@angular/router';
 import { MultipleSelectFormComponent } from '../../components/multiple-select-form/multiple-select-form.component';
 import { TodoItemComponent } from '../../components/todo-item/todo-item.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { FORM_FIELDS_DATA, FORM_FIELDS_SET } from './form-fields.mock';
+import { DynamicReactiveFormField, DynamicReactiveFormsFieldsSet } from '../../interfaces/dynamic-reactive-form-field.interface';
+import { DynamicReactiveFormComponent } from '../../components/dynamic-reactive-form/dynamic-reactive-form.component';
+import { DynamicFormComponent } from '../../components/dynamic-form/dynamic-form.component';
 
 @Component({
-  selector: 'mk-playground-page',
-  standalone: true,
-  imports: [TooltipDirective, MultipleSelectFormComponent, TodoItemComponent],
-  templateUrl: './playground-page.component.html',
-  styleUrl: './playground-page.component.scss'
+    selector: 'mk-playground-page',
+    standalone: true,
+    imports: [
+      MatExpansionModule,
+      TooltipDirective,
+      MultipleSelectFormComponent,
+      TodoItemComponent,
+      DynamicReactiveFormComponent,
+      DynamicFormComponent
+    ],
+    templateUrl: './playground-page.component.html',
+    styleUrl: './playground-page.component.scss'
 })
 export class PlaygroundPageComponent {
   readonly title = 'Playground'
@@ -24,6 +35,18 @@ export class PlaygroundPageComponent {
   ];
 
   dynamicFiltersValue: string[] = [];
+
+  readonly fields: DynamicReactiveFormField[] = FORM_FIELDS_DATA;
+
+  readonly fieldsSet : DynamicReactiveFormsFieldsSet = FORM_FIELDS_SET;
+
+  dynamicFormValueChange(value: any) {
+    console.log(value);
+  }
+
+  dynamicFormValueChange2(value: any) {
+    console.log(value);
+  }
 
   optionsSelectionChange(options: any[]) {
     console.log('optionsSelectionChange', options);
