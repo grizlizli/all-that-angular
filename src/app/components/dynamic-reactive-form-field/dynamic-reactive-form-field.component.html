@@ -10,7 +10,7 @@
   }
 </ng-template>
 
-<span>
+<div>
   @switch (field().type) {
     @case(DynamicReactiveFormFieldType.TEXT_FIELD) {
       <mat-form-field>
@@ -33,7 +33,7 @@
           <mat-label>{{field().label}}</mat-label>
         }
 
-          <textarea matInput type="text" [formControl]="control()" [placeholder]="field().placeholder || ''"></textarea>
+          <textarea matInput type="text" [formControl]="control()" [placeholder]="field().placeholder || ''" [rows]="3"></textarea>
 
           <mat-error>
             @if (control().errors) {
@@ -51,6 +51,9 @@
     }
     @case (DynamicReactiveFormFieldType.DATE_PICKER) {
       <mat-form-field>
+        @if (field().label) {
+          <mat-label>{{field().label}}</mat-label>
+        }
        <input matInput [matDatepicker]="picker" [placeholder]="field()?.placeholder || ''" [formControl]="control()">
        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
        <mat-datepicker #picker></mat-datepicker>
@@ -76,7 +79,7 @@
           <mat-select [placeholder]="field().placeholder || ''" [formControl]="control()">
               @for(option of field().options; track option) {
                   <mat-option [value]="field().optionValueKey ? option[field().optionValueKey!] : option">
-                    {{ field().optionKey ? option[field().optionKey!] : option }}
+                    {{ field().optionLabelKey ? option[field().optionLabelKey!] : option }}
                   </mat-option>
               }
           </mat-select>
@@ -104,7 +107,7 @@
       <hr/>
     }
   }
-</span>
+</div>
 
 
 

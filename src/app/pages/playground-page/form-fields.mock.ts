@@ -34,24 +34,33 @@ export const FORM_FIELDS_SET: DynamicReactiveFormsFieldsSet = {
 export const FORM_FIELDS_DATA: DynamicReactiveFormField[] = [
   {
     name: 'firstName',
-    value: 'Bonnie',
+    value: '',
     type: DynamicReactiveFormFieldType.TEXT_FIELD,
     validators: [ Validators.required, Validators.maxLength(25) ],
-    placeholder: 'First name'
+    placeholder: 'John',
+    label: 'First name'
   },
   {
     name: 'lastName',
-    value: 'Brennan',
+    value: '',
     type: DynamicReactiveFormFieldType.TEXT_FIELD,
     validators: [ Validators.required, Validators.minLength(3) ],
-    placeholder: 'Last name'
+    placeholder: 'Doe',
+    label: 'Last name'
   },
   {
-    name: 'usCitizen',
+    name: 'tsnFamiliarity',
     value: true,
     type: DynamicReactiveFormFieldType.CHECK_BOX,
     validators: [ Validators.requiredTrue ],
-    label: 'Are you a US citizen?',
+    label: 'Have you heard of TechStackNation?',
+    disabled: false
+  },
+  {
+    name: 'meeting',
+    value: null,
+    type: DynamicReactiveFormFieldType.DATE_PICKER,
+    label: 'Schedule meeting',
     disabled: false
   },
   {
@@ -59,40 +68,6 @@ export const FORM_FIELDS_DATA: DynamicReactiveFormField[] = [
     type: DynamicReactiveFormFieldType.TEXT_AREA,
     validators: [ Validators.required, Validators.minLength(3) ],
     value: null,
-    placeholder: 'Tell us more about yourself'
-  },
-  // {
-  //   name: 'favoriteSeason',
-  //   type: DynamicReactiveFormFieldType.SELECT_DROPDOWN,
-  //   options: ['Spring', 'Summer', 'Fall', 'Winter'],
-  //   validators: [ Validators.required ],
-  //   value: null,
-  //   placeholder: 'Summer'
-  // },
-  // {
-  //   name: 'favoriteMusic',
-  //   type: DynamicReactiveFormFieldType.SELECT_DROPDOWN,
-  //   options: [
-  //     {id: 1, name: 'Classic'},
-  //     {id: 2, name: 'Country' },
-  //     {id: 3, name: 'Folk'},
-  //     {id: 4, name: 'Rap'},
-  //     {id: 5, name: 'Rock'}
-  //   ],
-  //   optionKey: 'name',
-  //   optionValueKey: 'id',
-  //   placeholder: 'Rap'
-  // },
-  {
-    name: 'subheader1',
-    label: 'HELLO WORLD',
-    type: DynamicReactiveFormFieldType.SUBHEADER
-  },
-  {
-    name: 'birthday',
-    type: DynamicReactiveFormFieldType.DATE_PICKER,
-    placeholder: '01.01.1970',
-    validators: [ Validators.required ],
-    value: null
-  },
+    placeholder: 'Tell us more about yourself and your career plans'
+  }
 ];

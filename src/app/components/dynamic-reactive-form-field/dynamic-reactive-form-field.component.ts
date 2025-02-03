@@ -9,7 +9,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DynamicReactiveFormField, DynamicReactiveFormFieldType } from '../../interfaces/dynamic-reactive-form-field.interface';
-import { JsonPipe, NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'mk-dynamic-reactive-form-field',
@@ -23,7 +23,6 @@ import { JsonPipe, NgTemplateOutlet } from '@angular/common';
     MatRadioModule,
     MatSelectModule,
     MatSlideToggleModule,
-    JsonPipe,
     NgTemplateOutlet
   ],
   templateUrl: './dynamic-reactive-form-field.component.html',

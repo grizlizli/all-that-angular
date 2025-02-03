@@ -23,11 +23,8 @@ export interface DynamicReactiveFormField<T = any> {
   placeholder?: string;
   disabled?: boolean;
   options?: any[] | string[];
-  optionKey?: string;
+  optionLabelKey?: string;
   optionValueKey?: string;
-  // parent?: string;
-  // children?: DynamicReactiveFormField[];
-  // visible?: boolean;
 }
 
 export interface DynamicReactiveFormControlConfig<T = any> {
