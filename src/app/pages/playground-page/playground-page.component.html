@@ -55,7 +55,19 @@
         <mk-dynamic-form [fieldsSet]="fieldsSet" (valueChange)="dynamicFormValueChange2($event)"/>
       </div>
     </mat-expansion-panel>
-  </mat-accordion>
+
+
+  <!-- <mat-expansion-panel >
+    <mat-expansion-panel-header>
+      <mat-panel-title> Streamable Resource </mat-panel-title>
+      <mat-panel-description> ...with Promise of Signals </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div>
+      <button (click)="resetStreamResource()">Reset ({{ request() }})</button>
+      {{ streamResource.value() }}
+    </div>
+  </mat-expansion-panel> -->
+</mat-accordion>
 
 </section>
 
