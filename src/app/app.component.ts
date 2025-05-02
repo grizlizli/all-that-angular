@@ -1,27 +1,33 @@
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { ResponsiveService } from './services/responsive.service';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
-import { AppStore } from './store/app.store';
+import { ShoppingCartStore } from './store/shopping-cart.store';
 
 @Component({
-    selector: 'mk-root',
-    standalone: true,
-    imports: [MatSidenavModule, MatToolbarModule,RouterLink, RouterOutlet, ShoppingCartComponent],
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.scss'
+  selector: 'mk-root',
+  standalone: true,
+  imports: [
+    MatSidenavModule,
+    MatToolbarModule,
+    RouterLink,
+    RouterOutlet,
+    ShoppingCartComponent,
+  ],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
   readonly title = 'All That Angular';
   private readonly responsiveService = inject(ResponsiveService);
-  private readonly appStore = inject(AppStore);
+  private readonly shoppingCartStore = inject(ShoppingCartStore);
 
-  readonly shoopingCartProducts = this.appStore.products;
-  readonly total = this.appStore.total;
+  readonly shoppingCart = this.shoppingCartStore.shoppingCart;
 
-  readonly menuSidenavMode  = computed(() => {
+  readonly menuSidenavMode = computed(() => {
     if (this.responsiveService.largeWidth()) {
       return 'side';
     }
@@ -37,5 +43,16 @@ export class AppComponent {
     return 'over';
   });
 
+  addToCart(id = '1') {
+    this.shoppingCartStore.addProduct({
+      id,
+      name: 'Carape',
+      price: 99.99,
+      quantity: 2,
+    });
+  }
 
+  removeProduct(id: string) {
+    this.shoppingCartStore.removeProduct(id);
+  }
 }

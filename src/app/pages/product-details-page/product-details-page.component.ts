@@ -1,8 +1,7 @@
-import { CurrencyPipe, JsonPipe } from '@angular/common';
-import { Component, inject, input } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
+import { Component, input } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { Product } from '../../interfaces/product.interface';
-import { AppStore } from '../../store/app.store';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -12,11 +11,9 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './product-details-page.component.scss'
 })
 export class ProductDetailsPageComponent {
-  private readonly appStore = inject(AppStore);
 
   readonly product = input<Product>();
 
   addToCart() {
-    this.appStore.addToCart(this.product());
   }
 }

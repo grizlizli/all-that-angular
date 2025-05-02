@@ -12,8 +12,11 @@
   </mat-drawer>
   <mat-drawer-content>
     <router-outlet/>
+    <button (click)="addToCart()">add 1</button>
+
+    <button (click)="addToCart('2')">add 2</button>
   </mat-drawer-content>
   <mat-drawer [mode]="menuSidenavMode()" opened position="end">
-    <mk-shopping-cart [products]="shoopingCartProducts()" [total]="total()"/>
+    <mk-shopping-cart [products]="shoppingCart().products" [total]="shoppingCart().totalPrice" (removeProduct)="removeProduct($event)"/>
   </mat-drawer>
 </mat-drawer-container>
