@@ -1,6 +1,14 @@
 <!-- <mk-products-filter [(value)]="productsFilter" /> -->
 
-<mk-products-list [products]="products()"></mk-products-list>
+@if (loading()) {
+  <div style="width: 100%; padding: 200px 0; text-align: center;">
+    <mat-spinner></mat-spinner>
+  </div>
+}
+@else {
+  <mk-products-list [products]="products()"></mk-products-list>
+}
+
 
 <div>
   <button mat-button [disabled]="disablePreviousButton()" (click)="previousPage()">prev page</button>

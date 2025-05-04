@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject, OnInit, signal } from '@angular/core';
-import { ProductsFilterComponent } from '../../components/products-filter/products-filter.component';
 import { ProductsService } from '../../services/products.service';
 import { Product } from '../../interfaces/product.interface';
 import { debounceTime, map, Observable, switchMap, tap } from 'rxjs';
@@ -7,10 +6,11 @@ import { ProductsQueryParams } from '../../interfaces/products-query-params.inte
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { ProductsListComponent } from '../../components/products-list/products-list.component';
 import { MatButtonModule } from '@angular/material/button';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
     selector: 'mk-products-list-page',
-    imports: [MatButtonModule, ProductsFilterComponent, ProductsListComponent],
+    imports: [MatButtonModule, MatProgressSpinnerModule, ProductsListComponent],
     templateUrl: './products-list-page.component.html',
     styleUrl: './products-list-page.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
@@ -20,16 +20,19 @@ export class ProductsListPageComponent implements OnInit {
   private readonly destroyRef: DestroyRef = inject(DestroyRef);
 
   private readonly total = signal<number | null>(null);
+  readonly loading = signal<boolean>(true);
   readonly productsFilter = signal<Partial<ProductsQueryParams>>({ skip: 0, limit: 20 });
   readonly products$: Observable<Product[]> = toObservable(this.productsFilter)
     .pipe(
+      tap(() => this.loading.set(true)),
       debounceTime(1200),
       map(value => {
         return Object.fromEntries(Object.entries(value).filter(([_, v]) => v != null));
       }),
       switchMap(params => this.productsService.getAll(params)),
       tap((response) => this.total.set(response.total)),
-      map((response) => response.products)
+      map((response) => response.products),
+      tap(() => this.loading.set(false)),
     );
 
   readonly products = signal<Product[] | null>(null);
