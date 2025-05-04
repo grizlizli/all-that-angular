@@ -1,20 +1,19 @@
 <mat-toolbar>
-  <span><img src="/assets/icon_angular_gradient_alt01.png" width="40">{{title}}</span>
+  <button mat-icon-button (click)="toggleSideNavMode()" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>{{title}}</span>
 </mat-toolbar>
 
-<mat-drawer-container [hasBackdrop]="false" class="example-container">
-  <mat-drawer [mode]="menuSidenavMode()" opened>
-    <ul>
-      <li><a routerLink="/playground">Playground</a></li>
-      <li><a routerLink="/products">Products</a></li>
-      <li><a routerLink="/countries">Countries</a></li>
-    </ul>
+<mat-drawer-container hasBackdrop="false" class="example-container">
+  <mat-drawer [mode]="menuSidenavMode()" [opened]="sideNavOpened()">
+    <mat-list role="list">
+      <mat-list-item role="listitem"><a mat-button routerLink="/playground">Playground</a></mat-list-item>
+      <mat-list-item role="listitem"><a mat-button routerLink="/products">Products</a></mat-list-item>
+    </mat-list>
   </mat-drawer>
   <mat-drawer-content>
     <router-outlet/>
-    <button (click)="addToCart()">add 1</button>
-
-    <button (click)="addToCart('2')">add 2</button>
   </mat-drawer-content>
   <mat-drawer [mode]="menuSidenavMode()" opened position="end">
     <mk-shopping-cart [products]="shoppingCart().products" [total]="shoppingCart().totalPrice" (removeProduct)="removeProduct($event)"/>

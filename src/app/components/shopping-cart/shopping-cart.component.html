@@ -1,11 +1,16 @@
-<mat-nav-list>
+<mat-list>
 
   @for (product of products(); track product.id) {
-  <a mat-list-item>
-    <span matListItemTitle>{{product.name}} <mat-icon aria-hidden="false"
-        aria-label="Remove from cart" fontIcon="delete" (click)="removeProduct.emit(product.id)"></mat-icon></span>
-    <span matLine>{{ product.price | currency }} x {{ product.quantity }}</span>
-  </a>
+    <mat-list-item>
+      <img matListItemAvatar [src]="product.thumbnail" width="40" height="40">
+      <span matListItemTitle>{{product.name}} </span>
+      <span matListItemLine>Price: {{ product.price | currency }}</span>
+      <span matListItemLine>Quantity: {{ product.quantity }}</span>
+      <span matListItemMeta>
+        <mat-icon class="action-icon" aria-hidden="false"
+        aria-label="Remove from cart" fontIcon="delete" (click)="removeProduct.emit(product.id)"></mat-icon>
+      </span>
+    </mat-list-item>
   }
   @empty {
   <mat-list-item>
@@ -18,4 +23,4 @@
   </mat-list-item>
   }
 
-</mat-nav-list>
+</mat-list>

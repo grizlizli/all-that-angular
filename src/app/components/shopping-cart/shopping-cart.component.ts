@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import {MatListModule} from '@angular/material/list';
-import { Product } from '../../interfaces/product.interface';
 import { CurrencyPipe } from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
 import { ShoppingCartProduct } from '../../store/shopping-cart.store';
@@ -16,5 +15,5 @@ export class ShoppingCartComponent {
   readonly products = input.required<ShoppingCartProduct[]>();
   readonly total = input(0);
 
-  readonly removeProduct = output<string>()
+  readonly removeProduct = output<number>()
 }

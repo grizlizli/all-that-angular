@@ -1,10 +1,13 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, linkedSignal, signal } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { ResponsiveService } from './services/responsive.service';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ShoppingCartStore } from './store/shopping-cart.store';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'mk-root',
@@ -12,6 +15,9 @@ import { ShoppingCartStore } from './store/shopping-cart.store';
   imports: [
     MatSidenavModule,
     MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatListModule,
     RouterLink,
     RouterOutlet,
     ShoppingCartComponent,
@@ -24,6 +30,7 @@ export class AppComponent {
   readonly title = 'All That Angular';
   private readonly responsiveService = inject(ResponsiveService);
   private readonly shoppingCartStore = inject(ShoppingCartStore);
+
 
   readonly shoppingCart = this.shoppingCartStore.shoppingCart;
 
@@ -43,16 +50,13 @@ export class AppComponent {
     return 'over';
   });
 
-  addToCart(id = '1') {
-    this.shoppingCartStore.addProduct({
-      id,
-      name: 'Carape',
-      price: 99.99,
-      quantity: 2,
-    });
+  readonly sideNavOpened = signal<boolean>(true);
+
+  removeProduct(id: number) {
+    this.shoppingCartStore.removeProduct(id);
   }
 
-  removeProduct(id: string) {
-    this.shoppingCartStore.removeProduct(id);
+  toggleSideNavMode() {
+    this.sideNavOpened.update(opened => !opened);
   }
 }
