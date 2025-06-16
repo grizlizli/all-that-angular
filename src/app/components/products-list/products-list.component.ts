@@ -48,7 +48,8 @@ export class ProductsListComponent {
   }
 
   openProductPage(id: number) {
-    this.router.navigate(['products/', id]);
+    console.log(id);
+    this.router.navigate(['/products', id]);
   }
 
 }
