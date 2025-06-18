@@ -4,7 +4,7 @@ import { MultipleSelectFormComponent } from '../../components/multiple-select-fo
 import { TodoItemComponent } from '../../components/todo-item/todo-item.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FORM_FIELDS_DATA, FORM_FIELDS_SET } from './form-fields.mock';
-import { DynamicReactiveFormField, DynamicReactiveFormsFieldsSet } from '../../interfaces/dynamic-reactive-form-field.interface';
+import { DynamicReactiveFormField, DynamicReactiveFormsFieldsSet } from '../../core/interfaces/dynamic-reactive-form-field.interface';
 import { DynamicReactiveFormComponent } from '../../components/dynamic-reactive-form/dynamic-reactive-form.component';
 import { DynamicFormComponent } from '../../components/dynamic-form/dynamic-form.component';
 import { AsyncPipe } from '@angular/common';

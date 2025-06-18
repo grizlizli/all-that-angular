@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
-import { ListResponse } from '../interfaces/list-response.interface';
-import { Product } from '../interfaces/product.interface';
-import { ProductsQueryParams } from '../interfaces/products-query-params.interface';
+import { ListResponse } from '../core/interfaces/list-response.interface';
+import { Product } from '../core/interfaces/product.interface';
+import { ProductsQueryParams } from '../core/interfaces/products-query-params.interface';
 
 @Injectable({
   providedIn: 'root'

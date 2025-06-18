@@ -3,8 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import { ApiService } from './api.service';
 import { HttpClient } from '@angular/common/http';
 import { of, throwError } from 'rxjs';
-import { API_ENDPOINT_CONFIG, DEFAULT_API_ENDPOINT_CONFIG } from '../providers/api-endpoint-config.provider';
-import { API_ENDPOINT_URL, DEFAULT_API_ENDPOINT_URL } from '../providers/api-endpoint-url.provider';
+import { API_ENDPOINT_CONFIG, DEFAULT_API_ENDPOINT_CONFIG } from '../core/providers/api-endpoint-config.provider';
+import { API_ENDPOINT_URL, DEFAULT_API_ENDPOINT_URL } from '../core/providers/api-endpoint-url.provider';
 
 describe('ApiService', () => {
   let service: ApiService;

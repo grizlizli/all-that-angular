@@ -1,7 +1,7 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, inject, input } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { Product } from '../../interfaces/product.interface';
+import { Product } from '../../core/interfaces/product.interface';
 import { MatButtonModule } from '@angular/material/button';
 import { ShoppingCartStore } from '../../store/shopping-cart.store';
 

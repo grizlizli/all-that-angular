@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, retry, RetryConfig } from 'rxjs';
-import { API_ENDPOINT_URL } from '../providers/api-endpoint-url.provider';
-import { API_ENDPOINT_CONFIG, ApiEndpointConfig } from '../providers/api-endpoint-config.provider';
+import { API_ENDPOINT_URL } from '../core/providers/api-endpoint-url.provider';
+import { API_ENDPOINT_CONFIG, ApiEndpointConfig } from '../core/providers/api-endpoint-config.provider';
 
 const retryConfig: RetryConfig = {
   count: 3,
@@ -22,7 +22,7 @@ export class ApiService {
   get<T = unknown>(route: string, params: any = {}): Observable<T> {
     return this.http.get<T>(`${this.endpointUrl}/${route}`, { params }).pipe(retry(retryConfig));
   }
-  
+
   post<T = unknown>(route: string, body: unknown): Observable<T> {
     return this.http.post<T>(`${this.endpointUrl}/${route}`, body).pipe(retry(retryConfig));
   }

@@ -1,5 +1,5 @@
 import { Validators } from "@angular/forms";
-import { DynamicReactiveFormField, DynamicReactiveFormFieldType, DynamicReactiveFormsFieldsSet } from "../../interfaces/dynamic-reactive-form-field.interface";
+import { DynamicReactiveFormField, DynamicReactiveFormFieldType, DynamicReactiveFormsFieldsSet } from "../../core/interfaces/dynamic-reactive-form-field.interface";
 
 export const FORM_FIELDS_SET: DynamicReactiveFormsFieldsSet = {
   firstName: {
