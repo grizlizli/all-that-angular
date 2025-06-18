@@ -10,6 +10,9 @@ import { DynamicFormComponent } from '../../shared/components/dynamic-form/dynam
 import { AsyncPipe } from '@angular/common';
 import { fromEvent, interval, Observable } from 'rxjs';
 import { scan, takeUntil } from 'rxjs/operators';
+import { WidgetContainerComponent } from '../../shared/components/widget-container/widget-container.component';
+import { WidgetAComponent } from '../../shared/components/widget-a/widget-a.component';
+import { WidgetBComponent } from '../../shared/components/widget-b/widget-b.component';
 
 @Component({
     selector: 'mk-playground-page',
@@ -21,7 +24,10 @@ import { scan, takeUntil } from 'rxjs/operators';
       TodoItemComponent,
       DynamicReactiveFormComponent,
       DynamicFormComponent,
-      AsyncPipe
+      AsyncPipe,
+      WidgetContainerComponent,
+      WidgetAComponent,
+      WidgetBComponent
     ],
     templateUrl: './playground-page.component.html',
     styleUrl: './playground-page.component.scss'
