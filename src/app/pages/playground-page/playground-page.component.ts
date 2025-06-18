@@ -1,12 +1,12 @@
 import { Component, effect, inject, resource, Signal, signal, TemplateRef, Type, viewChild } from '@angular/core';
-import { TooltipDirective } from '../../components/tooltip/tooltip.directive';
-import { MultipleSelectFormComponent } from '../../components/multiple-select-form/multiple-select-form.component';
-import { TodoItemComponent } from '../../components/todo-item/todo-item.component';
+import { TooltipDirective } from '../../shared/components/tooltip/tooltip.directive';
+import { MultipleSelectFormComponent } from '../../shared/components/multiple-select-form/multiple-select-form.component';
+import { TodoItemComponent } from '../../shared/components/todo-item/todo-item.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FORM_FIELDS_DATA, FORM_FIELDS_SET } from './form-fields.mock';
 import { DynamicReactiveFormField, DynamicReactiveFormsFieldsSet } from '../../core/interfaces/dynamic-reactive-form-field.interface';
-import { DynamicReactiveFormComponent } from '../../components/dynamic-reactive-form/dynamic-reactive-form.component';
-import { DynamicFormComponent } from '../../components/dynamic-form/dynamic-form.component';
+import { DynamicReactiveFormComponent } from '../../shared/components/dynamic-reactive-form/dynamic-reactive-form.component';
+import { DynamicFormComponent } from '../../shared/components/dynamic-form/dynamic-form.component';
 import { AsyncPipe } from '@angular/common';
 import { fromEvent, interval, Observable } from 'rxjs';
 import { scan, takeUntil } from 'rxjs/operators';

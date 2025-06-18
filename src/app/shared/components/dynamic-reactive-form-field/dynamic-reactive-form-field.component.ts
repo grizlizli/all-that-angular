@@ -8,7 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { DynamicReactiveFormField, DynamicReactiveFormFieldType } from '../../interfaces/dynamic-reactive-form-field.interface';
+import { DynamicReactiveFormField, DynamicReactiveFormFieldType } from '../../../core/interfaces/dynamic-reactive-form-field.interface';
 import { NgTemplateOutlet } from '@angular/common';
 
 @Component({

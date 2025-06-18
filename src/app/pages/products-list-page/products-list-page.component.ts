@@ -8,12 +8,12 @@ import {
   PLATFORM_ID,
   signal,
 } from '@angular/core';
-import { ProductsService } from '../../services/products.service';
+import { ProductsService } from '../../core/services/products.service';
 import { Product } from '../../core/interfaces/product.interface';
 import { debounceTime, map, Observable, switchMap, tap } from 'rxjs';
 import { ProductsQueryParams } from '../../core/interfaces/products-query-params.interface';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
-import { ProductsListComponent } from '../../components/products-list/products-list.component';
+import { ProductsListComponent } from '../../shared/components/products-list/products-list.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { isPlatformServer } from '@angular/common';

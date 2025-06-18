@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, inject, linkedSignal, signal } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { ResponsiveService } from './services/responsive.service';
+import { ResponsiveService } from './core/services/responsive.service';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { ShoppingCartComponent } from './shared/components/shopping-cart/shopping-cart.component';
 import { ShoppingCartStore } from './store/shopping-cart.store';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';

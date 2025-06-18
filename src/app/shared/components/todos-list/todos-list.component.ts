@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { TodosService } from '../../services/todos.service';
+import { TodosService } from '../../../core/services/todos.service';
 import { AsyncPipe } from '@angular/common';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
 

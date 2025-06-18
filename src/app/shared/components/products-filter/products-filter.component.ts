@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject, input } from '@angular/core';
 import { outputFromObservable } from '@angular/core/rxjs-interop';
 import { FormGroup, ReactiveFormsModule, UntypedFormBuilder } from '@angular/forms';
-import { ProductsQueryParams } from '../../interfaces/products-query-params.interface';
+import { ProductsQueryParams } from '../../../core/interfaces/products-query-params.interface';
 import {MatInputModule} from '@angular/material/input';
 
 @Component({

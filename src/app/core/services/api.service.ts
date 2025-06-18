@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, retry, RetryConfig } from 'rxjs';
-import { API_ENDPOINT_URL } from '../core/providers/api-endpoint-url.provider';
-import { API_ENDPOINT_CONFIG, ApiEndpointConfig } from '../core/providers/api-endpoint-config.provider';
+import { API_ENDPOINT_URL } from '../../core/providers/api-endpoint-url.provider';
+import { API_ENDPOINT_CONFIG, ApiEndpointConfig } from '../../core/providers/api-endpoint-config.provider';
 
 const retryConfig: RetryConfig = {
   count: 3,

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 import {MatListModule} from '@angular/material/list';
 import { CurrencyPipe } from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
-import { ShoppingCartProduct } from '../../store/shopping-cart.store';
+import { ShoppingCartProduct } from '../../../store/shopping-cart.store';
 
 @Component({
   selector: 'mk-shopping-cart',

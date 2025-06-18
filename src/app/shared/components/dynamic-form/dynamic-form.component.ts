@@ -2,7 +2,7 @@ import { Component, computed, input, signal } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-field.component';
 import { outputFromObservable } from '@angular/core/rxjs-interop';
-import { DynamicReactiveFormControlConfig, DynamicReactiveFormsFieldsSet } from '../../interfaces/dynamic-reactive-form-field.interface';
+import { DynamicReactiveFormControlConfig, DynamicReactiveFormsFieldsSet } from '../../../core/interfaces/dynamic-reactive-form-field.interface';
 
 @Component({
   selector: 'mk-dynamic-form',

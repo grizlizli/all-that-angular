@@ -1,7 +1,7 @@
 import { Component, Inject, inject, signal } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import {MatListModule} from '@angular/material/list';
-import { Product } from '../../interfaces/product.interface';
+import { Product } from '../../../core/interfaces/product.interface';
 
 export interface ProductsShareSheetListItem {
   label: string;

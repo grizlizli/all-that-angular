@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, input } from '@angular/core';
-import { Product } from '../../interfaces/product.interface';
+import { Product } from '../../../core/interfaces/product.interface';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
