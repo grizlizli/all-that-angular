@@ -1,18 +1,28 @@
 import { WIDGET } from '../../../core/providers/widget.provider';
-import { afterNextRender, Component, contentChild, viewChild } from '@angular/core';
+import { Component, contentChild, inject, ViewContainerRef } from '@angular/core';
+import { TestDirective } from '../../directives/test.directive';
 
 @Component({
   selector: 'mk-widget-container',
-  imports: [],
   templateUrl: './widget-container.component.html',
-  styleUrl: './widget-container.component.scss'
+  styleUrl: './widget-container.component.scss',
+  hostDirectives: [
+    TestDirective
+  ]
 })
 export class WidgetContainerComponent {
-  readonly widget = contentChild(WIDGET);
+  protected readonly widget = contentChild(WIDGET);
+  private readonly testDirective = inject(TestDirective);
+  private readonly viewContainerRef = inject(ViewContainerRef);
 
-  constructor() {
-    afterNextRender(() => {
-      console.log('widget', this.widget());
-    })
+  ngOnInit() {
+    console.log(this.viewContainerRef);
+    setTimeout(() => {
+      this.testDirective.elementRef.nativeElement.style.color = 'green';
+    }, 3000);
+  }
+
+  hello() {
+    alert('hello from widget container!');
   }
 }

@@ -1,3 +1,3 @@
 export interface Widget {
-  displayMore: () => void;
+  pay: () => void;
 }

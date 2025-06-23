@@ -13,7 +13,7 @@ import { WIDGET } from '../../../core/providers/widget.provider';
   styleUrl: './widget-a.component.scss'
 })
 export class WidgetAComponent implements Widget {
-  displayMore() {
-    alert('hello from widget A')
+  pay() {
+    alert('payment from widget A')
   }
 }

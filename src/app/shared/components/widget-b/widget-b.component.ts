@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Widget } from '../../../core/interfaces/widget.interface';
 import { WIDGET } from '../../../core/providers/widget.provider';
+import { WidgetContainerComponent } from '../widget-container/widget-container.component';
 
 @Component({
   selector: 'mk-widget-b',
@@ -13,7 +14,10 @@ import { WIDGET } from '../../../core/providers/widget.provider';
   styleUrl: './widget-b.component.scss'
 })
 export class WidgetBComponent implements Widget {
-  displayMore() {
-    alert('hello from widget B')
+  protected readonly container = inject(WidgetContainerComponent, { optional: true });
+
+  pay() {
+    this.container?.hello();
+    alert('payment from widget B')
   }
 }
