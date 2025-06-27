@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Widget } from '../../../core/interfaces/widget.interface';
 import { WIDGET } from '../../../core/providers/widget.provider';
 
@@ -13,6 +13,7 @@ import { WIDGET } from '../../../core/providers/widget.provider';
   styleUrl: './widget-a.component.scss'
 })
 export class WidgetAComponent implements Widget {
+  readonly name = input('PayPal');
   pay() {
     alert('payment from widget A')
   }

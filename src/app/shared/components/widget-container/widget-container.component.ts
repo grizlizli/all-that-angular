@@ -15,8 +15,9 @@ export class WidgetContainerComponent {
   private readonly testDirective = inject(TestDirective);
   private readonly viewContainerRef = inject(ViewContainerRef);
 
+  readonly name = 'Widget payment';
+
   ngOnInit() {
-    console.log(this.viewContainerRef);
     setTimeout(() => {
       this.testDirective.elementRef.nativeElement.style.color = 'green';
     }, 3000);

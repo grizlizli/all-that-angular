@@ -13,6 +13,8 @@ import { scan, takeUntil } from 'rxjs/operators';
 import { WidgetContainerComponent } from '../../shared/components/widget-container/widget-container.component';
 import { WidgetAComponent } from '../../shared/components/widget-a/widget-a.component';
 import { WidgetBComponent } from '../../shared/components/widget-b/widget-b.component';
+import { ApplePayWidgetComponent } from '../../shared/components/apple-pay-widget/apple-pay-widget.component';
+import { PaypalWidgetComponent } from '../../shared/components/paypal-widget/paypal-widget.component';
 
 @Component({
     selector: 'mk-playground-page',
@@ -27,7 +29,9 @@ import { WidgetBComponent } from '../../shared/components/widget-b/widget-b.comp
       AsyncPipe,
       WidgetContainerComponent,
       WidgetAComponent,
-      WidgetBComponent
+      WidgetBComponent,
+      ApplePayWidgetComponent,
+      PaypalWidgetComponent
     ],
     templateUrl: './playground-page.component.html',
     styleUrl: './playground-page.component.scss'

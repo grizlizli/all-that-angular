@@ -15,7 +15,7 @@ const retryConfig: RetryConfig = {
 export class ApiService {
   private readonly http: HttpClient = inject(HttpClient);
   private readonly apiEndpointConfig: ApiEndpointConfig = inject(API_ENDPOINT_CONFIG);
-  private readonly endpointUrl: string = inject(API_ENDPOINT_URL);
+  readonly endpointUrl: string = inject(API_ENDPOINT_URL);
   // deprecated
   private readonly endpoint: string = `${this.apiEndpointConfig.endpoint}/${this.apiEndpointConfig.prefix}/v${this.apiEndpointConfig.version}`;
 
