@@ -1,7 +1,0 @@
-<div class="container responsive-grid">
-  @for (product of products(); track product.id) {
-    <mk-product-card [id]="product.id" [title]="product.title" [category]="product.category"
-      [description]="product.description" [thumbnail]="product.thumbnail" (share)="shareProduct($event)"
-      (more)="openProductPage($event)" />
-  }
-</div>
