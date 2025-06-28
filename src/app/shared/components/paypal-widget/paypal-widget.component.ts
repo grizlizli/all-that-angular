@@ -3,6 +3,7 @@ import { WIDGET } from '../../../core/providers/widget.provider';
 import { Widget } from '../../../core/interfaces/widget.interface';
 import { PaypalPaymentService } from '../../../core/services/paypal-payment.service';
 import { PaymentService } from '../../../core/services/payment.service';
+import { WidgetContainerComponent } from '../widget-container/widget-container.component';
 
 @Component({
   selector: 'mk-paypal-widget',
@@ -19,10 +20,12 @@ import { PaymentService } from '../../../core/services/payment.service';
 })
 export class PaypalWidgetComponent implements Widget {
   private readonly paypalPayment = inject(PaymentService);
+  protected readonly container = inject(WidgetContainerComponent, { optional: true });
   readonly name = input('PayPal');
 
   constructor() {
-    console.log('paypal widget', this.paypalPayment.endpointUrl());
+    console.log('paypal widget', this.container);
+    console.log('paypal widget', this.container?.name);
   }
 
   pay() {

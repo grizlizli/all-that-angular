@@ -15,7 +15,7 @@ export const routes: Routes = [
       loadComponent: () => ProductDetailsPageComponent,
       resolve: {
         product: productByIdResolver
-      }
+      },
     },
     {
         path: 'countries',

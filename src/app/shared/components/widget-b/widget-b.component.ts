@@ -17,6 +17,10 @@ export class WidgetBComponent implements Widget {
   readonly name = input('PayPal');
   protected readonly container = inject(WidgetContainerComponent, { optional: true });
 
+  constructor() {
+    console.log('WidgetBComponent', this.container);
+  }
+
   pay() {
     this.container?.hello();
     alert('payment from widget B')
