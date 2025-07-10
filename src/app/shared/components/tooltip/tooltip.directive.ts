@@ -1,7 +1,7 @@
-import { ApplicationRef, ComponentRef, DestroyRef, Directive, ElementRef, HostListener, inject, Input, OnDestroy, OnInit, TemplateRef, Type, ViewContainerRef } from '@angular/core';
+import { ApplicationRef, ComponentRef, DestroyRef, Directive, ElementRef, HostListener, inject, Input, OnDestroy, OnInit, TemplateRef, Type, ViewContainerRef, DOCUMENT } from '@angular/core';
 import { BehaviorSubject, Observable, debounceTime, distinctUntilChanged } from 'rxjs';
 import { TooltipComponent } from './tooltip.component';
-import { DOCUMENT } from '@angular/common';
+
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 export type Content<T> = string | TemplateRef<T> | Type<T>;
