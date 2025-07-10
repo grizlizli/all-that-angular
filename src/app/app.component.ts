@@ -8,6 +8,7 @@ import { ShoppingCartStore } from './store/shopping-cart.store';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
+import { AllThatDynamicComponent } from './shared/components/all-that-dynamic/all-that-dynamic.component';
 
 @Component({
   selector: 'mk-root',
@@ -21,6 +22,7 @@ import { MatListModule } from '@angular/material/list';
     RouterLink,
     RouterOutlet,
     ShoppingCartComponent,
+    AllThatDynamicComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
