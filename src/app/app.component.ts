@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, linkedSignal, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, inputBinding, linkedSignal, signal } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { ResponsiveService } from './core/services/responsive.service';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -8,12 +8,16 @@ import { ShoppingCartStore } from './store/shopping-cart.store';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
-import { AllThatDynamicComponent } from './shared/components/all-that-dynamic/all-that-dynamic.component';
+import { AllThatDynamicComponent, DynamicElement } from './shared/components/all-that-dynamic/all-that-dynamic.component';
+import { FormsModule } from '@angular/forms';
+import { ProductCardComponent } from './shared/components/product-card/product-card.component';
+import { TooltipDirective } from './shared/components/tooltip/tooltip.directive';
 
 @Component({
   selector: 'mk-root',
   standalone: true,
   imports: [
+    FormsModule,
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
@@ -32,6 +36,24 @@ export class AppComponent {
   readonly title = 'All That Angular';
   private readonly responsiveService = inject(ResponsiveService);
   private readonly shoppingCartStore = inject(ShoppingCartStore);
+
+  readonly value = signal('Hello, World!');
+
+  readonly dynamicElement: DynamicElement = {
+    type: ProductCardComponent,
+    directives: [
+      TooltipDirective
+    ],
+    bindings: [
+      inputBinding('id', () => 123),
+      inputBinding('title', this.value),
+      inputBinding('category', () => 'category'),
+      inputBinding('thumbnail', () => 'thumbnail'),
+      inputBinding('description', () => 'description'),
+      inputBinding('mkTooltip', () => 'hello, world!')
+    ],
+
+  }
 
 
   readonly shoppingCart = this.shoppingCartStore.shoppingCart;

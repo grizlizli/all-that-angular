@@ -22,6 +22,6 @@
 
 
 <div>
-  Dynamic
-  <mk-all-that-dynamic [dynamicElement]="null"/>
+  <input [(ngModel)]="value"/>
+  <mk-all-that-dynamic [(value)]="value" [dynamicElement]="dynamicElement"/>
 </div>
