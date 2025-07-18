@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, inputBinding, linkedSignal, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, inputBinding, linkedSignal, outputBinding, signal } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { ResponsiveService } from './core/services/responsive.service';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -42,7 +42,12 @@ export class AppComponent {
   readonly dynamicElement: DynamicElement = {
     type: ProductCardComponent,
     directives: [
-      TooltipDirective
+      {
+        type: TooltipDirective,
+        bindings: [
+          inputBinding('mkTooltip', () => 'Hello!')
+        ]
+      }
     ],
     bindings: [
       inputBinding('id', () => 123),
@@ -50,10 +55,9 @@ export class AppComponent {
       inputBinding('category', () => 'category'),
       inputBinding('thumbnail', () => 'thumbnail'),
       inputBinding('description', () => 'description'),
-      inputBinding('mkTooltip', () => 'hello, world!')
+      outputBinding('moreDetails', () => alert('hello, world!'))
     ],
-
-  }
+  };
 
 
   readonly shoppingCart = this.shoppingCartStore.shoppingCart;
