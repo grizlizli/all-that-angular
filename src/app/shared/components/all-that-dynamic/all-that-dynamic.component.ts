@@ -16,7 +16,7 @@ export interface DynamicElement {
 })
 export class AllThatDynamicComponent {
   protected readonly container = viewChild.required('container', { read: ViewContainerRef });
-  readonly #injector = inject(EnvironmentInjector);
+  readonly #environmentInjector = inject(EnvironmentInjector);
 
   readonly value = model.required();
 
@@ -24,16 +24,14 @@ export class AllThatDynamicComponent {
 
   constructor() {
     afterRenderEffect(() => {
-      const container = this.container();
-
       const componentRef = createComponent(this.dynamicElement().type, {
-        environmentInjector: this.#injector,
+        environmentInjector: this.#environmentInjector,
         bindings: this.dynamicElement()?.bindings || [],
         directives: this.dynamicElement()?.directives || [],
 
       });
 
-      container.insert(componentRef.hostView);
+      this.container().insert(componentRef.hostView);
     });
 
 
