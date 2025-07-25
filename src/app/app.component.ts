@@ -12,6 +12,8 @@ import { AllThatDynamicComponent, DynamicElement } from './shared/components/all
 import { FormsModule } from '@angular/forms';
 import { ProductCardComponent } from './shared/components/product-card/product-card.component';
 import { TooltipDirective } from './shared/components/tooltip/tooltip.directive';
+import { DynamicListComponent } from './shared/components/dynamic-list/dynamic-list.component';
+import { DynamicListItemExample1Component } from './shared/components/dynamic-list-item-example1/dynamic-list-item-example1.component';
 
 @Component({
   selector: 'mk-root',
@@ -26,7 +28,8 @@ import { TooltipDirective } from './shared/components/tooltip/tooltip.directive'
     RouterLink,
     RouterOutlet,
     ShoppingCartComponent,
-    AllThatDynamicComponent
+    AllThatDynamicComponent,
+    DynamicListComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -49,8 +52,7 @@ export class AppComponent {
       inputBinding('title', this.value),
       inputBinding('category', () => 'category'),
       inputBinding('thumbnail', () => 'thumbnail'),
-      inputBinding('description', () => 'description'),
-      inputBinding('mkTooltip', () => 'hello, world!')
+      inputBinding('description', () => 'description')
     ],
 
   }
@@ -75,6 +77,12 @@ export class AppComponent {
   });
 
   readonly sideNavOpened = signal<boolean>(true);
+
+
+  readonly dynamicListItems = [{
+    type: DynamicListItemExample1Component,
+    data: [{ test: '1234' }]
+  }]
 
   removeProduct(id: number) {
     this.shoppingCartStore.removeProduct(id);

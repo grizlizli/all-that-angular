@@ -1,0 +1,6 @@
+<div>
+  @for (item of items(); track item) {
+      <ng-container *ngComponentOutlet="item.type; injector: createInjector(item.data)">
+      </ng-container>
+  }
+</div>
