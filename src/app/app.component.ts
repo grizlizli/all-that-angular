@@ -44,14 +44,11 @@ export class AppComponent {
 
   readonly dynamicElement: DynamicElement = {
     type: ProductCardComponent,
-    directives: [
-      TooltipDirective
-    ],
     bindings: [
       inputBinding('id', () => 123),
       inputBinding('title', this.value),
       inputBinding('category', () => 'category'),
-      inputBinding('thumbnail', () => 'thumbnail'),
+      inputBinding('thumbnail', () => 'https://cdn.dummyjson.com/product-images/beauty/powder-canister/thumbnail.webp'),
       inputBinding('description', () => 'description')
     ],
 
