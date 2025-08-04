@@ -1,12 +1,15 @@
-import { Directive, ElementRef, inject } from '@angular/core';
+import { Directive, ElementRef, inject, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[mkTest]'
 })
 export class TestDirective {
   readonly elementRef = inject(ElementRef);
+  readonly renderer = inject(Renderer2);
 
   constructor() {
-    this.elementRef.nativeElement.style.color = 'red';
+    this.renderer.setStyle(this.elementRef, 'style', 'red')
   }
+
+
 }
