@@ -6,9 +6,6 @@ import { TestDirective } from '../../directives/test.directive';
   selector: 'mk-widget-container',
   templateUrl: './widget-container.component.html',
   styleUrl: './widget-container.component.scss',
-  hostDirectives: [
-    TestDirective
-  ]
 })
 export class WidgetContainerComponent {
   protected readonly widget = contentChild(WIDGET);

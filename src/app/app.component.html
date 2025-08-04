@@ -22,7 +22,11 @@
   </mat-drawer>
 </mat-drawer-container>
 
-<div>
+<div mkTest [templateRef]="ref">
   <input [(ngModel)]="value"/>
   <mk-all-that-dynamic [(value)]="value" [dynamicElement]="dynamicElement"/>
 </div>
+
+<ng-template #ref>
+  <h1>Zli was here</h1>
+</ng-template>

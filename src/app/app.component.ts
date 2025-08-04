@@ -14,6 +14,8 @@ import { ProductCardComponent } from './shared/components/product-card/product-c
 import { TooltipDirective } from './shared/components/tooltip/tooltip.directive';
 import { DynamicListComponent } from './shared/components/dynamic-list/dynamic-list.component';
 import { DynamicListItemExample1Component } from './shared/components/dynamic-list-item-example1/dynamic-list-item-example1.component';
+import { TestDirective } from './shared/directives/test.directive';
+import { MatExpansionModule } from "@angular/material/expansion";
 
 @Component({
   selector: 'mk-root',
@@ -29,8 +31,10 @@ import { DynamicListItemExample1Component } from './shared/components/dynamic-li
     RouterOutlet,
     ShoppingCartComponent,
     AllThatDynamicComponent,
-    DynamicListComponent
-  ],
+    DynamicListComponent,
+    TestDirective,
+    MatExpansionModule
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
