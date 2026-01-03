@@ -1,5 +1,5 @@
-import { ApplicationRef, ComponentRef, DestroyRef, Directive, ElementRef, HostListener, inject, Input, OnDestroy, OnInit, TemplateRef, Type, ViewContainerRef, DOCUMENT } from '@angular/core';
-import { BehaviorSubject, Observable, debounceTime, distinctUntilChanged } from 'rxjs';
+import { ApplicationRef, ComponentRef, DestroyRef, Directive, ElementRef, inject, Input, OnDestroy, OnInit, TemplateRef, Type, ViewContainerRef, DOCUMENT } from '@angular/core';
+import { EMPTY, fromEvent, merge, switchMap, takeUntil, tap, timer } from 'rxjs';
 import { TooltipComponent } from './tooltip.component';
 
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -20,34 +20,40 @@ export class TooltipDirective implements OnInit, OnDestroy {
   private readonly document: Document = inject(DOCUMENT);
   private readonly destroyRef: DestroyRef = inject(DestroyRef);
 
-  private readonly displaySubject = new BehaviorSubject<boolean>(false);
-  private readonly display$: Observable<boolean> = this.displaySubject;
-
   private componentRef: ComponentRef<TooltipComponent> | null = null;
 
-  @HostListener('mouseenter')
-  onMouseEnter(): void {
-    this.displaySubject.next(true);
-  }
-
-  @HostListener('mouseleave')
-  onMouseLeave(): void {
-    this.displaySubject.next(false);
-  }
-
   ngOnInit(): void {
-    this.display$.pipe(
-      debounceTime(700),
-      distinctUntilChanged(),
+    const hostMouseEnter$ = fromEvent(this.elementRef.nativeElement, 'mouseenter');
+    const hostMouseLeave$ = fromEvent(this.elementRef.nativeElement, 'mouseleave');
+
+    hostMouseEnter$.pipe(
+      tap(() => this.initializeTooltip()),
+      switchMap(() => {
+        const tooltipElement = this.componentRef?.location.nativeElement;
+        if (!tooltipElement) return EMPTY;
+
+        const tooltipMouseEnter$ = fromEvent(tooltipElement, 'mouseenter');
+        const tooltipMouseLeave$ = fromEvent(tooltipElement, 'mouseleave');
+
+        // Merge all "enter" events (hovering over host or tooltip)
+        const anyMouseEnter$ = merge(hostMouseEnter$, tooltipMouseEnter$);
+
+        // Merge all "leave" events (leaving host or tooltip)
+        const anyMouseLeave$ = merge(hostMouseLeave$, tooltipMouseLeave$);
+
+        // When mouse leaves either, start a timer to destroy
+        // If mouse enters either again before timer completes, cancel the timer
+        return anyMouseLeave$.pipe(
+          switchMap(() =>
+            timer(200).pipe(
+              tap(() => this.destroyTooltip()),
+              takeUntil(anyMouseEnter$)
+            )
+          )
+        );
+      }),
       takeUntilDestroyed(this.destroyRef)
-    ).subscribe((displayed: boolean) => {
-      if (displayed) {
-        this.initializeTooltip();
-      }
-      else {
-        this.destroyTooltip();
-      }
-    });
+    ).subscribe();
   }
 
   ngOnDestroy(): void {
@@ -70,7 +76,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
       this.componentRef.setInput('left', Math.round((right - left) / 2 + left));
       this.componentRef.setInput('top', Math.round(top - 4));
       this.componentRef.setInput('tooltip', this.tooltip);
-      this.componentRef.setInput('displaySubject', this.displaySubject);
       this.componentRef.setInput('hasTemplate', hasTemplate);
     }
   }
